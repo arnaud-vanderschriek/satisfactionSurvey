@@ -1,7 +1,7 @@
 const UserModel = require("../models/user.model");
 
 module.exports.signUp = async (req, res) => {
-  const { lastname,firstname, email, password } = req.body;
+  const { lastname, firstname, email, password } = req.body;
 
   try {
     const user = await UserModel.create({
@@ -15,3 +15,15 @@ module.exports.signUp = async (req, res) => {
     res.status(200).send({ err });
   }
 };
+
+module.exports.signIn = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await UserModel.login({email, password})
+    const token = helpersJwt.createToken(user._id)
+  } catch (err) {
+
+  }
+
+}

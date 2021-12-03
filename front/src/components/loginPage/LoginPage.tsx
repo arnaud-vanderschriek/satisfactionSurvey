@@ -12,6 +12,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
 
 function Copyright(props: any) {
   return (
@@ -37,6 +38,21 @@ export default function SignIn() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    // à mettre dans Redux !!!!!!!
+    axios({ 
+      method: "post",
+      url: `${process.env.REACT_APP_API_URL}api/user/login`,
+      withCredentials: true,
+      data: {
+        email: data.get('email'),
+        password: data.get('password'),
+      }
+    })
+    .then((res) => {
+      if(res.data.errors) {
+        console.log({errors: res.data.errors})
+      }
+    })
   };
 
   return (
