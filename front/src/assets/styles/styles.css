@@ -1,0 +1,12 @@
+#logoPutman {
+  background-image: url('../img/logoPutman2.png');
+  width: 60px;
+  height: 60px;
+}
+
+#logoPutman2 {
+  background-image: url('../img/logoPutman.png');
+  background-repeat: no-repeat;
+  width: 250px;
+  height: 200px;
+}

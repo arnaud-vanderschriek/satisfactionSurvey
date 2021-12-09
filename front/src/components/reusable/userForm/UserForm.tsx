@@ -12,8 +12,8 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
+import AddressForm from './ContactForm';
+import StatusForm from './StatusForm';
 import Review from './Review';
 
 function Copyright() {
@@ -29,14 +29,14 @@ function Copyright() {
   );
 }
 
-const steps = ['Address', 'Payment details', 'Review your order'];
+const steps = ['Contact', 'Position', 'Check'];
 
 function getStepContent(step: number) {
   switch (step) {
     case 0:
       return <AddressForm />;
     case 1:
-      return <PaymentForm />;
+      return <StatusForm />;
     case 2:
       return <Review />;
     default:
@@ -67,11 +67,13 @@ export default function Checkout() {
         sx={{
           position: 'relative',
           borderBottom: (t) => `1px solid ${t.palette.divider}`,
+          backgroundColor: '#1f76d2',
+          color: 'white',
         }}
       >
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Company name
+            Putmann
           </Typography>
         </Toolbar>
       </AppBar>
@@ -91,12 +93,10 @@ export default function Checkout() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                  Thank you for your time.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
+                  
                 </Typography>
               </React.Fragment>
             ) : (
@@ -113,7 +113,7 @@ export default function Checkout() {
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Send' : 'Next'}
                   </Button>
                 </Box>
               </React.Fragment>

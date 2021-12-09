@@ -9,54 +9,65 @@ export default function PaymentForm() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Payment method
+        Position in company
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
+      <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="cardName"
-            label="Name on card"
+            id="country"
+            name="country"
+            label="Service"
             fullWidth
-            autoComplete="cc-name"
+            autoComplete="shipping country"
             variant="standard"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="cardNumber"
-            label="Card number"
+            id="country"
+            name="Poste"
+            label="Poste"
             fullWidth
-            autoComplete="cc-number"
+            autoComplete="shipping country"
             variant="standard"
           />
-        </Grid>
-        <Grid item xs={12} md={6}>
+        </Grid>      <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="expDate"
-            label="Expiry date"
+            id="country"
+            name="country"
+            label="Secteur"
             fullWidth
-            autoComplete="cc-exp"
+            autoComplete="shipping country"
             variant="standard"
           />
-        </Grid>
-        <Grid item xs={12} md={6}>
+        </Grid>      <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="cvv"
-            label="CVV"
-            helperText="Last three digits on signature strip"
+            id="country"
+            name="country"
+            label="Supérieur"
             fullWidth
-            autoComplete="cc-csc"
+            autoComplete="shipping country"
+            variant="standard"
+          />
+        </Grid>      <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="country"
+            name="country"
+            label="Compagnie"
+            fullWidth
+            autoComplete="shipping country"
             variant="standard"
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Remember credit card details for next time"
+            label="Confirm"
           />
         </Grid>
       </Grid>

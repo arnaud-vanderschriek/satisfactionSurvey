@@ -12,9 +12,9 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
-import Review from './Review';
+import Form1 from './Form1';
+import Form2 from './Form2';
+import Form3 from './Form3';
 
 function Copyright() {
   return (
@@ -29,16 +29,16 @@ function Copyright() {
   );
 }
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ['Form 1', 'Form 2', 'Form 3'];
 
 function getStepContent(step: number) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <Form1 />;
     case 1:
-      return <PaymentForm />;
+      return <Form2 />;
     case 2:
-      return <Review />;
+      return <Form3 />;
     default:
       throw new Error('Unknown step');
   }
@@ -46,7 +46,7 @@ function getStepContent(step: number) {
 
 const theme = createTheme();
 
-export default function Checkout() {
+export default function TechForm() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -67,18 +67,21 @@ export default function Checkout() {
         sx={{
           position: 'relative',
           borderBottom: (t) => `1px solid ${t.palette.divider}`,
+          backgroundColor: '#1f76d2',
+          color: 'white',
         }}
       >
+        <img src='../../../assets/img/logoPutman.png' alt=''></img>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Company name
+            Putmann
           </Typography>
         </Toolbar>
       </AppBar>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
-            Checkout
+            Tech Form
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
@@ -91,12 +94,10 @@ export default function Checkout() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                  Thank you for your time.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
+                  
                 </Typography>
               </React.Fragment>
             ) : (
@@ -113,7 +114,7 @@ export default function Checkout() {
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Send' : 'Next'}
                   </Button>
                 </Box>
               </React.Fragment>

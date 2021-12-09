@@ -5,11 +5,11 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-export default function AddressForm() {
+export default function ContactForm() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Shipping address
+        Contact details
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
@@ -97,10 +97,32 @@ export default function AddressForm() {
             variant="standard"
           />
         </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="phone-number"
+            name="phoneNumber"
+            label="Phone Number"
+            fullWidth
+            autoComplete="shipping address-level2"
+            variant="standard"
+            />
+          </Grid> 
+          <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="work-number"
+            name="workNumber"
+            label="Work Number"
+            fullWidth
+            autoComplete="shipping address-level2"
+            variant="standard"
+          />
+        </Grid>
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
+            label="Confirm"
           />
         </Grid>
       </Grid>

@@ -9,6 +9,8 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -41,6 +43,7 @@ export default function SignUp() {
       password: data.get('password'),
     });
 
+
     axios({ 
       method: "post",
       url: `http://localhost:5000/api/user/register`,
@@ -65,6 +68,23 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
+        <AppBar
+        position="absolute"
+        color="default"
+        elevation={0}
+        sx={{
+          position: 'relative',
+          borderBottom: (t) => `1px solid ${t.palette.divider}`,
+          backgroundColor: '#1f76d2',
+          color: 'white',
+        }}
+      >
+        <Toolbar>
+          <Typography variant="h6" color="inherit" noWrap>
+            Putmann
+          </Typography>
+        </Toolbar>
+      </AppBar>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -75,6 +95,7 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
+            <div id='logoPutman2'></div>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             {/* <LockOutlinedIcon /> */}
           </Avatar>

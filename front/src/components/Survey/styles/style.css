@@ -1,0 +1,12 @@
+#beubeubeu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+#tabs-button {
+  height: 50px;
+  width: 100px;
+  align-self: flex-end;
+  margin-left: 25px;
+}
