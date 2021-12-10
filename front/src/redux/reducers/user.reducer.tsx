@@ -1,11 +1,13 @@
 import { GET_USER } from "../actions/user.action";
 
-const initialState = {};
+const initialState = {
+  test: 'Caca'
+};
 
 export default function userReducer(state= initialState, action: any) {
   switch (action.type) {
     case  GET_USER:
-      return action.payload
+      return {state, test: action.payload}
     default: 
     return state;
   }

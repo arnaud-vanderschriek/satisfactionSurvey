@@ -14,8 +14,8 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Chart from './Chart';
-import Deposits from './Opinions';
-import Orders from './PersonnalDetails';
+import Opinions from './Opinions';
+import PersonnalDetails from './PersonnalDetails';
 
 function Copyright(props: any) {
   return (
@@ -164,13 +164,13 @@ function DashboardContent() {
                     height: 240,
                   }}
                 >
-                  <Deposits />
+                  <Opinions />
                 </Paper>
               </Grid>
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
+                  <PersonnalDetails />
                 </Paper>
               </Grid>
             </Grid>
