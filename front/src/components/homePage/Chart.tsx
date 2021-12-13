@@ -3,19 +3,57 @@ import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadius
 import Title from './Title';
 
 // Generate Sales Data
-function createData(time: number, amount?: number) {
-  return { time, amount};
-}
+// function createData(time: number, amount?: number, data?: number) {
+//   return { time, amount};
+// }
 
+// const data = [
+//   createData(1000, 500, 60000000000),
+//   createData(2555 , 1000),
+//   createData(600, 2600),
+//   createData(40, 800),
+//   createData(50, 1500),
+//   createData(50, 2000),
+//   createData(14, 2400),
+// ];
 const data = [
-  createData(1000, 500),
-  createData( 2555 , 1000),
-  createData(600, 2600),
-  createData(40, 800),
-  createData(50, 1500),
-  createData(50, 2000),
-  createData(14, 2400),
-];
+  {
+    "subject": "Manoeuvre",
+    "A": 500,
+    "B": 700,
+    "C  ": 150
+  },
+  {
+    "subject": "Plan éléctrique",
+    "A": 200,
+    "B": 700,
+    "C": 150
+  },
+  {
+    "subject": "Pose de tableau",
+    "A": 1000,
+    "B": 700,
+    "C": 150
+  },
+  // {
+  //   "subject": "Geography",  
+  //   "A": 99,
+  //   "B": 100,
+  //   "fullMark": 150
+  // },
+  // {
+  //   "subject": "Physics",
+  //   "A": 85,
+  //   "B": 90,
+  //   "fullMark": 150
+  // },
+  // {
+  //   "subject": "History",
+  //   "A": 65,
+  //   "B": 85,
+  //   "fullMark": 150
+  // }
+]
 
 export default function Chart() {
   // const theme = useTheme();
@@ -23,51 +61,14 @@ export default function Chart() {
   return (
     <React.Fragment>
       <Title>Personnal stats</Title>
-      <ResponsiveContainer width={900} height="200%" >
-        {/* <LineChart
-          data={data}
-          margin={{
-            top: 16,
-            right: 16,  
-            bottom: 0,
-            left: 24,
-          }}
-        >
-          <XAxis
-            dataKey="time"
-            stroke={theme.palette.text.secondary}
-            style={theme.typography.body2}
-          />
-          <YAxis
-            stroke={theme.palette.text.secondary}
-            style={theme.typography.body2}
-          >
-            <Label
-              angle={270}
-              position="left"
-              style={{
-                textAnchor: 'middle',
-                fill: theme.palette.text.primary,
-                ...theme.typography.body1,
-              }}
-            >
-              Sales ($)
-            </Label>
-          </YAxis>
-          <Line
-            isAnimationActive={false}
-            type="monotone"
-            dataKey="amount"
-            stroke={theme.palette.primary.main}
-            dot={false}
-          />
-        </LineChart> */}
+      <ResponsiveContainer width={900} height="300%" >
         <RadarChart outerRadius={80} width={730} height={250} data={data}>
           <PolarGrid />
           <PolarAngleAxis dataKey="subject" />
-          <PolarRadiusAxis angle={30} domain={[0, 150]}  />
-          <Radar name="Mike" dataKey="time" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-          <Radar name="Lily" dataKey="amount" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
+          <PolarRadiusAxis angle={30} domain={[0, 1000]}  />
+          <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+          <Radar name="claire" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
+          <Radar name="Youssef" dataKey="C  " stroke="##FFFFFF" fill="#FFFFFF" fillOpacity={0.1} />
           <Legend />
       </RadarChart>
       </ResponsiveContainer>

@@ -12,9 +12,13 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
 import Form3 from './Form3';
+import { setTechInfos } from '../../../redux/actions/user.action';
+import store from '../../../redux/store/store';
+
 
 function Copyright() {
   return (
@@ -46,16 +50,20 @@ function getStepContent(step: number) {
 
 const theme = createTheme();
 
-export default function TechForm() {
+function TechForm() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
 
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
+  // const handleBack = () => {
+  //   setActiveStep(activeStep - 1);
+  // };
+
+  const handleSend = () => {
+    console.log({data: 'envoyé'})
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -95,6 +103,13 @@ export default function TechForm() {
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
                   Thank you for your time.
+                  <Button
+                    variant="contained"
+                    onClick={handleSend}
+                    sx={{ mt: 3, ml: 1 }}
+                  >
+                   Send
+                  </Button>
                 </Typography>
                 <Typography variant="subtitle1">
                   
@@ -103,18 +118,18 @@ export default function TechForm() {
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  {activeStep !== 0 && (
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                  {/* {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
                       Back
                     </Button>
-                  )}
+                  )} */}
                   <Button
                     variant="contained"
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    {activeStep === steps.length - 1 ? 'Send' : 'Next'}
+                    {activeStep === steps.length ? 'Send' : 'Next'}
                   </Button>
                 </Box>
               </React.Fragment>
@@ -126,3 +141,18 @@ export default function TechForm() {
     </ThemeProvider>
   );
 }
+
+
+const mapStateToProps = (state: any) => {
+  return {
+    techInfos: store.getState().techInfos,
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TechForm)

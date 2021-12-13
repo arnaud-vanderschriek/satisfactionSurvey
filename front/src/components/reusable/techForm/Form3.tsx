@@ -1,87 +1,103 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-// import List from '@mui/material/List';
-// import ListItem from '@mui/material/ListItem';
-// import ListItemText from '@mui/material/ListItemText';
-// import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import store from '../../../redux/store/store';
+import { Values } from '.';
+import { setTechInfos } from '../../../redux/actions/user.action';
+import { connect } from 'react-redux';
 
-// const products = [
-//   {
-//     name: 'Product 1',
-//     desc: 'A nice thing',
-//     price: '$9.99',
-//   },
-//   {
-//     name: 'Product 2',
-//     desc: 'Another thing',
-//     price: '$3.45',
-//   },
-//   {
-//     name: 'Product 3',
-//     desc: 'Something else',
-//     price: '$6.51',
-//   },
-//   {
-//     name: 'Product 4',
-//     desc: 'Best thing of all',
-//     price: '$14.11',
-//   },
-//   { name: 'Shipping', desc: '', price: 'Free' },
-// ];
-// const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-// const payments = [
-//   { name: 'Card type', detail: 'Visa' },
-//   { name: 'Card holder', detail: 'Mr John Smith' },
-//   { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-//   { name: 'Expiry date', detail: '04/2024' },
-// ];
 
-export default function Form3() {
+function Form3(props: any) {
+  function handleButtonRadio(e: any) {
+    if(e.target.checked) {
+      const filteredObject = props.techInfos.filter((item: Values) => item.name === e.target.name)
+      filteredObject[0].value +=  + 1
+    } else {
+      const filteredObject = props.techInfos.filter((item: Values) => item.name === e.target.name)
+      filteredObject[0].value += -1
+    } 
+
+   props.setTechInfos(props.techInfos)
+  }
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Please read before sending
+        Following
       </Typography>
-      {/* <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
-          </ListItem>
-        ))}
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="Total" />
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
-          </Typography>
-        </ListItem>
-      </List>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Shipping
-          </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+      <Grid container spacing={6}>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="B" value="B" />}
+            label="Donner des consignes et des instructions à l’équipe dont il a la charge."
+            onChange={handleButtonRadio}
+          />
         </Grid>
-        <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Payment details
-          </Typography>
-          <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
-                </Grid>
-              </React.Fragment>
-            ))}
-          </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="C" value="C" />}
+            label="Transférer des connaissances et des idées."
+            onChange={handleButtonRadio}
+          />
         </Grid>
-      </Grid> */}
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="A" value="A" />}
+            label="Rapporter à son supérieur."
+            onChange={handleButtonRadio}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="C" value="C" />}
+            label="Echanger des informations avec divers services internes (ressources humaines, service technique, …)."
+            onChange={handleButtonRadio}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="A" value="A" />}
+            label="Peut éventuellement avoir un contact avec le magasin et le service technique, SIPP, d’autres corps de métier."
+            onChange={handleButtonRadio}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="B" value="B" />}
+            label="veiller à ce qu’aucune difficulté technique - de quelque nature que ce soit - ne surgisse pendant l’exécution du travail,
+            en la prévoyant et en cherchant à appliquer la solution adéquate afin d’éviter des retards dans les travaux."
+            onChange={handleButtonRadio}
+          />
+        </Grid>   <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="B" value="B" />}
+            label="est responsable de la conduite du chantier tant sur le plan technique que sur le plan organisationnel;"
+            onChange={handleButtonRadio}
+          />
+        </Grid>   <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="C" value="C" />}
+            label="fait des rapports écrits à ses supérieurs, discute avec eux des possibilités de réalisation, fait appel à leur aide si nécessaire;"
+            onChange={handleButtonRadio}
+          />
+        </Grid>
+      </Grid>
     </React.Fragment>
   );
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    techInfos: store.getState().techInfos,
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form3)

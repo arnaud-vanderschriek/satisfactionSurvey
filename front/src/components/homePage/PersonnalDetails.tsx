@@ -41,11 +41,11 @@ export default function PersonnalDetails() {
   return (
     <React.Fragment>
       <Title>Personnal details</Title>
-      {rows.map((row) => (
-        <Card>  
+      {rows.map((row, index) => (
+        <Card key={index}>  
           <CardContent>
             <Typography sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-              <div>
+              <div >
                 <p>date de contrat:{row.date}</p>
                 <p>Nom:{row.name}</p>
                 <p>adresse:{row.address}</p>

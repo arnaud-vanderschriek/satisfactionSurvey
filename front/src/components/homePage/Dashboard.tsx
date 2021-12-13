@@ -148,7 +148,7 @@ function DashboardContent() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: 280,
                   }}
                 >
                   <Chart />
@@ -161,7 +161,8 @@ function DashboardContent() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    alignItems: 'center',
+                    height: 280,
                   }}
                 >
                   <Opinions />

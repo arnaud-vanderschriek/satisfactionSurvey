@@ -22,13 +22,13 @@ function Opinions(props: any) {
       {/* <Typography component="p" variant="h4">
         $3,024.00
       </Typography> */}
-      {props.test}
+      {props.test.firstname}
         <Button
           type="submit"
           fullWidth
           variant="contained"
           onClick={handler}
-          sx={{ mt: 2, mb: 2 }}
+          sx={{ mt: 8 , mb: 2 }}
         >
           Begin
         </Button>
@@ -45,15 +45,15 @@ function Opinions(props: any) {
 }
 
 const mapStateToProps = (state: any) => {
-  return ({
+  return {
     test: store.getState().test,
-  })
+  }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
-  return ({
-    getUser: store.dispatch(getUser)
-  })
+  return {
+    getUser: (uid: string) => { dispatch(getUser(uid)) }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Opinions)

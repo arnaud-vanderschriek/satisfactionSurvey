@@ -2,7 +2,6 @@ const UserModel = require("../models/user.model");
 const ObjectID = require("mongoose").Types.ObjectId;
 
 module.exports.getAllUsers = async (req, res) => {
-  console.log("server");
   const users = await UserModel.find().select("-password");
   res.status(200).json(users);
 };
@@ -16,3 +15,8 @@ module.exports.userInfo = async (req, res) => {
     else console.log("ID unknown : " + err);
   }).select("-password");
 };
+
+module.exports.setDataUserChart = async (req, res) =>{
+  
+}
+ 

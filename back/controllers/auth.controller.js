@@ -18,11 +18,10 @@ module.exports.signUp = async (req, res) => {
   }
 };
 
-
 module.exports.signIn = async (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   const { email, password } = req.body;
- 
+
   try {
     const user = await UserModel.login(email, password);
     const token = helpersJwt.createToken(user._id);
@@ -34,6 +33,6 @@ module.exports.signIn = async (req, res) => {
 };
 
 module.exports.logout = async (req, res) => {
-  res.cookie('jwt', '', { maxAge: 1 });
-  res.redirect('/');
-}
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.redirect("/");
+};
