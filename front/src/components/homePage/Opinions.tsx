@@ -22,7 +22,7 @@ function Opinions(props: any) {
       {/* <Typography component="p" variant="h4">
         $3,024.00
       </Typography> */}
-      {props.test.firstname}
+      {props.user.firstname}
         <Button
           type="submit"
           fullWidth
@@ -46,7 +46,7 @@ function Opinions(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    test: store.getState().test,
+    user: store.getState().user,
   }
 }
 

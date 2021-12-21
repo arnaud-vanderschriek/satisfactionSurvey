@@ -2,11 +2,11 @@ import { GET_USER } from "../actions/user.action";
 import { SET_INFOS } from "../actions/user.action";
 
 const initialState = {
-  test: 'Caca',
+  user: '',
   techInfos: [
-    {name: "A", value: 0, bool: false},
-    {name: "B", value: 0, bool: false},
-    {name: "C", value: 0, bool: false}
+    {name: "A", value: 0},
+    {name: "B", value: 0},
+    {name: "C", value: 0}
   ],  
 };
 
@@ -15,7 +15,7 @@ export default function userReducer(state= initialState, action: any) {
     case GET_USER:
       return {
         ...state, 
-        test: action.payload
+        user: action.payload
       }
     case SET_INFOS:
       return {
