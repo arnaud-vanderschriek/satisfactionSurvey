@@ -62,6 +62,8 @@ function TechForm() {
   // };
 
   const handleSend = () => {
+    // activé une fonction dans le store qui prends les valeurs des données pour les graphiques et 
+    // l'id du user auquel elles sont attribuées
     console.log({data: 'envoyé'})
   }
 

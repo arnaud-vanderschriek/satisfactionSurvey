@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Route } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -6,8 +8,8 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';                                                                                          
+import Box from '@mui/material/Box';                                                                
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -24,6 +26,7 @@ function Copyright(props: any) {
       <Link color="inherit" href="https://mui.com/">
         Your Website
       </Link>{' '}
+
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -33,6 +36,8 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function SignIn() {
+  let navigate = useNavigate()
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -55,7 +60,12 @@ export default function SignIn() {
       if(res.data.errors) {
         console.log({errors: res.data.errors})
       } else {
+        // faire le redirect vers le userForm 
+        // (prévoir le cas ou le user à déja rempli le userForm et le techForm dans ce cas redirect vers le dashboard) 
+        // avec un booleen par exemple...
         console.log('res: ', res.data)
+        // <UserForm />
+        navigate('/userForm')
       }
     })
   };

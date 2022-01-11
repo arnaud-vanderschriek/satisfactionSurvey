@@ -67,8 +67,8 @@ export default function Chart() {
           <PolarAngleAxis dataKey="subject" />
           <PolarRadiusAxis angle={30} domain={[0, 1000]}  />
           <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-          <Radar name="claire" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
-          <Radar name="Youssef" dataKey="C  " stroke="##FFFFFF" fill="#FFFFFF" fillOpacity={0.1} />
+          {/* <Radar name="claire" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
+          <Radar name="Youssef" dataKey="C  " stroke="##FFFFFF" fill="#FFFFFF" fillOpacity={0.1} /> */}
           <Legend />
       </RadarChart>
       </ResponsiveContainer>

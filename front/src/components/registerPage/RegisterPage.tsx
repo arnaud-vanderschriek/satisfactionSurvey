@@ -39,7 +39,7 @@ export default function SignUp() {
 
     axios({ 
       method: "post",
-      url: `http://localhost:5000/api/user/register`,
+      url: `${process.env.REACT_APP_API_URL}/api/user/register`,
       withCredentials: true,
       data: {
         lastname: data.get('lastName'),
@@ -52,7 +52,7 @@ export default function SignUp() {
       if(res.data.errors) {
         console.log({errors: res.data.errors})
       } else {
-        console.log('datas send');
+        console.log('datas send', res);
       }
     }).catch((err) => {
       console.log(err);
