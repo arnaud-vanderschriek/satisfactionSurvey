@@ -9,4 +9,3 @@ module.exports.createToken = (id) => {
     expiresIn: maxAge,
   });
 };
-
