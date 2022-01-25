@@ -4,13 +4,21 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import Box from '@mui/material/Box';
+
 
 export default function ContactForm() {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const data = new FormData(event.currentTarget);
+    console.log(data)
+  }
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Contact details
       </Typography>
+      <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -126,6 +134,7 @@ export default function ContactForm() {
           />
         </Grid>
       </Grid>
+      </Box>
     </React.Fragment>
   );
 }

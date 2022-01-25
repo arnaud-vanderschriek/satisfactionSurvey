@@ -4,13 +4,21 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import Box from '@mui/material/Box';
+
 
 export default function PaymentForm() {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const data = new FormData(event.currentTarget);
+    console.log(data)
+  }
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Position in company
       </Typography>
+      <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
       <Grid container spacing={3}>
       <Grid item xs={12} sm={6}>
           <TextField
@@ -71,6 +79,7 @@ export default function PaymentForm() {
           />
         </Grid>
       </Grid>
+      </Box>
     </React.Fragment>
   );
 }

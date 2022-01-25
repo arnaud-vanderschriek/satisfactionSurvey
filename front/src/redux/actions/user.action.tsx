@@ -3,6 +3,7 @@ import { ValuesTechForm } from "../../components/reusable/techForm";
 
 export const GET_USER = "GET_USER";
 export const SET_INFOS = "SET_INFOS";
+export const SEND_INFOS = "SEND_INFOS";
 
 export const getUser = (uid: string) => {
   return (dispatch: any) => {
@@ -22,5 +23,7 @@ export const setTechInfos = (data: ValuesTechForm[]) => {
     dispatch({ type: SET_INFOS, payload: data})
   }
 }
+
+
 
 

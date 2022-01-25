@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Route } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -60,12 +59,19 @@ export default function SignIn() {
       if(res.data.errors) {
         console.log({errors: res.data.errors})
       } else {
-        // faire le redirect vers le userForm 
-        // (prévoir le cas ou le user à déja rempli le userForm et le techForm dans ce cas redirect vers le dashboard) 
-        // avec un booleen par exemple...
-        console.log('res: ', res.data)
-        // <UserForm />
-        navigate('/userForm')
+        // mettre dans redux les données du user !!!!
+        if (res.data.userForm !== true && res.data.techForm !== true ) {
+          navigate('/userForm')
+        } 
+        if (res.data.userForm === true && res.data.techForm !== true ) {
+          navigate('/techForm')
+        }
+        if (res.data.userForm !== true && res.data.techForm === true) {
+          navigate('/userForm')
+        }
+        if (res.data.userForm === true && res.data.techForm === true ) {
+          navigate('/home')
+        }
       }
     })
   };

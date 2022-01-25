@@ -50,12 +50,19 @@ export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
+    if(activeStep === 2) {
+      sendData()
+    }
     setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+  const sendData = () => {
+    console.log("data send pd")
+  }
 
   return (
     <ThemeProvider theme={theme}>

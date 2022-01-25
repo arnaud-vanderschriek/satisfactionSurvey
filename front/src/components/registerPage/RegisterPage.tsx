@@ -46,6 +46,10 @@ export default function SignUp() {
         firstname: data.get('firstName'),
         email: data.get('email'),
         password: data.get('password'),
+        position: data.get('position'),
+        departement: data.get('departement'),
+        userForm: false,
+        techForm: false,
       }
     })
     .then((res) => {
@@ -136,6 +140,26 @@ export default function SignUp() {
                   label="Password"
                   type="password"
                   id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="position"
+                  label="Position"
+                  id="position"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="departement"
+                  label="Departement"
+                  id="departement"
                   autoComplete="new-password"
                 />
               </Grid>

@@ -1,9 +1,20 @@
 const UserModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const helpersJwt = require("../helpers/jwt");
+const { signUpErrors } = require("../helpers/error");
+// const signUpErrors = require("../helpers/error");
 
 module.exports.signUp = async (req, res) => {
-  const { lastname, firstname, email, password } = req.body;
+  const {
+    lastname,
+    firstname,
+    email,
+    password,
+    position,
+    departement,
+    userForm,
+    techForm,
+  } = req.body;
 
   try {
     const user = await UserModel.create({
@@ -11,10 +22,15 @@ module.exports.signUp = async (req, res) => {
       firstname,
       email,
       password,
+      position,
+      departement,
+      userForm,
+      techForm,
     });
     res.status(201).json({ user: user._id });
   } catch (err) {
-    res.status(200).send({ err });
+    const errors = signUpErrors(err);
+    res.status(200).send({ errors });
   }
 };
 
@@ -25,7 +41,14 @@ module.exports.signIn = async (req, res) => {
     const user = await UserModel.login(email, password);
     const token = helpersJwt.createToken(user._id);
     res.cookie("jwt", token, { httpOnly: true, maxAge: helpersJwt.maxAge });
-    res.status(200).json({ user: user._id });
+    res.status(200).json({
+      user: user._id,
+      colleagues: user.colleagues,
+      departement: user.departement,
+      status: user.status,
+      userForm: user.userForm,
+      techForm: user.techForm,
+    });
   } catch (err) {
     res.status(200).json(err);
   }

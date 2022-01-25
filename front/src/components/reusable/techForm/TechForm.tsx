@@ -50,7 +50,7 @@ function getStepContent(step: number) {
 
 const theme = createTheme();
 
-function TechForm() {
+function TechForm(props: any) {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -65,6 +65,7 @@ function TechForm() {
     // activé une fonction dans le store qui prends les valeurs des données pour les graphiques et 
     // l'id du user auquel elles sont attribuées
     console.log({data: 'envoyé'})
+    console.log(props.techInfos)
   }
 
   return (

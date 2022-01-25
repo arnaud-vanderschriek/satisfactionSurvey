@@ -28,6 +28,7 @@ const userSchema = new mongoose.Schema(
     },
     email: {
       type: String,
+      unique: true,
       required: true,
       validate: isEmail,
       lowercase: true,
@@ -38,6 +39,27 @@ const userSchema = new mongoose.Schema(
       minlength: 3,
       maxlength: 40,
     },
+    departement: {
+      type: String,
+      require: false,
+      minlength: 3,
+      maxlength: 30,
+    },
+    position: {
+      type: String,
+      require: false,
+      minlength: 2,
+      maxlength: 20,
+    },
+    colleagues: {
+      type: [String],
+    },
+    userForm: {
+      type: Boolean,
+    },
+    techForm: {
+      type: Boolean,
+    }
   },
   {
     timestamps: true,
