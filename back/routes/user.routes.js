@@ -5,8 +5,8 @@ const authController = require("../controllers/auth.controller");
 router.post("/register", authController.signUp);
 router.post("/login", authController.signIn);
 
-
 router.get("/", userController.getAllUsers);
 router.get("/:id", userController.userInfo);
+router.post("/dataTechForm/:id", userController.setDataUserChart);
 
 module.exports = router;

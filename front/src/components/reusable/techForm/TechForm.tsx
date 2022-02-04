@@ -17,7 +17,9 @@ import Form1 from './Form1';
 import Form2 from './Form2';
 import Form3 from './Form3';
 import { setTechInfos } from '../../../redux/actions/user.action';
+import axios from 'axios';
 import store from '../../../redux/store/store';
+import { useNavigate } from 'react-router-dom';
 
 
 function Copyright() {
@@ -51,6 +53,7 @@ function getStepContent(step: number) {
 const theme = createTheme();
 
 function TechForm(props: any) {
+  let navigate = useNavigate()
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -64,11 +67,34 @@ function TechForm(props: any) {
   const handleSend = () => {
     // activé une fonction dans le store qui prends les valeurs des données pour les graphiques et 
     // l'id du user auquel elles sont attribuées
-    console.log({data: 'envoyé'})
-    console.log(props.techInfos)
+    console.log(props.techInfos, 'props techInfos')
+    console.log(props.user, 'props user')
+    axios({
+      method: "post",
+      url: `${process.env.REACT_APP_API_URL}/api/user/dataTechForm/${props.user.id}`,
+      withCredentials: true,
+      data: {
+        data: props.techInfos
+      }
+    }).then((res) => {
+      if(res.data.errors) {
+        console.log("errors")
+      } else {
+        console.log(res, 'response')
+      }
+    }).catch((err) => {
+      console.log(err, 'catch Errors');
+    })
+
+    
+      navigate("/home")
+    
   }
 
+
+
   return (
+  <>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar
@@ -86,6 +112,10 @@ function TechForm(props: any) {
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
             Putmann
+          </Typography>
+          <br />
+          <Typography variant="h6" color="inherit" noWrap>
+            Welcome {props.user.firstname} !
           </Typography>
         </Toolbar>
       </AppBar>
@@ -142,13 +172,15 @@ function TechForm(props: any) {
         <Copyright />
       </Container>
     </ThemeProvider>
+    </>
   );
 }
 
 
 const mapStateToProps = (state: any) => {
   return {
-    techInfos: store.getState().techInfos,
+    user: store.getState().user,
+    techInfos: store.getState().techInfos
   }
 }
 

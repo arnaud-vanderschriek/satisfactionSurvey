@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -15,6 +16,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './ContactForm';
 import StatusForm from './StatusForm';
 import Review from './Review';
+import store from '../../../redux/store/store';
+import { connect } from 'react-redux';
+import { setTechInfos } from '../../../redux/actions/user.action';
 
 function Copyright() {
   return (
@@ -46,7 +50,8 @@ function getStepContent(step: number) {
 
 const theme = createTheme();
 
-export default function Checkout() {
+function Checkout(props: any) {
+  let navigate = useNavigate()
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -62,6 +67,11 @@ export default function Checkout() {
 
   const sendData = () => {
     console.log("data send pd")
+    if(props.user.techForm !== true) {
+      navigate('/techForm')
+    } else {
+      navigate('/home')
+    }
   }
 
   return (
@@ -132,3 +142,17 @@ export default function Checkout() {
     </ThemeProvider>
   );
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    user: store.getState().user,
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout)

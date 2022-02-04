@@ -13,10 +13,10 @@ function Form2(props: any) {
   function handleButtonRadio(e: any) {
     if(e.target.checked) {
       const newValue = props.techInfos.filter((item: Values) => item.name === e.target.name)
-      newValue[0].value +=  + 1
+      newValue[0].value +=  + 100
     } else {
       const newValue = props.techInfos.filter((item: Values) => item.name === e.target.name)
-      newValue[0].value += -1
+      newValue[0].value += -100
     } 
 
    props.setTechInfos(props.techInfos)
@@ -30,55 +30,55 @@ function Form2(props: any) {
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="B" value="B" />}
+            control={<Checkbox color="secondary" name="Tirage de cable" value="B" />}
             label="Donner des consignes et des instructions à l’équipe dont il a la charge."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="C" value="C" />}
+            control={<Checkbox color="secondary" name="Plan" value="C" />}
             label="Transférer des connaissances et des idées."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="A" value="A" />}
+            control={<Checkbox color="secondary" name="Prises" value="A" />}
             label="Rapporter à son supérieur."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="C" value="C" />}
+            control={<Checkbox color="secondary" name="Plan" value="C" />}
             label="Echanger des informations avec divers services internes (ressources humaines, service technique, …)."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="A" value="A" />}
+            control={<Checkbox color="secondary" name="Prises" value="A" />}
             label="Peut éventuellement avoir un contact avec le magasin et le service technique, SIPP, d’autres corps de métier."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="B" value="B" />}
+            control={<Checkbox color="secondary" name="Tirage de cable" value="B" />}
             label="veiller à ce qu’aucune difficulté technique - de quelque nature que ce soit - ne surgisse pendant l’exécution du travail,
             en la prévoyant et en cherchant à appliquer la solution adéquate afin d’éviter des retards dans les travaux."
             onChange={handleButtonRadio}
           />
         </Grid>   <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="B" value="B" />}
+            control={<Checkbox color="secondary" name="Tirage de cable" value="B" />}
             label="est responsable de la conduite du chantier tant sur le plan technique que sur le plan organisationnel;"
             onChange={handleButtonRadio}
           />
         </Grid>   <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="C" value="C" />}
+            control={<Checkbox color="secondary" name="Plan" value="C" />}
             label="fait des rapports écrits à ses supérieurs, discute avec eux des possibilités de réalisation, fait appel à leur aide si nécessaire;"
             onChange={handleButtonRadio}
           />

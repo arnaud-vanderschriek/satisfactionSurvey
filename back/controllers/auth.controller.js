@@ -2,7 +2,7 @@ const UserModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const helpersJwt = require("../helpers/jwt");
 const { signUpErrors } = require("../helpers/error");
-// const signUpErrors = require("../helpers/error");
+const { signInErrors } = require("../helpers/error");
 
 module.exports.signUp = async (req, res) => {
   const {
@@ -42,7 +42,9 @@ module.exports.signIn = async (req, res) => {
     const token = helpersJwt.createToken(user._id);
     res.cookie("jwt", token, { httpOnly: true, maxAge: helpersJwt.maxAge });
     res.status(200).json({
-      user: user._id,
+      id: user._id,
+      lastName: user.lastname,
+      firstname: user.firstname,
       colleagues: user.colleagues,
       departement: user.departement,
       status: user.status,
@@ -50,7 +52,8 @@ module.exports.signIn = async (req, res) => {
       techForm: user.techForm,
     });
   } catch (err) {
-    res.status(200).json(err);
+    const errors = signInErrors(err);
+    res.status(200).json({ errors });
   }
 };
 

@@ -1,18 +1,22 @@
-import { GET_USER } from "../actions/user.action";
+import { SET_USER } from "../actions/user.action";
 import { SET_INFOS } from "../actions/user.action";
+import { UserStoreModel } from "../../components/reusable/userForm";
 
 const initialState = {
-  user: '',
+  user: {} as UserStoreModel,
   techInfos: [
-    {name: "A", value: 0},
-    {name: "B", value: 0},
-    {name: "C", value: 0}
+    {name:"Manoeuvre", value: 0},
+    {name: "Plan éléctrique", value: 0},
+    {name: "Pose de tableau", value: 0},
+    {name: "Tirage de cable", value: 0},
+    {name: "Prises", value: 0},
+    {name: "Plan", value: 0}
   ],  
 };
 
 export default function userReducer(state= initialState, action: any) {
   switch (action.type) {
-    case GET_USER:
+    case SET_USER:
       return {
         ...state, 
         user: action.payload

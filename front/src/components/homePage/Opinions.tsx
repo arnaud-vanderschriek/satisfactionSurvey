@@ -3,8 +3,9 @@ import Link from '@mui/material/Link';
 import Title from './Title';
 import Button from '@mui/material/Button';
 import { connect } from 'react-redux'
-import { getUser } from '../../redux/actions/user.action';
+import { SetUser } from '../../redux/actions/user.action';
 import store from '../../redux/store/store';
+import { UserStoreModel } from '../reusable/userForm';
 
 function preventDefault(event: React.MouseEvent) {
   event.preventDefault();
@@ -13,7 +14,7 @@ function preventDefault(event: React.MouseEvent) {
 function Opinions(props: any) {
   const handler = () => {
     console.log("props: ", props)
-    props.getUser('61aa46175d2817fbdc842248')
+    // props.getUser('61aa46175d2817fbdc842248')
   }
   
   return (
@@ -52,7 +53,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getUser: (uid: string) => { dispatch(getUser(uid)) }
+    SetUser: (data: UserStoreModel) => { dispatch(SetUser(data)) }
   }
 }
 

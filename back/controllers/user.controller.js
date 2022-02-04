@@ -16,7 +16,10 @@ module.exports.userInfo = async (req, res) => {
   }).select("-password");
 };
 
-module.exports.setDataUserChart = async (req, res) =>{
-  
+module.exports.setDataUserChart = async (req, res) => {
+  // if (!ObjectID.isValid(req.params.id))
+  // return res.status(400).send("ID unknown : " + req.params.id);
+
+  console.log(req.body, req.params.id)
 }
  

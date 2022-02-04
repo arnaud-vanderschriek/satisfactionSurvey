@@ -17,6 +17,11 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import "../../assets/styles/styles.css";
+import { useState } from 'react';
+import { setTechInfos, SetUser } from '../../redux/actions/user.action';
+import store from '../../redux/store/store';
+import { connect } from 'react-redux';
+import { UserStoreModel } from '../reusable/userForm';
 
 function Copyright(props: any) {
   return (
@@ -34,17 +39,17 @@ function Copyright(props: any) {
 
 const theme = createTheme();
 
-export default function SignIn() {
+function LoginPage(props: any) {
   let navigate = useNavigate()
+  const [ emailField, setEmailField ] = useState(false)
+  const [ passwordField, setPasswordField ] = useState(false)
+  const [ emailText, setEmailText ] = useState("")
+  const [ passwordText, setPasswordText ] = useState("")
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+ 
     // à mettre dans Redux !!!!!!!
     axios({ 
       method: "post",
@@ -57,9 +62,22 @@ export default function SignIn() {
     })
     .then((res) => {
       if(res.data.errors) {
-        console.log({errors: res.data.errors})
+        if(res.data.errors.email) {
+          setEmailField(true) 
+          setEmailText(res.data.errors.email)
+          setPasswordField(false)
+          setPasswordText("")
+        }
+        if (res.data.errors.password) {
+          setPasswordField(true)
+          setPasswordText(res.data.errors.password)
+          setEmailField(false) 
+          setEmailText("")
+        }
       } else {
-        // mettre dans redux les données du user !!!!
+        console.log(res)
+        props.SetUser(res.data)
+        // mettre dans redux les données du user en plus de la redirection!!!!
         if (res.data.userForm !== true && res.data.techForm !== true ) {
           navigate('/userForm')
         } 
@@ -73,6 +91,8 @@ export default function SignIn() {
           navigate('/home')
         }
       }
+    }).catch((err) => {
+      console.log(err);
     })
   };
 
@@ -123,6 +143,8 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              error={emailField}
+              helperText={emailText}
             />
             <TextField
               margin="normal"
@@ -133,6 +155,8 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              error={passwordField}
+              helperText={passwordText}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -165,3 +189,17 @@ export default function SignIn() {
     </ThemeProvider>
   );
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    user: store.getState().user,
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    SetUser: (data: UserStoreModel) => { dispatch(SetUser(data)) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
