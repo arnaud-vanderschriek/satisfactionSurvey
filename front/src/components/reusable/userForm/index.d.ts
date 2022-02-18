@@ -8,3 +8,12 @@ export interface UserStoreModel {
   userForm: boolean,
   techForm: boolean,
 }
+
+export interface UserElectricSkillsModel {
+  Manoeuvre: number,
+  electricPlan: number,
+  electricBox: number,
+  cable: number,
+  plug: number,
+  buildingPlan: number,
+}

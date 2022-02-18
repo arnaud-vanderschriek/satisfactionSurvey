@@ -16,10 +16,11 @@ module.exports.userInfo = async (req, res) => {
   }).select("-password");
 };
 
-module.exports.setDataUserChart = async (req, res) => {
-  // if (!ObjectID.isValid(req.params.id))
-  // return res.status(400).send("ID unknown : " + req.params.id);
 
-  console.log(req.body, req.params.id)
-}
- 
+// peut etre deplacer cette fonction dans un controller a part genre electricSkills.controller
+module.exports.setDataUserChart = async (req, res) => {
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send("ID unknown : " + req.params.id);
+
+  console.log(req.body.data, req.params.id);
+};

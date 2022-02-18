@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const SkillSchema = new mongoose.Schema({
+const RailwaySkillSchema = new mongoose.Schema({
   idUser: {
     type: String,
     require: true,
@@ -25,6 +25,6 @@ const SkillSchema = new mongoose.Schema({
   }
 });
 
-const SkillsModel = mongoose.model("skill", SkillSchema);
+const RailWaySkillsModel = mongoose.model("skill", RailwaySkillSchema);
 
-module.exports = SkillsModel;
+module.exports = RailWaySkillsModel;

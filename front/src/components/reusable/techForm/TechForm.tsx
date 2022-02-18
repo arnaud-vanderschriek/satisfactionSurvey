@@ -67,14 +67,14 @@ function TechForm(props: any) {
   const handleSend = () => {
     // activé une fonction dans le store qui prends les valeurs des données pour les graphiques et 
     // l'id du user auquel elles sont attribuées
-    console.log(props.techInfos, 'props techInfos')
+    console.log(props.techInfos2, 'props techInfos2')
     console.log(props.user, 'props user')
     axios({
       method: "post",
       url: `${process.env.REACT_APP_API_URL}/api/user/dataTechForm/${props.user.id}`,
       withCredentials: true,
       data: {
-        data: props.techInfos
+        data: props.techInfos2
       }
     }).then((res) => {
       if(res.data.errors) {
@@ -180,7 +180,7 @@ function TechForm(props: any) {
 const mapStateToProps = (state: any) => {
   return {
     user: store.getState().user,
-    techInfos: store.getState().techInfos
+    techInfos2: store.getState().techInfos2
   }
 }
 
