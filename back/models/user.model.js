@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 const { isEmail } = require("validator");
 const bcrypt = require("bcrypt");
+// il faut ajouter la cote de contrat (a, b, c,d...) un formulaire par ouvrier  sera dispatché en fonction de sa cote
+// pe prévoir à ajouter les fomrulaires dans la db...
 
+// vouloir une verification via mail... (temporaire pour le test)
 const userSchema = new mongoose.Schema(
   {
     lastname: {
