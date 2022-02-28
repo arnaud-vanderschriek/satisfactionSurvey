@@ -6,15 +6,18 @@ import { connect } from 'react-redux'
 import { SetUser } from '../../redux/actions/user.action';
 import store from '../../redux/store/store';
 import { UserStoreModel } from '../reusable/userForm';
+import { useNavigate } from 'react-router-dom';
 
 function preventDefault(event: React.MouseEvent) {
   event.preventDefault();
 }
 
 function Opinions(props: any) {
+  let navigate = useNavigate()
   const handler = () => {
     console.log("props: ", props)
     // props.getUser('61aa46175d2817fbdc842248')
+    navigate('/survey')
   }
   
   return (

@@ -18,10 +18,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import "../../assets/styles/styles.css";
 import { useState } from 'react';
-import { setTechInfos, SetUser } from '../../redux/actions/user.action';
+import { SetUser } from '../../redux/actions/user.action';
 import store from '../../redux/store/store';
 import { connect } from 'react-redux';
 import { UserStoreModel } from '../reusable/userForm';
+import WorkerContainer from '../reusable/worker/WorkerContainer';
 
 function Copyright(props: any) {
   return (
@@ -75,21 +76,12 @@ function LoginPage(props: any) {
           setEmailText("")
         }
       } else {
-        console.log(res)
         props.SetUser(res.data)
-        // mettre dans redux les données du user en plus de la redirection!!!!
-        if (res.data.userForm !== true && res.data.techForm !== true ) {
-          navigate('/userForm')
+        if (res.data.userForm === 'ouvrier') {
+          navigate('/worker')
+        }  if (res.data.poste === 'ouvrier' ) {
+          navigate('/worker')
         } 
-        if (res.data.userForm === true && res.data.techForm !== true ) {
-          navigate('/techForm')
-        }
-        if (res.data.userForm !== true && res.data.techForm === true) {
-          navigate('/userForm')
-        }
-        if (res.data.userForm === true && res.data.techForm === true ) {
-          navigate('/home')
-        }
       }
     }).catch((err) => {
       console.log(err);

@@ -4,7 +4,6 @@ import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import store from '../../../redux/store/store';
-import { Values } from '.';
 import { setTechInfos } from '../../../redux/actions/user.action';
 import { connect } from 'react-redux';
 

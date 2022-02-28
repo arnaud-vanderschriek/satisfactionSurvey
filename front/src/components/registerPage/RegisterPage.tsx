@@ -15,6 +15,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { useState } from 'react';
 
 function Copyright(props: any) {
   return (
@@ -32,6 +34,11 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function SignUp() {
+
+  const [ poste, setPoste ] = useState('')
+  const [ division, setDivision ] = useState('')
+
+  
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -46,8 +53,9 @@ export default function SignUp() {
         firstname: data.get('firstName'),
         email: data.get('email'),
         password: data.get('password'),
-        position: data.get('position'),
-        departement: data.get('departement'),
+        classification: data.get('classification'),
+        poste: poste,
+        division: division,
         userForm: false,
         techForm: false,
       }
@@ -62,6 +70,12 @@ export default function SignUp() {
       console.log(err);
     })
   };
+
+  const handleChange = (event: any, value: string) => {
+    console.log(event.target.value)
+    if(value === "poste") setPoste(event.target.value)
+    if(value === "division") setDivision(event.target.value)
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -100,7 +114,7 @@ export default function SignUp() {
             Sign up
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
+            <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
@@ -142,24 +156,44 @@ export default function SignUp() {
                   id="password"
                   autoComplete="new-password"
                 />
+              </Grid> 
+              <Grid item xs={6} >
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Division</InputLabel>
+                  <Select
+                    fullWidth
+                    labelId="demo-simple-select-label"
+                    id="division"
+                    label="division"
+                    onChange={(event) => handleChange(event, 'division')}
+                  >
+                    <MenuItem value='Putman Services'>Putman Services</MenuItem>
+                    <MenuItem value='Infractec2'>Infratec2</MenuItem>
+                  </Select>
+              </FormControl>
+              </Grid>
+              <Grid item xs={6}>
+              <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Poste</InputLabel>
+                  <Select
+                    fullWidth
+                    labelId="demo-simple-select-label"
+                    id="poste"
+                    label="poste"
+                    onChange={(event) => handleChange(event, 'poste')}
+                  >
+                    <MenuItem value='ouvrier'>ouvrier</MenuItem>
+                    <MenuItem value='RH'>RH</MenuItem>
+                  </Select>
+              </FormControl>
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="position"
-                  label="Position"
-                  id="position"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="departement"
-                  label="Departement"
-                  id="departement"
+                  name="classification"
+                  label="classification"
+                  id="classification"
                   autoComplete="new-password"
                 />
               </Grid>
@@ -185,6 +219,7 @@ export default function SignUp() {
                 </Link>
               </Grid>
             </Grid>
+    
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />

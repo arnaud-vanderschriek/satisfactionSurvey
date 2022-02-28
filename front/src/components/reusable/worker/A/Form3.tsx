@@ -3,8 +3,8 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import store from '../../../redux/store/store';
-import { setTechInfos } from '../../../redux/actions/user.action';
+import store from '../../../../redux/store/store';
+import { setTechInfos } from '../../../../redux/actions/user.action';
 import { connect } from 'react-redux';
 
 
