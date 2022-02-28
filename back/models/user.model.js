@@ -42,16 +42,22 @@ const userSchema = new mongoose.Schema(
       minlength: 3,
       maxlength: 40,
     },
-    departement: {
+    division: {
       type: String,
       require: false,
       minlength: 3,
       maxlength: 30,
     },
-    position: {
+    poste: {
       type: String,
       require: false,
-      minlength: 2,
+      minlength: 3,
+      maxlength: 30,
+    },
+    classification: {
+      type: String,
+      require: false,
+      minlength: 1,
       maxlength: 20,
     },
     colleagues: {
@@ -62,7 +68,7 @@ const userSchema = new mongoose.Schema(
     },
     techForm: {
       type: Boolean,
-    }
+    },
   },
   {
     timestamps: true,

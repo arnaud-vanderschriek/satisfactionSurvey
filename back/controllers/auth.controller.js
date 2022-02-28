@@ -10,20 +10,23 @@ module.exports.signUp = async (req, res) => {
     firstname,
     email,
     password,
-    position,
-    departement,
+    poste,
+    division,
+    classification,
     userForm,
     techForm,
   } = req.body;
 
+  console.log(req.body)
   try {
     const user = await UserModel.create({
       lastname,
       firstname,
       email,
       password,
-      position,
-      departement,
+      poste,
+      division,
+      classification,
       userForm,
       techForm,
     });
@@ -46,8 +49,9 @@ module.exports.signIn = async (req, res) => {
       lastName: user.lastname,
       firstname: user.firstname,
       colleagues: user.colleagues,
-      departement: user.departement,
-      status: user.status,
+      division: user.division,
+      classification: user.classification,
+      poste: user.poste,
       userForm: user.userForm,
       techForm: user.techForm,
     });
