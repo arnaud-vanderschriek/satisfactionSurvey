@@ -4,8 +4,8 @@ import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { connect } from 'react-redux';
-import store from '../../../../redux/store/store';
-import { setTechInfos } from '../../../../redux/actions/user.action';
+import store from '../../../../../redux/store/store';
+import { setTechInfos } from '../../../../../redux/actions/user.action';
 
 function Form1(props: any) {
   function handleButtonRadio(e: any) {

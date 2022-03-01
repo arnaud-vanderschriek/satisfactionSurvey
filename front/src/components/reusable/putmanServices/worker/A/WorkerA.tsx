@@ -17,9 +17,9 @@ import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
 import Form3 from './Form3';
-import { setTechInfos } from '../../../../redux/actions/user.action';
+import { setTechInfos } from '../../../../../redux/actions/user.action';
 import axios from 'axios';
-import store from '../../../../redux/store/store';
+import store from '../../../../../redux/store/store';
 import { useNavigate } from 'react-router-dom';
 
 function Copyright() {

@@ -1,19 +1,18 @@
 import React from 'react'
-import { connect } from 'react-redux';
-import store from '../../../redux/store/store';
+import { connect } from 'react-redux'
+import store from '../../../../redux/store/store'
+import Dashboard from '../../../homePage/Dashboard'
+import UserForm from '../../userForm/UserForm'
 import WorkerA from './A/WorkerA'
-import WorkerB from './B/WorkerB';
-import WorkerC from './C/WorkerC';
-import WorkerD from './D/WorkerD';
-import WorkerE from './E/WorkerE';
-import WorkerF from './F/WorkerF';
-import UserForm from '../userForm/UserForm'
-import Dashboard from '../../homePage/Dashboard'
+import WorkerB from './B/WorkerB'
+import WorkerC from './C/WorkerC'
+import WorkerD from './D/WorkerD'
+import WorkerE from './E/WorkerE'
+import WorkerF from './F/WorkerF'
 
 function WorkerContainer(props: any) {
-
   if(props.user.userForm !== true){
-    return <UserForm user={props.user}/>
+    return <UserForm user={props.user} />
   }
   if(props.user.classification === "A" && props.user.techForm !== true) {
     return <WorkerA />

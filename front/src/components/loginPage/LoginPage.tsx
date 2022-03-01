@@ -22,7 +22,6 @@ import { SetUser } from '../../redux/actions/user.action';
 import store from '../../redux/store/store';
 import { connect } from 'react-redux';
 import { UserStoreModel } from '../reusable/userForm';
-import WorkerContainer from '../reusable/worker/WorkerContainer';
 
 function Copyright(props: any) {
   return (
@@ -77,10 +76,12 @@ function LoginPage(props: any) {
         }
       } else {
         props.SetUser(res.data)
-        if (res.data.userForm === 'ouvrier') {
-          navigate('/worker')
-        }  if (res.data.poste === 'ouvrier' ) {
-          navigate('/worker')
+        console.log(res.data.poste, 'res.data in LoginPage')
+        if (res.data.division === 'Infratec2') {
+          navigate('/infratec2')
+        }  
+        if (res.data.division === 'Putman Services' ) {
+          navigate('/putmanServices')
         } 
       }
     }).catch((err) => {
@@ -104,7 +105,7 @@ function LoginPage(props: any) {
         <Toolbar>
           <div id='logoPutman'></div>
           <Typography variant="h6" color="inherit" noWrap>
-            Putmann
+            Putman 
           </Typography>
         </Toolbar>
       </AppBar>
