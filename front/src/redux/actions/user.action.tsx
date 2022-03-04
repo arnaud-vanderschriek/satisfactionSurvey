@@ -5,6 +5,7 @@ import { UserStoreModel } from "../../components/reusable/userForm";
 export const SET_USER = "GET_USER";
 export const SET_INFOS = "SET_INFOS";
 export const SEND_INFOS = "SEND_INFOS";
+export const SET_ADDINFOSUSER = "ADDINFOSUSER"
 
 export const SetUser = (data: UserStoreModel) => {
   return (dispatch: any) => {
@@ -25,6 +26,12 @@ export const SetUser = (data: UserStoreModel) => {
 export const setTechInfos = (data: ValuesTechForm[]) => {
   return (dispatch: any) => {
     dispatch({ type: SET_INFOS, payload: data})
+  }
+}
+
+export const setAddInfosUser = (data: any) => {
+  return (dispatch: any) => {
+    dispatch({type: SET_ADDINFOSUSER, payload: data})
   }
 }
 

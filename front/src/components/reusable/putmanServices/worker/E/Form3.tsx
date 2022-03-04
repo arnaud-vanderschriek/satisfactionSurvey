@@ -8,9 +8,9 @@ import { setTechInfos } from '../../../../../redux/actions/user.action';
 import { connect } from 'react-redux';
 
 
-function Form2(props: any) {
+function Form3(props: any) {
   function handleButtonRadio(e: any) {
-      if(e.target.checked) {
+     if(e.target.checked) {
         const electricSkill = {...props.techInfos2}
         electricSkill[e.target.name] +=  +e.target.value
         props.setTechInfos(electricSkill)
@@ -24,41 +24,33 @@ function Form2(props: any) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Following
+        Aptitudes Spécifiques / Exigences
       </Typography>
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="Manoeuvre" value={100} />}
-            label="Informer le supérieur des difficultés rencontrées."
+            label="Doit pouvoir travailler en équipe ainsi que de façon autonome."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="electricPlan" value={100} />}
-            label="Respecter les règles en bon père de famille."
-            onChange={handleButtonRadio}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <p>Aptitudes spécifiques / Exigences: </p>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="plug" value={100} />}
-            label="Doit pouvoir travailler en équipe et aider un ouvrier plus spécialisé dans l’exécution de son travail."
+            label="Peut discuter de problèmes techniques avec des tiers."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="electricPlan" value={100} />}
-            label="Doit pouvoir exécuter des ordres et des tâches simples sous la conduite d’autres personnes."
+            control={<Checkbox color="secondary" name="electricBox" value={100} />}
+            label="Doit répondre aux exigences des catégories précédentes."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="plug" value={100} />}
+            control={<Checkbox color="secondary" name="Manoeuvre" value={100} />}
             label="Doit appliquer les règles en matière de sécurité."
             onChange={handleButtonRadio}
           />
@@ -80,4 +72,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form2)
+export default connect(mapStateToProps, mapDispatchToProps)(Form3)

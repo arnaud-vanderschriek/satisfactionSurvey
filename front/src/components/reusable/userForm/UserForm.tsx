@@ -66,6 +66,7 @@ function Checkout(props: any) {
   };
 
   const sendData = () => {
+    // utilisé les props pour envoyer les données 
     console.log("data send pd")
     if(props.user.techForm !== true) {
       navigate('/techForm')

@@ -4,9 +4,6 @@ import store from '../../../redux/store/store';
 import WorkerContainer from './worker/WorkerContainer';
 
 function PutmanServicesContainer(props: any) {
-  // prévoir pe un switch dans ce cas ?!?
-  console.log(props.user, 'props.user dans WorkerContainer')
-
   if(props.user.poste === "ouvrier") {
     return <WorkerContainer />
   }

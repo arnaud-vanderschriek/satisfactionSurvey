@@ -16,7 +16,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
-import Form3 from './Form3';
 import { setTechInfos } from '../../../../../redux/actions/user.action';
 import axios from 'axios';
 import store from '../../../../../redux/store/store';
@@ -35,7 +34,7 @@ function Copyright() {
   );
 }
 
-const steps = ['Form 1', 'Form 2', 'Form 3'];
+const steps = ['Form 1', 'Form 2'];
 
 function getStepContent(step: number) {
   switch (step) {
@@ -43,8 +42,8 @@ function getStepContent(step: number) {
       return <Form1 />;
     case 1:
       return <Form2 />;
-    case 2:
-      return <Form3 />;
+    // case 2:
+    //   return <Form3 />;
     default:
       throw new Error('Unknown step');
   }
@@ -66,8 +65,8 @@ function WorkerA(props: any) {
   // };
 
   const handleSend = () => {
-    // activé une fonction dans le store qui prends les valeurs des données pour les graphiques et 
-    // l'id du user auquel elles sont attribuées
+    // reset les données dans props.techInfos 2
+   
     console.log(props.techInfos2, 'props techInfos2')
     console.log(props.user, 'props user')
     axios({
@@ -76,12 +75,15 @@ function WorkerA(props: any) {
       withCredentials: true,
       data: {
         data: props.techInfos2
+         // passer la valeur de techForm dans node à True
+
       }
     }).then((res) => {
       if(res.data.errors) {
         console.log("errors")
       } else {
         console.log(res, 'response')
+        // 
       }
     }).catch((err) => {
       console.log(err, 'catch Errors');

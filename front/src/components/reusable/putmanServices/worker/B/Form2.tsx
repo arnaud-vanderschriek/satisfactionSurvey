@@ -30,13 +30,6 @@ function Form2(props: any) {
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="Manoeuvre" value={100} />}
-            label="Informer le supérieur des difficultés rencontrées."
-            onChange={handleButtonRadio}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="electricPlan" value={100} />}
             label="Respecter les règles en bon père de famille."
             onChange={handleButtonRadio}
           />
@@ -45,20 +38,13 @@ function Form2(props: any) {
           <p>Aptitudes spécifiques / Exigences: </p>
           <FormControlLabel
             control={<Checkbox color="secondary" name="plug" value={100} />}
-            label="Doit pouvoir travailler en équipe et aider un ouvrier plus spécialisé dans l’exécution de son travail."
+            label="Doit pouvoir travailler au sein d’une équipe et aider un ouvrier plus spécialisé dans l’exécution de son travail."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="electricPlan" value={100} />}
-            label="Doit pouvoir exécuter des ordres et des tâches simples sous la conduite d’autres personnes."
-            onChange={handleButtonRadio}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="plug" value={100} />}
             label="Doit appliquer les règles en matière de sécurité."
             onChange={handleButtonRadio}
           />

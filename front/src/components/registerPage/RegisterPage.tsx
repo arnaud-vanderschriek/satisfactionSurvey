@@ -158,8 +158,8 @@ export default function SignUp() {
                 />
               </Grid> 
               <Grid item xs={6} >
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Division</InputLabel>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Division</InputLabel>
                   <Select
                     fullWidth
                     labelId="demo-simple-select-label"
@@ -170,11 +170,11 @@ export default function SignUp() {
                     <MenuItem value='Putman Services'>Putman Services</MenuItem>
                     <MenuItem value='Infractec2'>Infratec2</MenuItem>
                   </Select>
-              </FormControl>
+                </FormControl>
               </Grid>
               <Grid item xs={6}>
-              <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Poste</InputLabel>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Poste</InputLabel>
                   <Select
                     fullWidth
                     labelId="demo-simple-select-label"
@@ -183,9 +183,9 @@ export default function SignUp() {
                     onChange={(event) => handleChange(event, 'poste')}
                   >
                     <MenuItem value='ouvrier'>ouvrier</MenuItem>
-                    <MenuItem value='RH'>RH</MenuItem>
+                    <MenuItem value='PM'>pm</MenuItem>
                   </Select>
-              </FormControl>
+                </FormControl>
               </Grid>
               <Grid item xs={12}>
                 <TextField

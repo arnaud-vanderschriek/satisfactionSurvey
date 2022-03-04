@@ -25,14 +25,14 @@ function Form1(props: any) {
     <React.Fragment>
       <Typography variant="h5" gutterBottom>
         Questionnaire technique: 
-        Ouvrier "A" non qualifié
+        Ouvrier "E" qualififé 2eme catégorie
       </Typography>
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <p>Objectif de la fonction: </p>
             <FormControlLabel
               control={<Checkbox color="secondary" name="Manoeuvre" value={100} />}
-              label="Donner un appui aux équipes d’ouvriers spécialisés en assumant des tâches manuelles d’ordre général."
+              label="Effectue les métiers de l’électricien suivant sa classification professionnelle."
               onChange={handleButtonRadio}
               />
         </Grid>
@@ -48,47 +48,38 @@ function Form1(props: any) {
           <p>Interaction sociale: </p>
             <FormControlLabel
               control={<Checkbox color="secondary" name="electricPlan" value={100} />}
-              label="Rendre compte au responsable du chantier et se concerter au sujet du chantier, des tâches à exécuter et savoir travailler en équipe.
-              Peut éventuellement avoir un contact avec le magasin et le service technique, SIPP, d’autres corps de métier."
-              onChange={handleButtonRadio}
-            />
-        </Grid>
-        <Grid item xs={12}>
-            <p>Responsabilites/ TÂCHES principales: </p>
-            <FormControlLabel
-              control={<Checkbox color="secondary" name="electricBox" value={100} />}
-              label="exécuter minutieusement les instructions."
+              label="Donner des consignes et des instructions à l’équipe dont il a la charge."
               onChange={handleButtonRadio}
             />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="electricBox" value={100} />}
-            label="exécution des tâches ne requérant pas de formation professionnelle spécifique."
+            label="Transférer des connaissances et des idées."
+            onChange={handleButtonRadio}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="electricBox" value={100} />}
+            label="Rapporter à son supérieur."
             onChange={handleButtonRadio}
          />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="electricBox" value={100} />}
-            label="travail essentiellement manuel et éventuellement l’entretien des locaux."
+            label="Echanger des informations avec divers services internes (ressources humaines, service technique, …)."
             onChange={handleButtonRadio}
           />
         </Grid>   
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="electricBox" value={100} />}
-            label="travaille uniquement sous la conduite d’un ouvrier plus qualifié."
+            label="Peut éventuellement avoir un contact avec le magasin et le service technique, SIPP, d’autres corps de métier."
             onChange={handleButtonRadio}
           />
-        </Grid>   
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="electricBox" value={100} />}
-            label="bien exécuter les instructions données."
-            onChange={handleButtonRadio}
-          />
-        </Grid>
+        </Grid> 
       </Grid>
     </React.Fragment>
   );

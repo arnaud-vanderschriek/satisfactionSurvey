@@ -24,7 +24,7 @@ export default function PaymentForm() {
           <TextField
             required
             id="country"
-            name="country"
+            name="service"
             label="Service"
             fullWidth
             autoComplete="shipping country"

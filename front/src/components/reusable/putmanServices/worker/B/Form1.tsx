@@ -25,7 +25,7 @@ function Form1(props: any) {
     <React.Fragment>
       <Typography variant="h5" gutterBottom>
         Questionnaire technique: 
-        Ouvrier "A" non qualifié
+        Ouvrier "B" spécialisé 2eme catégorie
       </Typography>
       <Grid container spacing={6}>
         <Grid item xs={12}>
@@ -57,35 +57,35 @@ function Form1(props: any) {
             <p>Responsabilites/ TÂCHES principales: </p>
             <FormControlLabel
               control={<Checkbox color="secondary" name="electricBox" value={100} />}
-              label="exécuter minutieusement les instructions."
+              label="Comprendre des schémas simples et pouvoir travailler d’après ceux-ci."
               onChange={handleButtonRadio}
             />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="electricBox" value={100} />}
-            label="exécution des tâches ne requérant pas de formation professionnelle spécifique."
+            label="Faire rapport sur les difficultés rencontrées."
             onChange={handleButtonRadio}
          />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="electricBox" value={100} />}
-            label="travail essentiellement manuel et éventuellement l’entretien des locaux."
+            label="Effectuer des activités préparatoires."
             onChange={handleButtonRadio}
           />
         </Grid>   
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="electricBox" value={100} />}
-            label="travaille uniquement sous la conduite d’un ouvrier plus qualifié."
+            label="Pouvoir exécuter des opérations simples et répétitives."
             onChange={handleButtonRadio}
           />
         </Grid>   
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="electricBox" value={100} />}
-            label="bien exécuter les instructions données."
+            label="Exécuter convenablement le travail exigé."
             onChange={handleButtonRadio}
           />
         </Grid>

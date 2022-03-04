@@ -5,22 +5,35 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
+import store from '../../../redux/store/store';
+import { connect } from 'react-redux';
+import { setAddInfosUser } from '../../../redux/actions/user.action';
 
 
-export default function ContactForm() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget);
-    console.log(data)
+ function ContactForm(props: any) {
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault()
+  //   const data = new FormData(event.currentTarget);
+  //   console.log(data)
+  // }
+
+  const handleDataUserForm = (event: any) => {
+    //creer une structure dans redux 
+    // voir avec Fouz qu'elle question sont pertinentes
+    console.log(event.target.value)
+    const contactForm = {...props.additionalUserInfos}
+    contactForm[event.target.name] = event.target.value
+    props.setAddInfosUser(contactForm)
   }
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Contact details
       </Typography>
-      <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+      {/* <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}> */}
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
+        {/* <Grid item xs={12} sm={6}>
           <TextField
             required
             id="firstName"
@@ -29,9 +42,10 @@ export default function ContactForm() {
             fullWidth
             autoComplete="given-name"
             variant="standard"
+            onChange={handleDataUserForm}
           />
-        </Grid>
-        <Grid item xs={12} sm={6}>
+        </Grid> */}
+        {/* <Grid item xs={12} sm={6}>
           <TextField
             required
             id="lastName"
@@ -41,7 +55,7 @@ export default function ContactForm() {
             autoComplete="family-name"
             variant="standard"
           />
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
           <TextField
             required
@@ -51,6 +65,7 @@ export default function ContactForm() {
             fullWidth
             autoComplete="shipping address-line1"
             variant="standard"
+            onChange={handleDataUserForm}
           />
         </Grid>
         <Grid item xs={12}>
@@ -61,6 +76,7 @@ export default function ContactForm() {
             fullWidth
             autoComplete="shipping address-line2"
             variant="standard"
+            onChange={handleDataUserForm}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -72,9 +88,10 @@ export default function ContactForm() {
             fullWidth
             autoComplete="shipping address-level2"
             variant="standard"
+            onChange={handleDataUserForm}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        {/* <Grid item xs={12} sm={6}>
           <TextField
             id="state"
             name="state"
@@ -82,16 +99,17 @@ export default function ContactForm() {
             fullWidth
             variant="standard"
           />
-        </Grid>
+        </Grid> */}
         <Grid item xs={12} sm={6}>
           <TextField
             required
             id="zip"
-            name="zip"
+            name="postalCode"
             label="Zip / Postal code"
             fullWidth
             autoComplete="shipping postal-code"
             variant="standard"
+            onChange={handleDataUserForm}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -103,6 +121,7 @@ export default function ContactForm() {
             fullWidth
             autoComplete="shipping country"
             variant="standard"
+            onChange={handleDataUserForm}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -114,6 +133,7 @@ export default function ContactForm() {
             fullWidth
             autoComplete="shipping address-level2"
             variant="standard"
+            onChange={handleDataUserForm}
             />
           </Grid> 
           <Grid item xs={12} sm={6}>
@@ -123,8 +143,9 @@ export default function ContactForm() {
             name="workNumber"
             label="Work Number"
             fullWidth
-            autoComplete="shipping address-level2"
+            // autoComplete="shipping address-level2"
             variant="standard"
+            onChange={handleDataUserForm}
           />
         </Grid>
         <Grid item xs={12}>
@@ -134,7 +155,21 @@ export default function ContactForm() {
           />
         </Grid>
       </Grid>
-      </Box>
+      {/* </Box> */}
     </React.Fragment>
   );
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    additionalUserInfos: store.getState().additionalUserInfos
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    setAddInfosUser: (data: any) => dispatch(setAddInfosUser(data))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm)

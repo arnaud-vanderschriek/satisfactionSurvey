@@ -24,42 +24,34 @@ function Form2(props: any) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Following
+      <p>Responsabilites/ TÂCHES principales: </p>
       </Typography>
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="Manoeuvre" value={100} />}
-            label="Informer le supérieur des difficultés rencontrées."
-            onChange={handleButtonRadio}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="electricPlan" value={100} />}
-            label="Respecter les règles en bon père de famille."
-            onChange={handleButtonRadio}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <p>Aptitudes spécifiques / Exigences: </p>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="plug" value={100} />}
-            label="Doit pouvoir travailler en équipe et aider un ouvrier plus spécialisé dans l’exécution de son travail."
-            onChange={handleButtonRadio}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="electricPlan" value={100} />}
-            label="Doit pouvoir exécuter des ordres et des tâches simples sous la conduite d’autres personnes."
+            label="Comprendre des schémas, pouvoir les interpréter et y relever des erreurs éventuelles."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="plug" value={100} />}
-            label="Doit appliquer les règles en matière de sécurité."
+            label="Doit pouvoir donner des instructions."
+            onChange={handleButtonRadio}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="electricPlan" value={100} />}
+            label="Doit pouvoir faire un rapport écrit."
+            onChange={handleButtonRadio}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox color="secondary" name="electricPlan" value={100} />}
+            label="Est en mesure de travailler sans surveillance à une tâche déterminée."
             onChange={handleButtonRadio}
           />
         </Grid>
