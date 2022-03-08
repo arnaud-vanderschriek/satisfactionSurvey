@@ -31,7 +31,7 @@ function Form1(props: any) {
         <Grid item xs={12}>
           <p>Objectif de la fonction: </p>
             <FormControlLabel
-              control={<Checkbox color="secondary" name="Manoeuvre" value={100} />}
+              control={<Checkbox color="secondary" name="manoeuvre" value={100} />}
               label="Donner un appui aux équipes d’ouvriers spécialisés en assumant des tâches manuelles d’ordre général."
               onChange={handleButtonRadio}
               />
@@ -39,7 +39,7 @@ function Form1(props: any) {
         <Grid item xs={12}>
           <p>Description générale: nature des activites </p>
             <FormControlLabel
-              control={<Checkbox color="secondary" name="Manoeuvre" value={100} />}
+              control={<Checkbox color="secondary" name="manoeuvre" value={100} />}
               label="L'ouvrier est capable de réaliser fréquemment différents travaux d’ordre général suivant sa classification professionnelle et la tâche qui lui est définie."
               onChange={handleButtonRadio}
             />

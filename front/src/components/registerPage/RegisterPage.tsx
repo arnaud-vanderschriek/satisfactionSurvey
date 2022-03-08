@@ -51,7 +51,7 @@ export default function SignUp() {
       data: {
         lastname: data.get('lastName'),
         firstname: data.get('firstName'),
-        email: data.get('email'),
+        // email: data.get('email'),
         password: data.get('password'),
         classification: data.get('classification'),
         poste: poste,
@@ -136,7 +136,7 @@ export default function SignUp() {
                   autoComplete="family-name"
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -145,7 +145,7 @@ export default function SignUp() {
                   name="email"
                   autoComplete="email"
                 />
-              </Grid>
+              </Grid> */}
               <Grid item xs={12}>
                 <TextField
                   required

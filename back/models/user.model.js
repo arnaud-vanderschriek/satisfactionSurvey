@@ -27,41 +27,65 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       max: 1024,
+      maxlength: 8,
       minlength: 6,
-    },
-    email: {
-      type: String,
-      unique: true,
-      required: true,
-      validate: isEmail,
-      lowercase: true,
-      trim: true,
-    },
-    address: {
-      type: String,
-      minlength: 3,
-      maxlength: 40,
     },
     division: {
       type: String,
-      require: false,
+      required: false,
       minlength: 3,
       maxlength: 30,
     },
     poste: {
       type: String,
-      require: false,
+      required: false,
       minlength: 3,
       maxlength: 30,
     },
     classification: {
       type: String,
-      require: false,
+      required: false,
       minlength: 1,
       maxlength: 20,
     },
     colleagues: {
       type: [String],
+    },
+    address1: {
+      type: String,
+      required: false,
+      minlength: 20,
+      maxlength: 40,
+    },
+    address2: {
+      type: String,
+      required: false,
+      minlength: 20,
+      maxlength: 40,
+    },
+    country: {
+      type: String,
+      required: false,
+      minlength: 20,
+      maxlength: 40,
+    },
+    city: {
+      type: String,
+      required: false,
+      minlength: 20,
+      maxlength: 40,
+    },
+    postalCode: {
+      type: String,
+      required: false,
+      minlength: 20,
+      maxlength: 40,
+    },
+    phoneNumber: {
+      type: String,
+      required: false,
+      minlength: 20,
+      maxlength: 40,
     },
     userForm: {
       type: Boolean,
@@ -81,8 +105,8 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-userSchema.statics.login = async function (email, password) {
-  const user = await this.findOne({ email });
+userSchema.statics.login = async function (lastname, password) {
+  const user = await this.findOne({ lastname });
   if (user) {
     const auth = await bcrypt.compare(password, user.password);
     if (auth) {
@@ -90,7 +114,7 @@ userSchema.statics.login = async function (email, password) {
     }
     throw Error("incorrect password");
   }
-  throw Error("incorrect email");
+  throw Error("incorrect lastname");
 };
 
 const UserModel = mongoose.model("user", userSchema);

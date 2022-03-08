@@ -29,7 +29,7 @@ function Form3(props: any) {
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="Manoeuvre" value={100} />}
+            control={<Checkbox color="secondary" name="manoeuvre" value={100} />}
             label="Doit pouvoir travailler en équipe ainsi que de façon autonome."
             onChange={handleButtonRadio}
           />
@@ -50,7 +50,7 @@ function Form3(props: any) {
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="Manoeuvre" value={100} />}
+            control={<Checkbox color="secondary" name="manoeuvre" value={100} />}
             label="Doit appliquer les règles en matière de sécurité."
             onChange={handleButtonRadio}
           />

@@ -1,10 +1,9 @@
 module.exports.signUpErrors = (err) => {
   let errors = {
     lastname: "",
-    email: "",
     password: "",
   };
-
+  console.log(err, 'err in helpers.error.js')
   if (err.message.includes("lastname")) {
     errors.lastname = "Nom de Famille incorrect ou déjà utilisé";
   }
@@ -30,12 +29,12 @@ module.exports.signUpErrors = (err) => {
 
 module.exports.signInErrors = (err) => {
   let errors = {
-    email: "",
+    lastname: "",
     password: "",
   };
 
-  if (err.message.includes("email")) {
-    errors.email = "Email incorrect";
+  if (err.message.includes("lastname")) {
+    errors.lastname = "lastName incorrect";
   }
 
   if (err.message.includes("password")) {

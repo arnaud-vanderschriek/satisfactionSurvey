@@ -5,23 +5,23 @@ const ElectricSkillSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  Manoeuvre: {
-    value: String
+  manoeuvre: {
+    type: String
   },
-  ElectricPlan: {
-    value: String,
+  electricPlan: {
+    type: String,
   },
-  Tableau: {
-    value: String,
+  electricBox: {
+    type: String,
   },
-  Cable: {
-    value: String,
+  cable: {
+    type: String,
   },
-  Plug: {
-    value: String,
+  plug: {
+    type: String,
   },
-  BuildingPlan: {
-    value: String,
+  buildingPlan: {
+    type: String,
   },
 });
 

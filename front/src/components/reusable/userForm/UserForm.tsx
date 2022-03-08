@@ -18,7 +18,11 @@ import StatusForm from './StatusForm';
 import Review from './Review';
 import store from '../../../redux/store/store';
 import { connect } from 'react-redux';
-import { setTechInfos } from '../../../redux/actions/user.action';
+import { setTechInfos, setUpdateUser, SetUser } from '../../../redux/actions/user.action';
+import axios from 'axios';
+import { UserStoreModel } from '.';
+import PutmanServicesContainer from '../putmanServices/PutmanServicesContainer';
+import Infratec2Container from '../infratec2/Infratec2Container';
 
 function Copyright() {
   return (
@@ -33,15 +37,15 @@ function Copyright() {
   );
 }
 
-const steps = ['Contact', 'Position', 'Check'];
+const steps = ['Contact', 'Check'];
 
 function getStepContent(step: number) {
   switch (step) {
     case 0:
       return <AddressForm />;
+    // case 1:
+    //   return <StatusForm />;
     case 1:
-      return <StatusForm />;
-    case 2:
       return <Review />;
     default:
       throw new Error('Unknown step');
@@ -55,8 +59,8 @@ function Checkout(props: any) {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
-    if(activeStep === 2) {
-      sendData()
+    if(activeStep === 1) {
+      sendData(props)
     }
     setActiveStep(activeStep + 1);
   };
@@ -65,14 +69,39 @@ function Checkout(props: any) {
     setActiveStep(activeStep - 1);
   };
 
-  const sendData = () => {
-    // utilisé les props pour envoyer les données 
-    console.log("data send pd")
-    if(props.user.techForm !== true) {
-      navigate('/techForm')
-    } else {
-      navigate('/home')
-    }
+  const sendData = (props: any) => {
+    console.log(props, 'props dans front before send')
+    // refaire la redirection via la classification du user le if ci-dessous ne redirige pas vers le bon techForm.
+    axios({
+      method: "post",
+      url: `${process.env.REACT_APP_API_URL}/api/user/additionnalData/${props.user.id}`,
+      withCredentials: true,
+      data: {
+        data: props.additionalUserInfos
+      }
+    }).then((res) => {
+      if(res.data.errors) {
+        console.log("errors")
+      } else {
+        console.log(res, 'response')
+        props.setUpdateUser({...props.user, userForm: true})
+        // mettre a jour le userForm à false des les props et rediriger vers Putman Services
+        if(res.data.divison === 'Putman Services') {
+          return <PutmanServicesContainer />
+        }
+        if(res.data.divison === 'Infratec2') {
+          return < Infratec2Container/>
+        }
+      }
+    }).catch((err) => {
+      console.log(err, 'catch Errors');
+    })
+
+    // if(props.user.techForm !== true) {
+    //   navigate('/techForm')
+    // } else {
+    //   navigate('/home')
+    // }
   }
 
   return (
@@ -146,6 +175,7 @@ function Checkout(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
+    additionalUserInfos: store.getState().additionalUserInfos,
     user: store.getState().user,
   }
 }
@@ -153,6 +183,7 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     setTechInfos: (data: any) => dispatch(setTechInfos(data)),
+    setUpdateUser: (data: UserStoreModel) => { dispatch(setUpdateUser(data)) }
   }
 }
 

@@ -1,5 +1,7 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
+import store from '../../../redux/store/store';
+import { connect } from 'react-redux';
 // import List from '@mui/material/List';
 // import ListItem from '@mui/material/ListItem';
 // import ListItemText from '@mui/material/ListItemText';
@@ -37,12 +39,18 @@ import Typography from '@mui/material/Typography';
 //   { name: 'Expiry date', detail: '04/2024' },
 // ];
 
-export default function Review() {
+function Review(props: any) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Thank you for your time
       </Typography>
+      <p>adresse 1: {props.additionalUserInfos.address1}</p>
+      <p>adresse 2: {props.additionalUserInfos.address2}</p>
+      <p>Ville: {props.additionalUserInfos.city}</p>
+      <p>Pays: {props.additionalUserInfos.country}</p>
+      <p>Code Postal: {props.additionalUserInfos.postalCode} </p>
+      <p>Numéro de téléphone: {props.additionalUserInfos.phoneNumber}</p>
       {/* <List disablePadding>
         {products.map((product) => (
           <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
@@ -86,3 +94,11 @@ export default function Review() {
     </React.Fragment>
   );
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    additionalUserInfos: store.getState().additionalUserInfos
+  }
+}
+
+export default connect(mapStateToProps)(Review)

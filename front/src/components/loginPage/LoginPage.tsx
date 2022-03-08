@@ -56,15 +56,15 @@ function LoginPage(props: any) {
       url: `${process.env.REACT_APP_API_URL}/api/user/login`,
       withCredentials: true,
       data: {
-        email: data.get('email'),
+        lastname: data.get('lastname'),
         password: data.get('password'),
       }
     })
     .then((res) => {
       if(res.data.errors) {
-        if(res.data.errors.email) {
+        if(res.data.errors.lastname) {
           setEmailField(true) 
-          setEmailText(res.data.errors.email)
+          setEmailText(res.data.errors.lastname)
           setPasswordField(false)
           setPasswordText("")
         }
@@ -76,7 +76,8 @@ function LoginPage(props: any) {
         }
       } else {
         props.SetUser(res.data)
-        console.log(res.data.poste, 'res.data in LoginPage')
+        // pe placer le redux-persist içi ?
+      
         if (res.data.division === 'Infratec2') {
           navigate('/infratec2')
         }  
@@ -131,10 +132,10 @@ function LoginPage(props: any) {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="lastname"
+              label="lastname"
+              name="lastname"
+              autoComplete="lastname"
               autoFocus
               error={emailField}
               helperText={emailText}

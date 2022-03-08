@@ -29,7 +29,7 @@ function Form3(props: any) {
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="Manoeuvre" value={100} />}
+            control={<Checkbox color="secondary" name="manoeuvre" value={100} />}
             label="Donner des consignes et des instructions à l’équipe dont il a la charge."
             onChange={handleButtonRadio}
           />
@@ -50,7 +50,7 @@ function Form3(props: any) {
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="Manoeuvre" value={100} />}
+            control={<Checkbox color="secondary" name="manoeuvre" value={100} />}
             label="Echanger des informations avec divers services internes (ressources humaines, service technique, …)."
             onChange={handleButtonRadio}
           />
@@ -71,7 +71,7 @@ function Form3(props: any) {
           />
         </Grid>   <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="Manoeuvre" value={100} />}
+            control={<Checkbox color="secondary" name="manoeuvre" value={100} />}
             label="est responsable de la conduite du chantier tant sur le plan technique que sur le plan organisationnel;"
             onChange={handleButtonRadio}
           />

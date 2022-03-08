@@ -10,7 +10,7 @@ export interface UserStoreModel {
 }
 
 export interface UserElectricSkillsModel {
-  Manoeuvre: number,
+  manoeuvre: number,
   electricPlan: number,
   electricBox: number,
   cable: number,

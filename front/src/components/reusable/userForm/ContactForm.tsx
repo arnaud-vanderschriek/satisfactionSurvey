@@ -136,7 +136,7 @@ import { setAddInfosUser } from '../../../redux/actions/user.action';
             onChange={handleDataUserForm}
             />
           </Grid> 
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
           <TextField
             required
             id="work-number"
@@ -147,7 +147,7 @@ import { setAddInfosUser } from '../../../redux/actions/user.action';
             variant="standard"
             onChange={handleDataUserForm}
           />
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}

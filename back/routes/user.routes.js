@@ -8,5 +8,6 @@ router.post("/login", authController.signIn);
 router.get("/", userController.getAllUsers);
 router.get("/:id", userController.userInfo);
 router.post("/dataTechForm/:id", userController.setDataUserChart);
+router.post("/additionnalData/:id", userController.addtionnalData);
 
 module.exports = router;

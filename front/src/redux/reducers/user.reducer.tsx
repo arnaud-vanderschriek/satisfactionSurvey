@@ -1,4 +1,4 @@
-import { SET_ADDINFOSUSER, SET_USER } from "../actions/user.action";
+import { SET_ADDINFOSUSER, SET_UPDATEUSER, SET_USER } from "../actions/user.action";
 import { SET_INFOS } from "../actions/user.action";
 import { UserElectricSkillsModel, UserStoreModel } from "../../components/reusable/userForm";
 
@@ -13,7 +13,7 @@ const initialState = {
     {name: "Plan", value: 0}
   ],  
   techInfos2: {
-    Manoeuvre: 0,
+    manoeuvre: 0,
     electricPlan: 0,
     electricBox: 0,
     cable: 0,
@@ -28,7 +28,6 @@ const initialState = {
     country: '',
     postalCode: '',
     phoneNumber: '',
-    workNumber: '',
   }
 };
 
@@ -48,6 +47,11 @@ export default function userReducer(state= initialState, action: any) {
       return {
         ...state,
         additionalUserInfos: action.payload
+      }
+    case SET_UPDATEUSER:
+      return {
+        ...state,
+        user: action.payload
       }
     default: 
       return state;

@@ -23,7 +23,7 @@ export default function PaymentForm() {
       <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="country"
+            id="service"
             name="service"
             label="Service"
             fullWidth
@@ -34,7 +34,7 @@ export default function PaymentForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="country"
+            id="poste"
             name="Poste"
             label="Poste"
             fullWidth
@@ -46,7 +46,7 @@ export default function PaymentForm() {
             required
             id="country"
             name="country"
-            label="Secteur"
+            label="Country"
             fullWidth
             autoComplete="shipping country"
             variant="standard"
@@ -54,8 +54,8 @@ export default function PaymentForm() {
         </Grid>      <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="country"
-            name="country"
+            id="supérieur"
+            name="superieur"
             label="Supérieur"
             fullWidth
             autoComplete="shipping country"
@@ -64,9 +64,9 @@ export default function PaymentForm() {
         </Grid>      <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="country"
-            name="country"
-            label="Compagnie"
+            id="division"
+            name="division"
+            label="division"
             fullWidth
             autoComplete="shipping country"
             variant="standard"

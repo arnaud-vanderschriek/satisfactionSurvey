@@ -29,7 +29,7 @@ function Form2(props: any) {
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="Manoeuvre" value={100} />}
+            control={<Checkbox color="secondary" name="manoeuvre" value={100} />}
             label="Prévoir les difficultés qui peuvent surgir et trouver une solution de sorte qu’elles ne provoquent pas de perte de temps."
             onChange={handleButtonRadio}
           />

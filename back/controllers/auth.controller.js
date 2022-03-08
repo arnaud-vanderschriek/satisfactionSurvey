@@ -8,7 +8,6 @@ module.exports.signUp = async (req, res) => {
   const {
     lastname,
     firstname,
-    email,
     password,
     poste,
     division,
@@ -17,12 +16,11 @@ module.exports.signUp = async (req, res) => {
     techForm,
   } = req.body;
 
-  console.log(req.body)
+  console.log(req.body);
   try {
     const user = await UserModel.create({
       lastname,
       firstname,
-      email,
       password,
       poste,
       division,
@@ -38,10 +36,10 @@ module.exports.signUp = async (req, res) => {
 };
 
 module.exports.signIn = async (req, res) => {
-  const { email, password } = req.body;
+  const { lastname, password } = req.body;
 
   try {
-    const user = await UserModel.login(email, password);
+    const user = await UserModel.login(lastname, password);
     const token = helpersJwt.createToken(user._id);
     res.cookie("jwt", token, { httpOnly: true, maxAge: helpersJwt.maxAge });
     res.status(200).json({

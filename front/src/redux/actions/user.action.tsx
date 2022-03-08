@@ -6,6 +6,7 @@ export const SET_USER = "GET_USER";
 export const SET_INFOS = "SET_INFOS";
 export const SEND_INFOS = "SEND_INFOS";
 export const SET_ADDINFOSUSER = "ADDINFOSUSER"
+export const SET_UPDATEUSER = "UPDATEUSER"
 
 export const SetUser = (data: UserStoreModel) => {
   return (dispatch: any) => {
@@ -32,6 +33,12 @@ export const setTechInfos = (data: ValuesTechForm[]) => {
 export const setAddInfosUser = (data: any) => {
   return (dispatch: any) => {
     dispatch({type: SET_ADDINFOSUSER, payload: data})
+  }
+}
+
+export const setUpdateUser = (data: any) => {
+  return (dispatch: any) => {
+    dispatch({type: SET_UPDATEUSER, payload: data})
   }
 }
 
