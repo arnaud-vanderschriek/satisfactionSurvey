@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,11 +13,10 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './ContactForm';
-import StatusForm from './StatusForm';
 import Review from './Review';
 import store from '../../../redux/store/store';
 import { connect } from 'react-redux';
-import { setTechInfos, setUpdateUser, SetUser } from '../../../redux/actions/user.action';
+import { setTechInfos, setUpdateUser } from '../../../redux/actions/user.action';
 import axios from 'axios';
 import { UserStoreModel } from '.';
 import PutmanServicesContainer from '../putmanServices/PutmanServicesContainer';
@@ -55,7 +53,6 @@ function getStepContent(step: number) {
 const theme = createTheme();
 
 function Checkout(props: any) {
-  let navigate = useNavigate()
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -85,7 +82,7 @@ function Checkout(props: any) {
       } else {
         console.log(res, 'response')
         props.setUpdateUser({...props.user, userForm: true})
-        // mettre a jour le userForm à false des les props et rediriger vers Putman Services
+
         if(res.data.divison === 'Putman Services') {
           return <PutmanServicesContainer />
         }
@@ -96,12 +93,6 @@ function Checkout(props: any) {
     }).catch((err) => {
       console.log(err, 'catch Errors');
     })
-
-    // if(props.user.techForm !== true) {
-    //   navigate('/techForm')
-    // } else {
-    //   navigate('/home')
-    // }
   }
 
   return (

@@ -1,87 +1,77 @@
+import axios from 'axios';
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from 'recharts';
 import { setTechInfos } from '../../redux/actions/user.action';
 import store from '../../redux/store/store';
 import Title from './Title';
 
-// Generate Sales Data
-// function createData(time: number, amount?: number, data?: number) {
-//   return { time, amount};
-// }
-
-// const data = [
-//   createData(1000, 500, 60000000000),
-//   createData(2555 , 1000),
-//   createData(600, 2600),
-//   createData(40, 800),
-//   createData(50, 1500),
-//   createData(50, 2000),
-//   createData(14, 2400),
-// ];
-// const data = [
-//   {
-//     "name": "Manoeuvre",
-//     "value": 500,
-//     // "B": 700,
-//     // "C  ": 150
-//   },
-//   {
-//     "name": "Plan éléctrique",
-//     "value": 200,
-//     // "B": 700,
-//     // "C": 150
-//   },
-//   {
-//     "name": "Pose de tableau",
-//     "value": 1000,
-//     // "B": 700,
-//     // "C": 150
-//   },
-//   {
-//     "name": "Tirage de cable",
-//     "value": 300,
-//     // "B": 700,
-//     // "C": 150
-//   },  {
-//     "name": "Prises",
-//     "value": 400,
-//     // "B": 700,
-//     // "C": 150
-//   },  {
-//     "name": "Plan",
-//     "value": 200,
-//     // "B": 700,
-//     // "C": 150
-//   },
-//   // {
-//   //   "subject": "Geography",  
-//   //   "A": 99,
-//   //   "B": 100,
-//   //   "fullMark": 150
-//   // },
-//   // {
-//   //   "subject": "Physics",
-//   //   "A": 85,
-//   //   "B": 90,
-//   //   "fullMark": 150
-//   // },
-//   // {
-//   //   "subject": "History",
-//   //   "A": 65,
-//   //   "B": 85,
-//   //   "fullMark": 150
-//   // }
-// ]
 
 function Chart(props: any) {
   // const theme = useTheme();
+  // axios fetch des data
+  const [manoeuvre, setManoeuvre] = useState()
+  const [electricPlan, setElectricPlan] = useState()
+  const [electricBox, setElectricBox] = useState()
+  const [cable, setCable] = useState()
+  const [plug, setPlug] = useState()
+  const [buildingPlan, setBuildingPlan] = useState()
+
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_API_URL}/api/user/getDataTechForm/${props.user.id}`,
+      withCredentials: true,
+    }).then((res) => {
+      if(res.data.errors) {
+        console.log("errors")
+      } else {
+        console.log(res.data[0], 'response in Chart.js')
+        setManoeuvre(res.data[0].manoeuvre)
+        setElectricPlan(res.data[0].electricPlan)
+        setElectricBox(res.data[0].electricBox)
+        setCable(res.data[0].cable)
+        setPlug(res.data[0].plug)
+        setBuildingPlan(res.data[0].buildingPlan)
+      }
+    }).catch((err) => {
+      console.log(err, 'catch Errors');
+    })
+  }, [props.user.id])
+ 
+
+  const data = [
+    {
+      "name": "manoeuvre",
+      "value": manoeuvre,
+    },
+    {
+      "name": "plan electrique",
+      "value": electricPlan,
+    },
+    {
+      "name": "Pose de tableau",
+      "value": electricBox,
+    },
+    {
+      "name": "Tirage de cable",
+      "value": cable,
+    },  {
+      "name": "Prises",
+      "value": plug,
+    },  {
+      "name": "Plan",
+      "value": buildingPlan,
+    }, 
+  ]
 
   return (
     <React.Fragment>
       <Title>Personnal stats</Title>
       <ResponsiveContainer width={900} height="300%" >
-        <RadarChart outerRadius={80} width={730} height={250} data={props.techInfos}>
+        <RadarChart outerRadius={80} width={730} height={250} data={data}>
           <PolarGrid />
           <PolarAngleAxis dataKey="name" />
           <PolarRadiusAxis angle={30} domain={[0, 1000]}  />
@@ -102,7 +92,7 @@ function Chart(props: any) {
 const mapStateToProps = (state: any) => {
   return {
     user: store.getState().user,
-    techInfos: store.getState().techInfos
+    techInfos2: store.getState().techInfos2
   }
 }
 

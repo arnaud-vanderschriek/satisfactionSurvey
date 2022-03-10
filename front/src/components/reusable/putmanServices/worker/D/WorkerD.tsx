@@ -16,10 +16,13 @@ import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
 import Form3 from './Form3';
-import { setTechInfos } from '../../../../../redux/actions/user.action';
+import { setTechInfos, setUpdateUser } from '../../../../../redux/actions/user.action';
 import axios from 'axios';
 import store from '../../../../../redux/store/store';
 import { useNavigate } from 'react-router-dom';
+import PutmanServicesContainer from '../../PutmanServicesContainer';
+import Infratec2Container from '../../../infratec2/Infratec2Container';
+import { UserStoreModel } from '../../../userForm';
 
 function Copyright() {
   return (
@@ -76,25 +79,25 @@ function WorkerD(props: any) {
       data: {
         data: props.techInfos2
          // passer la valeur de techForm dans node à True
-
       }
     }).then((res) => {
       if(res.data.errors) {
         console.log("errors")
       } else {
+        props.setUpdateUser({...props.user, techForm: true})
+
         console.log(res, 'response')
-        // 
+        if(res.data.divison === 'Putman Services') {
+          return <PutmanServicesContainer />
+        }
+        if(res.data.divison === 'Infratec2') {
+          return < Infratec2Container/>
+        }
       }
     }).catch((err) => {
       console.log(err, 'catch Errors');
     })
-
-    
-      navigate("/home")
-    
   }
-
-
 
   return (
   <>
@@ -190,6 +193,7 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     setTechInfos: (data: any) => dispatch(setTechInfos(data)),
+    setUpdateUser: (data: UserStoreModel) => { dispatch(setUpdateUser(data)) }
   }
 }
 
