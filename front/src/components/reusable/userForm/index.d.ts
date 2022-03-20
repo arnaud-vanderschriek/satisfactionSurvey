@@ -1,10 +1,11 @@
 export interface UserStoreModel {
   id: number,
-  lastname: string,
-  fistname: string,
+  lastName: string,
+  firstname: string,
   colleagues: [string],
-  departement: string,
-  status: string,
+  division: string,
+  classification: string,
+  poste: string,
   userForm: boolean,
   techForm: boolean,
 }

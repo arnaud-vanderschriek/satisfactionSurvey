@@ -5,12 +5,14 @@ import { connect } from 'react-redux';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from 'recharts';
 import { setTechInfos } from '../../redux/actions/user.action';
 import store from '../../redux/store/store';
+import { putmanServicesArray } from './helpers/DataDashboard';
 import Title from './Title';
 
 
 function Chart(props: any) {
   // const theme = useTheme();
   // axios fetch des data
+  // const [ data, setData] = useState(putmanServicesArray)
   const [manoeuvre, setManoeuvre] = useState()
   const [electricPlan, setElectricPlan] = useState()
   const [electricBox, setElectricBox] = useState()
@@ -28,7 +30,7 @@ function Chart(props: any) {
       if(res.data.errors) {
         console.log("errors")
       } else {
-        console.log(res.data[0], 'response in Chart.js')
+        console.log(res, 'response in Chart.js')
         setManoeuvre(res.data[0].manoeuvre)
         setElectricPlan(res.data[0].electricPlan)
         setElectricBox(res.data[0].electricBox)
@@ -76,11 +78,6 @@ function Chart(props: any) {
           <PolarAngleAxis dataKey="name" />
           <PolarRadiusAxis angle={30} domain={[0, 1000]}  />
           <Radar name={props.user.firstname} dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-          {/* <Radar name="Mike" dataKey="B" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-          <Radar name="Mike" dataKey="C" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} /> */}
-
-          {/* <Radar name="claire" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
-          <Radar name="Youssef" dataKey="C  " stroke="##FFFFFF" fill="#FFFFFF" fillOpacity={0.1} /> */}
           <Legend />
       </RadarChart>
       </ResponsiveContainer>

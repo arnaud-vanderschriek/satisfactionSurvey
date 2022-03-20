@@ -111,7 +111,7 @@ function Checkout(props: any) {
       >
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Putmann
+            Putman
           </Typography>
         </Toolbar>
       </AppBar>

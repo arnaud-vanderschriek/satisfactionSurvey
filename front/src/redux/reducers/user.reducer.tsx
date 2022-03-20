@@ -3,7 +3,7 @@ import { SET_INFOS } from "../actions/user.action";
 import { UserElectricSkillsModel, UserStoreModel } from "../../components/reusable/userForm";
 
 const initialState = {
-  user: {} as UserStoreModel,
+  user: [] as UserStoreModel[],
   techInfos: [
     {name:"Manoeuvre", value: 0},
     {name: "Plan éléctrique", value: 0},

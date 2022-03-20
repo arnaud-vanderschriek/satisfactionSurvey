@@ -7,6 +7,10 @@ import Link from '@mui/material/Link';
 // import TableRow from '@mui/material/TableRow';
 import Title from './Title';
 import { Card, CardContent, Typography } from '@mui/material';
+import store from '../../redux/store/store';
+import { setTechInfos } from '../../redux/actions/user.action';
+import { connect } from 'react-redux';
+import { UserStoreModel } from '../reusable/userForm';
 // import { StringifyOptions } from 'querystring';
 // import Title from './Title';
 
@@ -37,25 +41,27 @@ function preventDefault(event: React.MouseEvent) {
   event.preventDefault();
 }
 
-export default function PersonnalDetails() {
+
+function PersonnalDetails(props: any) {
+  console.log(typeof props.user)
   return (
     <React.Fragment>
       <Title>Personnal details</Title>
-      {rows.map((row, index) => (
-        <Card key={index}>  
+      {/* {props.user.map((row, index) => ( */}
+        <Card>  
           <CardContent>
             <Typography sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
               <div >
-                <p>date de contrat:{row.date}</p>
-                <p>Nom:{row.name}</p>
-                <p>adresse:{row.address}</p>
-                <p>téléphone:{row.phone}</p>
-                <p>status:{row.status}</p>
+                <p>Lastname: {props.user.lastName}</p>
+                <p>Firstname: {props.user.firstname}</p>
+                <p>Poste: {props.user.poste}</p>
+                <p>Classification: {props.user.classification}</p>
+                <p>Division:{props.user.division}</p>
               </div>
             </Typography>
           </CardContent>
         </Card>
-      ))}
+       {/* ))}  */}
           
       {/* <Table size="small">
         <TableHead>
@@ -85,3 +91,18 @@ export default function PersonnalDetails() {
     </React.Fragment>
   );
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    user: store.getState().user,
+    // techInfos2: store.getState().techInfos2
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PersonnalDetails)

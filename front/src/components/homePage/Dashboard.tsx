@@ -16,6 +16,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import Chart from './Chart';
 import Opinions from './Opinions';
 import PersonnalDetails from './PersonnalDetails';
+import MuiDrawer from '@mui/material/Drawer';
 
 function Copyright(props: any) {
   return (
@@ -117,7 +118,7 @@ function DashboardContent() {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-              Putmann
+              Putman
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">

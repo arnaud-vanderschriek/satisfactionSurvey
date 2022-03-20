@@ -86,7 +86,7 @@ module.exports.getDataTechForm = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 
-  EletricSkillsModel.find({idUser: req.params.id }, (err, docs) => {
+  EletricSkillsModel.find({ idUser: req.params.id }, (err, docs) => {
     if (!err) res.status(201).json(docs);
     else console.log("ID unknown : " + err);
   });

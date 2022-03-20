@@ -92,7 +92,7 @@ export default function SignUp() {
       >
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Putmann
+            Putman
           </Typography>
         </Toolbar>
       </AppBar>

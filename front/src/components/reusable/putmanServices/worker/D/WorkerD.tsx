@@ -87,10 +87,10 @@ function WorkerD(props: any) {
         props.setUpdateUser({...props.user, techForm: true})
 
         console.log(res, 'response')
-        if(res.data.divison === 'Putman Services') {
+        if(props.user.division === 'Putman Services') {
           return <PutmanServicesContainer />
         }
-        if(res.data.divison === 'Infratec2') {
+        if(props.user.division === 'Infratec2') {
           return < Infratec2Container/>
         }
       }
@@ -117,10 +117,10 @@ function WorkerD(props: any) {
         <img src='../../../assets/img/logoPutman.png' alt=''></img>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Putmann
+            Putman
           </Typography>
           <br />
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography variant="h6" color="inherit" noWrap sx={{marginLeft: 2,}}>
             Welcome {props.user.firstname} !
           </Typography>
         </Toolbar>

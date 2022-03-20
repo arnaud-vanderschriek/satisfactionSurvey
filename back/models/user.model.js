@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema(
     poste: {
       type: String,
       required: false,
-      minlength: 3,
+      minlength: 2,
       maxlength: 30,
     },
     classification: {

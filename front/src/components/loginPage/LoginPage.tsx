@@ -22,6 +22,8 @@ import { SetUser } from '../../redux/actions/user.action';
 import store from '../../redux/store/store';
 import { connect } from 'react-redux';
 import { UserStoreModel } from '../reusable/userForm';
+import PutmanServicesContainer from "../reusable/putmanServices/PutmanServicesContainer"
+import Infratec2Container from '../reusable/infratec2/Infratec2Container';
 
 function Copyright(props: any) {
   return (
@@ -41,9 +43,9 @@ const theme = createTheme();
 
 function LoginPage(props: any) {
   let navigate = useNavigate()
-  const [ emailField, setEmailField ] = useState(false)
+  const [ lastnameField, setLastnameField ] = useState(false)
+  const [ lastnameText, setLastnameText ] = useState("")
   const [ passwordField, setPasswordField ] = useState(false)
-  const [ emailText, setEmailText ] = useState("")
   const [ passwordText, setPasswordText ] = useState("")
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -63,26 +65,30 @@ function LoginPage(props: any) {
     .then((res) => {
       if(res.data.errors) {
         if(res.data.errors.lastname) {
-          setEmailField(true) 
-          setEmailText(res.data.errors.lastname)
+          setLastnameField(true) 
+          setLastnameText(res.data.errors.lastname)
           setPasswordField(false)
           setPasswordText("")
         }
         if (res.data.errors.password) {
           setPasswordField(true)
           setPasswordText(res.data.errors.password)
-          setEmailField(false) 
-          setEmailText("")
+          setLastnameField(false) 
+          setLastnameText("")
         }
       } else {
         props.SetUser(res.data)
+        console.log(res, "res dans loginpAge")
         // pe placer le redux-persist içi ?
       
         if (res.data.division === 'Infratec2') {
           navigate('/infratec2')
+          // return <Infratec2Container props={props} />
         }  
         if (res.data.division === 'Putman Services' ) {
           navigate('/putmanServices')
+          // return <PutmanServicesContainer props={props}/>
+
         } 
       }
     }).catch((err) => {
@@ -105,7 +111,7 @@ function LoginPage(props: any) {
       >
         <Toolbar>
           <div id='logoPutman'></div>
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography variant="h6" color="inherit" noWrap sx={{marginLeft: 2,}}>
             Putman 
           </Typography>
         </Toolbar>
@@ -119,7 +125,7 @@ function LoginPage(props: any) {
             flexDirection: 'column',
             alignItems: 'center',
           }}
-        >   
+        >  
             <div id='logoPutman2'></div>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             {/* <LockOutlinedIcon /> */}
@@ -137,8 +143,8 @@ function LoginPage(props: any) {
               name="lastname"
               autoComplete="lastname"
               autoFocus
-              error={emailField}
-              helperText={emailText}
+              error={lastnameField}
+              helperText={lastnameText}
             />
             <TextField
               margin="normal"
