@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from 'recharts';
 import { setTechInfos } from '../../redux/actions/user.action';
 import store from '../../redux/store/store';
-import { putmanServicesArray } from './helpers/DataDashboard';
 import Title from './Title';
 
 
@@ -20,6 +19,13 @@ function Chart(props: any) {
   const [plug, setPlug] = useState()
   const [buildingPlan, setBuildingPlan] = useState()
 
+  const [checksonnel, setChecksonnel] = useState()
+  const [skillsExplorer, setSkillsExplorer] = useState()
+  const [cartoSkills, setCartoSkills] = useState()
+  const [mapSkills, setMapSkills] = useState()
+  const [skillsnetwork, setSkillsnetwork] = useState()
+  const [skillBook, setSkillBook] = useState()
+
 
   useEffect(() => {
     axios({
@@ -30,21 +36,29 @@ function Chart(props: any) {
       if(res.data.errors) {
         console.log("errors")
       } else {
-        console.log(res, 'response in Chart.js')
-        setManoeuvre(res.data[0].manoeuvre)
-        setElectricPlan(res.data[0].electricPlan)
-        setElectricBox(res.data[0].electricBox)
-        setCable(res.data[0].cable)
-        setPlug(res.data[0].plug)
-        setBuildingPlan(res.data[0].buildingPlan)
-      }
+        if(props.user.division === "Putman Services")
+          setManoeuvre(res.data[0].manoeuvre)
+          setElectricPlan(res.data[0].electricPlan)
+          setElectricBox(res.data[0].electricBox)
+          setCable(res.data[0].cable)
+          setPlug(res.data[0].plug)
+          setBuildingPlan(res.data[0].buildingPlan)
+        }
+        if(props.user.division === "Infratec2") {
+          setChecksonnel(res.data[0].checksonnel)
+          setSkillsExplorer(res.data[0].skillsExplorer)
+          setCartoSkills(res.data[0].cartoSkills)
+          setMapSkills(res.data[0].mapSkills)
+          setSkillsnetwork(res.data[0].skillsnetwork)
+          setSkillBook(res.data[0].skillBook)
+        }
     }).catch((err) => {
       console.log(err, 'catch Errors');
     })
-  }, [props.user.id])
+  })
  
 
-  const data = [
+  const dataPutmanServices = [
     {
       "name": "manoeuvre",
       "value": manoeuvre,
@@ -69,17 +83,52 @@ function Chart(props: any) {
     }, 
   ]
 
+  const dataInfratec2 = [
+    {
+      "name": "checksonnel",
+      "value": checksonnel,
+    },
+    {
+      "name": "skillsExplorer",
+      "value": skillsExplorer,
+    },
+    {
+      "name": "cartoSkills",
+      "value": cartoSkills,
+    },
+    {
+      "name": "mapSkills",
+      "value": mapSkills,
+    },  {
+      "name": "skillsnetwork",
+      "value": skillsnetwork,
+    },  {
+      "name": "skillBook",
+      "value": skillBook,
+    }, 
+  ]
   return (
+    
     <React.Fragment>
       <Title>Personnal stats</Title>
       <ResponsiveContainer width={900} height="300%" >
-        <RadarChart outerRadius={80} width={730} height={250} data={data}>
+        {props.user.division === "Putman Services" ? 
+         <RadarChart outerRadius={80} width={730} height={250} data={dataPutmanServices}>
           <PolarGrid />
           <PolarAngleAxis dataKey="name" />
           <PolarRadiusAxis angle={30} domain={[0, 1000]}  />
           <Radar name={props.user.firstname} dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
           <Legend />
-      </RadarChart>
+        </RadarChart> 
+          : 
+          <RadarChart outerRadius={80} width={730} height={250} data={dataInfratec2}>
+            <PolarGrid />
+            <PolarAngleAxis dataKey="name" />
+            <PolarRadiusAxis angle={30} domain={[0, 1000]}  />
+            <Radar name={props.user.firstname} dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+            <Legend />
+        </RadarChart>
+     }
       </ResponsiveContainer>
     </React.Fragment>
   );

@@ -1,5 +1,5 @@
 import React from 'react'
-import Dashboard from '../../../homePage/Dashboard'
+import Dashboard from '../../../workerhomePage/Dashboard'
 
 export default function PmContainer() {
   return (

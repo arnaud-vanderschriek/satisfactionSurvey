@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 import { ValuesTechForm } from "../../components/reusable/techForm";
 import { UserStoreModel } from "../../components/reusable/userForm";
 
@@ -7,19 +7,10 @@ export const SET_INFOS = "SET_INFOS";
 export const SEND_INFOS = "SEND_INFOS";
 export const SET_ADDINFOSUSER = "ADDINFOSUSER"
 export const SET_UPDATEUSER = "UPDATEUSER"
+export const FETCH_USERS = "FETCHUSERS"
 
 export const SetUser = (data: UserStoreModel) => {
   return (dispatch: any) => {
-
-  //   console.log('id in getUser actions: ', uid)
-  //   return axios
-  //   .get(`${process.env.REACT_APP_API_URL}/api/user/${uid}`)
-  //   .then((res) => {
-  //     console.log('res: ', res)
-  //     dispatch({ type: GET_USER, payload: res.data })
-  //   })
-  //   .catch((err) => console.log(err))
-  // }
     dispatch({type: SET_USER, payload: data})
   }
 }
@@ -42,7 +33,20 @@ export const setUpdateUser = (data: any) => {
   }
 }
 
-
+export const fetchAllWorker = () => {
+  console.log("taratata")
+  console.log("blablabla")
+    axios.get(`${process.env.REACT_APP_API_URL}/api/user/`)
+    .then(res => {
+      const users = res.data
+      console.log(users, 'user in actions')
+    })
+    .catch(errors => {
+      const errorsMsg = errors.message
+      console.log(errorsMsg)
+    })
+  
+}
 
 
 

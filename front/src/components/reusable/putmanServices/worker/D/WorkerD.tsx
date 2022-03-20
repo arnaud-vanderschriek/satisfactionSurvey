@@ -19,7 +19,6 @@ import Form3 from './Form3';
 import { setTechInfos, setUpdateUser } from '../../../../../redux/actions/user.action';
 import axios from 'axios';
 import store from '../../../../../redux/store/store';
-import { useNavigate } from 'react-router-dom';
 import PutmanServicesContainer from '../../PutmanServicesContainer';
 import Infratec2Container from '../../../infratec2/Infratec2Container';
 import { UserStoreModel } from '../../../userForm';
@@ -56,7 +55,6 @@ const theme = createTheme();
 
 
 function WorkerD(props: any) {
-  let navigate = useNavigate()
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {

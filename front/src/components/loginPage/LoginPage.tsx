@@ -22,8 +22,6 @@ import { SetUser } from '../../redux/actions/user.action';
 import store from '../../redux/store/store';
 import { connect } from 'react-redux';
 import { UserStoreModel } from '../reusable/userForm';
-import PutmanServicesContainer from "../reusable/putmanServices/PutmanServicesContainer"
-import Infratec2Container from '../reusable/infratec2/Infratec2Container';
 
 function Copyright(props: any) {
   return (
@@ -83,12 +81,9 @@ function LoginPage(props: any) {
       
         if (res.data.division === 'Infratec2') {
           navigate('/infratec2')
-          // return <Infratec2Container props={props} />
         }  
         if (res.data.division === 'Putman Services' ) {
           navigate('/putmanServices')
-          // return <PutmanServicesContainer props={props}/>
-
         } 
       }
     }).catch((err) => {

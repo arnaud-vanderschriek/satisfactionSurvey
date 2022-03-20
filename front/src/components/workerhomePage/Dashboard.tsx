@@ -16,7 +16,6 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import Chart from './Chart';
 import Opinions from './Opinions';
 import PersonnalDetails from './PersonnalDetails';
-import MuiDrawer from '@mui/material/Drawer';
 
 function Copyright(props: any) {
   return (

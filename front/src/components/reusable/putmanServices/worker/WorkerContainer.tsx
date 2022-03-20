@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import store from '../../../../redux/store/store'
-import Dashboard from '../../../homePage/Dashboard'
+import Dashboard from '../../../workerhomePage/Dashboard'
 import UserForm from '../../userForm/UserForm'
 import WorkerA from './A/WorkerA'
 import WorkerB from './B/WorkerB'

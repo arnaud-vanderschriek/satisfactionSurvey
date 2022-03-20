@@ -7,7 +7,8 @@ router.post("/login", authController.signIn);
 
 router.get("/", userController.getAllUsers);
 router.get("/:id", userController.userInfo);
-router.get('/getDataTechForm/:id', userController.getDataTechForm)
+router.get("/getAllUsers", userController.getAllUsers);
+router.get("/getDataTechForm/:id", userController.getDataTechForm);
 router.post("/dataTechForm/:id", userController.setDataUserChart);
 router.post("/additionnalData/:id", userController.addtionnalData);
 

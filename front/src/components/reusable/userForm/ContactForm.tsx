@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Box from '@mui/material/Box';
 import store from '../../../redux/store/store';
 import { connect } from 'react-redux';
 import { setAddInfosUser } from '../../../redux/actions/user.action';
@@ -31,31 +30,7 @@ import { setAddInfosUser } from '../../../redux/actions/user.action';
       <Typography variant="h6" gutterBottom>
         Contact details
       </Typography>
-      {/* <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}> */}
       <Grid container spacing={3}>
-        {/* <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="firstName"
-            name="firstName"
-            label="First name"
-            fullWidth
-            autoComplete="given-name"
-            variant="standard"
-            onChange={handleDataUserForm}
-          />
-        </Grid> */}
-        {/* <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="family-name"
-            variant="standard"
-          />
-        </Grid> */}
         <Grid item xs={12}>
           <TextField
             required

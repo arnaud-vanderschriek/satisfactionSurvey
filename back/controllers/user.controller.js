@@ -3,8 +3,13 @@ const EletricSkillsModel = require("../models/electricSkills.model");
 const ObjectID = require("mongoose").Types.ObjectId;
 
 module.exports.getAllUsers = async (req, res) => {
-  const users = await UserModel.find().select("-password");
-  res.status(200).json(users);
+  console.log("tatatata dans back")
+  try {
+    const users = await UserModel.find().select("-password");
+    res.status(200).json(users);
+  } catch (err) {
+    console.log({ message: err });
+  }
 };
 
 module.exports.userInfo = async (req, res) => {

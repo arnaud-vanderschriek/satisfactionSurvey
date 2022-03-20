@@ -15,6 +15,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Chart from './Chart';
 import Tabs from './Tabs';
+import store from '../../redux/store/store';
+import { connect } from 'react-redux';
+import { fetchAllWorker, setTechInfos } from '../../redux/actions/user.action';
+import { useEffect } from 'react';
 
 function Copyright(props: any) {
   return (
@@ -81,7 +85,10 @@ const AppBar = styled(MuiAppBar, {
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
+function DashboardContent(props: any) {
+  useEffect(() => {
+    props.fetchAllWorker()
+  })
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -174,6 +181,19 @@ function DashboardContent() {
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
+
+const mapStateToProps = (state: any) => {
+  return {
+    user: store.getState().user,
+    techInfos2: store.getState().techInfos2
+  }
 }
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
+    fetchAllWorker: () => fetchAllWorker()
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardContent)

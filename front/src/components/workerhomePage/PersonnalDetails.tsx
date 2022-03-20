@@ -10,37 +10,24 @@ import { Card, CardContent, Typography } from '@mui/material';
 import store from '../../redux/store/store';
 import { setTechInfos } from '../../redux/actions/user.action';
 import { connect } from 'react-redux';
-import { UserStoreModel } from '../reusable/userForm';
 // import { StringifyOptions } from 'querystring';
 // import Title from './Title';
 
 // Generate Order Data
-function createData(
-  id: number,
-  date: string,
-  name: string,
-  address: string,
-  phone: string,
-  status: string,
-) {
-  return { id, date, name, address, phone, status };
-}
-
-const rows = [
-  createData(
-    0,
-    '16 Mar, 2019',
-    'Elvis Presley',
-    'Av Capart 44',
-    '0499 44 55 66',
-    'ouvrier',
-  )
-];
+// function createData(
+//   id: number,
+//   date: string,
+//   name: string,
+//   address: string,
+//   phone: string,
+//   status: string,
+// ) {
+//   return { id, date, name, address, phone, status };
+// }
 
 function preventDefault(event: React.MouseEvent) {
   event.preventDefault();
 }
-
 
 function PersonnalDetails(props: any) {
   console.log(typeof props.user)
