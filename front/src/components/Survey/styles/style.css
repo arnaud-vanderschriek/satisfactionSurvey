@@ -1,12 +1,22 @@
-#beubeubeu {
+/* #beubeubeu {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-}
+  width: auto;
+  height: auto;
+} */
 
 #tabs-button {
   height: 50px;
-  width: 100px;
-  align-self: flex-end;
-  margin-left: 25px;
+  width: auto;
+  align-items: center;
+  margin-top: 5px;
 }
+
+/* .dataInfosinTabs {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: auto;
+  margin-right: 5px;
+} */

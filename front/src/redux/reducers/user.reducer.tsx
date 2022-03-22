@@ -1,14 +1,15 @@
-import { SET_ADDINFOSUSER, SET_UPDATEUSER, SET_USER } from "../actions/user.action";
+import { FETCH_USERS, SET_ADDINFOSUSER, SET_UPDATEUSER, SET_USER } from "../actions/user.action";
 import { SET_INFOS } from "../actions/user.action";
-import { UserElectricSkillsModel, UserStoreModel } from "../../components/reusable/userForm";
+import { UserElectricSkillsModel, UserModelArray, UserStoreModel } from "../../components/reusable/userForm";
 
 const initialState = {
   user: [] as UserStoreModel[],
+  users: [{}],
   techInfos: [
     {name:"Manoeuvre", value: 0},
     {name: "Plan éléctrique", value: 0},
     {name: "Pose de tableau", value: 0},
-    {name: "Tirage de cable", value: 0},
+    {name: "Tirage de cable", value: 0},  
     {name: "Prises", value: 0},
     {name: "Plan", value: 0}
   ],  
@@ -52,6 +53,11 @@ export default function userReducer(state= initialState, action: any) {
       return {
         ...state,
         user: action.payload
+      }
+    case FETCH_USERS:
+      return {
+        ...state,
+        users: action.payload
       }
     default: 
       return state;

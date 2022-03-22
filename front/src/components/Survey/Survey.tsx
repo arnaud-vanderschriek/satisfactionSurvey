@@ -88,11 +88,14 @@ const mdTheme = createTheme();
 function DashboardContent(props: any) {
   useEffect(() => {
     props.fetchAllWorker()
-  })
+  }, [])
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  console.log({ "propsUser" : props.users, "type propsUsers" : typeof(props.users)})
+  console.log(props.users[0].firstname)
+  console.log(props.users.map((elem: any) => elem.firstname))
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -154,7 +157,8 @@ function DashboardContent(props: any) {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: 'auto',
+                    width: '100%'
                   }}
                 >
                   <Tabs />
@@ -166,7 +170,8 @@ function DashboardContent(props: any) {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: '100%',
+                    width: '100%'
                   }}
                 >
                   <Chart />
@@ -185,14 +190,15 @@ function DashboardContent(props: any) {
 const mapStateToProps = (state: any) => {
   return {
     user: store.getState().user,
-    techInfos2: store.getState().techInfos2
+    users: state.users,
+    techInfos2: store.getState().techInfos2,
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
     setTechInfos: (data: any) => dispatch(setTechInfos(data)),
-    fetchAllWorker: () => fetchAllWorker()
+    fetchAllWorker: () => dispatch(fetchAllWorker())
   }
 }
 

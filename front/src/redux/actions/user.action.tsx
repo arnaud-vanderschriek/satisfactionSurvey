@@ -34,18 +34,16 @@ export const setUpdateUser = (data: any) => {
 }
 
 export const fetchAllWorker = () => {
-  console.log("taratata")
-  console.log("blablabla")
+  return (dispatch: any) => {
     axios.get(`${process.env.REACT_APP_API_URL}/api/user/`)
     .then(res => {
-      const users = res.data
-      console.log(users, 'user in actions')
+      dispatch({type: FETCH_USERS, payload: res.data})
     })
     .catch(errors => {
       const errorsMsg = errors.message
       console.log(errorsMsg)
-    })
-  
+    })    
+  }
 }
 
 

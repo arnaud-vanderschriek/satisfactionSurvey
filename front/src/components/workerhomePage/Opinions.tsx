@@ -15,7 +15,6 @@ function preventDefault(event: React.MouseEvent) {
 function Opinions(props: any) {
   let navigate = useNavigate()
   const handler = () => {
-    console.log("props: ", props)
     // props.getUser('61aa46175d2817fbdc842248')
     navigate('/survey')
   }

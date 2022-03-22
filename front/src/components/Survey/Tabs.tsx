@@ -6,6 +6,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import './styles/style.css'
 import { Button, Card, CardContent } from '@mui/material';
+import { setTechInfos } from '../../redux/actions/user.action';
+import { connect } from 'react-redux';
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -33,121 +35,55 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-function a11yProps(index: any) {
+function a11yProps(index: number) {
   return {
-    id: `simple-tab-${index}`,
+    _id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
-function createData(
-  id: number,
-  firstname: string,
-  name: string,
-  address: string,
-  mobile: string,
-  service: string,
-  status: string,
-) {
-  return { id, firstname, name, address, mobile, service, status };
+function sendIndexWorkerToCharts(index: any)  {
+  // enregistrer l'index dans redux pour l'afficher dans chart.
+  console.log(index, 'index in button')
 }
 
-const rows = [
-  createData(
-    0,
-    'Arnaud',
-    'Vanderschrieck',
-    'Av Dessaert 20',
-    '0222 22 22 22',
-    'Developpement',
-    'createur',
-  ),
-  createData(
-    1,
-    'Alexandre',
-    'Lopez Fouz',
-    'Av des Chaudrons 654',
-    '0333 33 33 33',
-    'Service',
-    'PM',
-  ),
-  createData(
-    2,
-    'Benoit',
-    'Magimel',
-    'Av des Roseaux 2',
-    '0444 44 44 44',
-    'Service',
-    'RH',
-  ),
-  createData(
-    3,
-    'Cédric',
-    'Coenraedts',
-    'Av des Caprices 33',
-    '0555 55 55 55',
-    'Service',
-    'DM',
-  ),
-  createData(
-    4,
-    'Quentin',
-    'Magia',
-    'Av des tourteraux 15',
-    '0666 66 66 66',
-    'Service',
-    'Team leader',
-  ),
-  createData(
-    5,
-    'David',
-    'Lombet',
-    'Av du suplice 50',
-    '0777 77 77 77',
-    'Service',
-    'Ouvrier',
-  ),
-];
-
-export default function BasicTabs() {
+function BasicTabs(props: any) {
   const [value, setValue] = React.useState(0);
-
   const handleChange = (event: any, newValue: number) => {
-    console.log(newValue, 'newValue')
     setValue(newValue);
   };
 
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }} >
-        <Tabs value={value} onChange={handleChange}  scrollButtons="auto" aria-label="scrollable auto tabs example">
-        {rows.map((row) => (
-          <Tab label={row.firstname} {...a11yProps(row.id)} />
+        <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example">
+        {props.users.map((elem: any, index: number) => (
+          <Tab label={elem.firstname} {...a11yProps(index)} />
         ))} 
-        </Tabs>
-        {rows.map((row) => (
-          <TabPanel value={value} index={row.id}>
+          </Tabs>
+        {props.users.map((elem: any, index: number) => (
+          <TabPanel value={value} index={index}>
             <div id='beubeubeu'>
-              <Card>  
+              <Card   sx={{marginRight: '5px', width: '100%', height: 'auto'}}>  
                 <CardContent>
-                  <Typography sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                    <p>name: {row.name}</p>
-                    <p>firstname: {row.firstname}</p>
-                    <p>address: {row.address}</p>
+                  <Typography sx={{ fontSize: '0.9rem' }} color="text.secondary" gutterBottom>
+                    <div className="dataInfosinTabs">
+                      <p>Lastname: {elem.lastname}</p>
+                      <p>Firstname: {elem.firstname}</p>
+                      <p>Division: {elem.division}</p>
+                      <p>Poste: {elem.poste}</p>
+                      <p>Classification: {elem.classification}</p>
+                      <p>Division: {elem.division}</p>
+                      <p>Adresse 1: {elem.address1}</p>
+                      <p>Adresse 2: {elem.address2}</p>
+                      <p>City: {elem.city}</p>
+                    </div>
                   </Typography>
                 </CardContent>
-              </Card>
-              <Card>
-                <CardContent>
-                  <Typography sx={{ fontSize: 11 }} color="text.secondary" gutterBottom>
-                    <p>mobile phone: {row.mobile}</p>
-                    <p>service: {row.service}</p>
-                    <p>status: {row.status}</p>
-                  </Typography>
-                </CardContent>
-              </Card>
-              
-              <Button id='tabs-button' variant="contained" size="small">{row.firstname}</Button>
+              </Card> 
+            </div>
+            <div>
+              <Button id='tabs-button' onClick={() => sendIndexWorkerToCharts(index)} variant="contained" size="small">{elem.firstname}</Button>
             </div>
           </TabPanel>
         ))}
@@ -155,3 +91,18 @@ export default function BasicTabs() {
     </Box>
   );
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    users: state.users,
+    techInfos2: state.techInfos2
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BasicTabs)

@@ -19,11 +19,10 @@ const data = [
 
 export default function Chart() {
   // const theme = useTheme();
-
   return (
     <React.Fragment>
       <Title>Stats</Title>
-      <ResponsiveContainer width={1150} height="200%" >
+      <ResponsiveContainer width={1150} height={250} >
         <RadarChart outerRadius={80} width={900} height={250} data={data}>
           <PolarGrid />
           <PolarAngleAxis dataKey="subject" />

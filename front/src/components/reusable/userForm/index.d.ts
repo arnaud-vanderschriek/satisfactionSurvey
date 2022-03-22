@@ -18,3 +18,5 @@ export interface UserElectricSkillsModel {
   plug: number,
   buildingPlan: number,
 }
+
+export type UserModelArray = [UserStoreModel]
