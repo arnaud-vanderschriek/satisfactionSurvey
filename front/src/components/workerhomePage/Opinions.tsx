@@ -25,13 +25,12 @@ function Opinions(props: any) {
       {/* <Typography component="p" variant="h4">
         $3,024.00
       </Typography> */}
-      {props.user.firstname}
         <Button
           type="submit"
           fullWidth
           variant="contained"
           onClick={handler}
-          sx={{ mt: 8 , mb: 2 }}
+          sx={{ mt: 2 , mb: 4 }}
         >
           Begin
         </Button>

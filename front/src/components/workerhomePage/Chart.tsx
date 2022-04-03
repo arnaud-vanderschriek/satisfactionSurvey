@@ -3,8 +3,6 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from 'recharts';
-import { setTechInfos } from '../../redux/actions/user.action';
-import store from '../../redux/store/store';
 import Title from './Title';
 
 
@@ -28,33 +26,50 @@ function Chart(props: any) {
 
 
   useEffect(() => {
-    axios({
-      method: "get",
-      url: `${process.env.REACT_APP_API_URL}/api/user/getDataTechForm/${props.user.id}`,
-      withCredentials: true,
-    }).then((res) => {
-      if(res.data.errors) {
-        console.log("errors")
-      } else {
-        if(props.user.division === "Putman Services")
-          setManoeuvre(res.data[0].manoeuvre)
-          setElectricPlan(res.data[0].electricPlan)
-          setElectricBox(res.data[0].electricBox)
-          setCable(res.data[0].cable)
-          setPlug(res.data[0].plug)
-          setBuildingPlan(res.data[0].buildingPlan)
+    if(props.user.division === "Putman Services") {
+      console.log("dans Putman Services")
+      axios({
+        method: "get",
+        url: `${process.env.REACT_APP_API_URL}/api/user/getDataTechForm/${props.user.id}`,
+        withCredentials: true,
+      }).then((res) => {
+        if(res.data.errors) {
+          console.log("errors")
+        } else {
+         
+            setManoeuvre(res.data[0].manoeuvre)
+            setElectricPlan(res.data[0].electricPlan)
+            setElectricBox(res.data[0].electricBox)
+            setCable(res.data[0].cable)
+            setPlug(res.data[0].plug)
+            setBuildingPlan(res.data[0].buildingPlan)
         }
-        if(props.user.division === "Infratec2") {
-          setChecksonnel(res.data[0].checksonnel)
-          setSkillsExplorer(res.data[0].skillsExplorer)
-          setCartoSkills(res.data[0].cartoSkills)
-          setMapSkills(res.data[0].mapSkills)
-          setSkillsnetwork(res.data[0].skillsnetwork)
-          setSkillBook(res.data[0].skillBook)
+      }).catch((err) => {
+        console.log(err, 'catch Errors');
+      })
+    }
+
+    if(props.user.division === "Infratec2") {
+      console.log("dans Infratec2")
+      axios({
+        method: "get",
+        url: `${process.env.REACT_APP_API_URL}/api/user/getDataTechFormInfratec2/${props.user.id}`,
+        withCredentials: true,
+      }).then((res) => {
+        if(res.data.errors) {
+          console.log("errors")
+        } else {
+            setChecksonnel(res.data[0].checksonnel)
+            setSkillsExplorer(res.data[0].skillsExplorer)
+            setCartoSkills(res.data[0].cartoSkills)
+            setMapSkills(res.data[0].mapSkills)
+            setSkillsnetwork(res.data[0].skillsnetwork)
+            setSkillBook(res.data[0].skillBook)
         }
-    }).catch((err) => {
-      console.log(err, 'catch Errors');
-    })
+      }).catch((err) => {
+        console.log(err, 'catch Errors');
+      })
+    }
   })
  
 
@@ -137,14 +152,14 @@ function Chart(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    user: store.getState().user,
-    techInfos2: store.getState().techInfos2
+    user: state.user,
+    putmanServicesStatsUser: state.putmanServicesStatsUser,
+    infratec2StatsUser: state.infratec2StatsUser,
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
   }
 }
 

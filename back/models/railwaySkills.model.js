@@ -5,26 +5,26 @@ const RailwaySkillSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  Checksonnel: {
-    value: String,
+  checksonnel: {
+    type: String,
   },
-  SkillsExplorer: {
-    value: String,
+  skillsExplorer: {
+    type: String,
   },
-  CartoSkills: {
-    value: String,
+  cartoSkills: {
+    type: String,
   },
-  MapSkills: {
-    value: String,
+  mapSkills: {
+    type: String,
   },
-  Skillsnetwork: {
-    value: String,
+  skillsnetwork: {
+    type: String,
   },
-  SkillBook: {
-    value: String
+  skillBook: {
+    type: String
   }
 });
 
-const RailWaySkillsModel = mongoose.model("skill", RailwaySkillSchema);
+const RailWaySkillsModel = mongoose.model("infratec2skills", RailwaySkillSchema);
 
 module.exports = RailWaySkillsModel;

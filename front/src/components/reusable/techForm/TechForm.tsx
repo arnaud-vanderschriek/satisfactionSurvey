@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
 import Form3 from './Form3';
-import { setTechInfos } from '../../../redux/actions/user.action';
+import { setPutmanServicesTechInfos } from '../../../redux/actions/user.action';
 import axios from 'axios';
 import store from '../../../redux/store/store';
 import { useNavigate } from 'react-router-dom';
@@ -67,14 +67,14 @@ function TechForm(props: any) {
   const handleSend = () => {
     // activé une fonction dans le store qui prends les valeurs des données pour les graphiques et 
     // l'id du user auquel elles sont attribuées
-    console.log(props.techInfos2, 'props techInfos2')
+    console.log(props.putmanServicesStatsUser, 'props putmanServicesStatsUser')
     console.log(props.user, 'props user')
     axios({
       method: "post",
       url: `${process.env.REACT_APP_API_URL}/api/user/dataTechForm/${props.user.id}`,
       withCredentials: true,
       data: {
-        data: props.techInfos2
+        data: props.putmanServicesStatsUser
       }
     }).then((res) => {
       if(res.data.errors) {
@@ -180,13 +180,13 @@ function TechForm(props: any) {
 const mapStateToProps = (state: any) => {
   return {
     user: store.getState().user,
-    techInfos2: store.getState().techInfos2
+    putmanServicesStatsUser: store.getState().putmanServicesStatsUser
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
+    setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
   }
 }
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from 'recharts';
-import Title from './Title';
+import Title from './Title2';
 
 // Generate Sales Data
 function createData(time: number, amount?: number) {

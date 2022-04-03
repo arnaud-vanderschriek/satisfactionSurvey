@@ -15,9 +15,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
-import { setTechInfos } from '../../../../../redux/actions/user.action';
+import { setPutmanServicesTechInfos } from '../../../../../redux/actions/user.action';
 import axios from 'axios';
-import store from '../../../../../redux/store/store';
 import { useNavigate } from 'react-router-dom';
 
 function Copyright() {
@@ -66,14 +65,14 @@ function WorkerB(props: any) {
   const handleSend = () => {
     // reset les données dans props.techInfos 2
    
-    console.log(props.techInfos2, 'props techInfos2')
+    console.log(props.putmanServicesStatsUser, 'props techInfos2')
     console.log(props.user, 'props user')
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_API_URL}/api/user/dataTechForm/${props.user.id}`,
+      url: `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServices/${props.user.id}`,
       withCredentials: true,
       data: {
-        data: props.techInfos2
+        data: props.putmanServicesStatsUser
          // passer la valeur de techForm dans node à True
 
       }
@@ -181,14 +180,14 @@ function WorkerB(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    user: store.getState().user,
-    techInfos2: store.getState().techInfos2
+    user: state.user,
+    putmanServicesStatsUser: state.putmanServicesStatsUser
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
+    setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
   }
 }
 

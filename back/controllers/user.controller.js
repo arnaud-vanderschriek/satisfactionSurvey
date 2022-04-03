@@ -1,9 +1,10 @@
 const UserModel = require("../models/user.model");
 const EletricSkillsModel = require("../models/electricSkills.model");
+const RailWaySkillsModel = require("../models/railwaySkills.model");
 const ObjectID = require("mongoose").Types.ObjectId;
 
 module.exports.getAllUsers = async (req, res) => {
-  console.log("tatatata dans back")
+  console.log("tatatata dans back");
   try {
     const users = await UserModel.find().select("-password");
     res.status(200).json(users);
@@ -23,7 +24,7 @@ module.exports.userInfo = async (req, res) => {
 };
 
 // peut etre deplacer cette fonction dans un controller a part genre electricSkills.controller
-module.exports.setDataUserChart = async (req, res) => {
+module.exports.setDataChartPutmanServicesUser = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 
@@ -39,6 +40,46 @@ module.exports.setDataUserChart = async (req, res) => {
       cable,
       plug,
       buildingPlan,
+    });
+
+    await UserModel.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $set: {
+          techForm: true,
+        },
+      },
+      { new: true, upsert: true, setDefaultsOnInsert: true }
+    ),
+      res.status(201).json({ user: user._id });
+  } catch (err) {
+    const errors = signUpErrors(err);
+    res.status(200).send({ errors });
+  }
+};
+
+module.exports.setDataChartInfratec2User = async (req, res) => {
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send("ID unknown : " + req.params.id);
+
+  const {
+    checksonnel,
+    skillsExplorer,
+    cartoSkills,
+    mapSkills,
+    skillsnetwork,
+    skillBook,
+  } = req.body.data;
+
+  try {
+    const user = await RailWaySkillsModel.create({
+      idUser: req.params.id,
+      checksonnel,
+      skillsExplorer,
+      cartoSkills,
+      mapSkills,
+      skillsnetwork,
+      skillBook,
     });
 
     await UserModel.findOneAndUpdate(
@@ -87,12 +128,22 @@ module.exports.addtionnalData = async (req, res) => {
   }
 };
 
-module.exports.getDataTechForm = async (req, res) => {
+module.exports.getDataTechFormPutmanServices = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 
-  EletricSkillsModel.find({ idUser: req.params.id }, (err, docs) => {
-    if (!err) res.status(201).json(docs);
-    else console.log("ID unknown : " + err);
-  });
+    EletricSkillsModel.find({ idUser: req.params.id }, (err, docs) => {
+      if (!err) res.status(201).json(docs);
+      else console.log("ID unknown : " + err);
+    });
+};
+
+module.exports.getDataTechFormInfratec2 = async (req, res) => {
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send("ID unknown : " + req.params.id);
+
+    RailWaySkillsModel.find({ idUser: req.params.id }, (err, docs) => {
+      if (!err) res.status(201).json(docs);
+      else console.log("ID unknown : " + err);
+    });
 };

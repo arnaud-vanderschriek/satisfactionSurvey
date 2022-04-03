@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Link from '@mui/material/Link';
-import Title from './Title';
+import Title from './Title2';
 import Button from '@mui/material/Button';
 
 function preventDefault(event: React.MouseEvent) {

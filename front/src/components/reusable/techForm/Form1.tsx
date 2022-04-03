@@ -4,8 +4,7 @@ import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { connect } from 'react-redux';
-import store from '../../../redux/store/store';
-import { setTechInfos } from '../../../redux/actions/user.action';
+import { setPutmanServicesTechInfos } from '../../../redux/actions/user.action';
 
 function Form1(props: any) {
   function handleButtonRadio(e: any) {
@@ -22,11 +21,11 @@ function Form1(props: any) {
     if(e.target.checked) {
         const electricSkill = {...props.techInfos2}
         electricSkill[e.target.name] +=  +e.target.value
-        props.setTechInfos(electricSkill)
+        props.setPutmanServicesTechInfos(electricSkill)
     } else {
         const electricSkill = {...props.techInfos2}
         electricSkill[e.target.name] +=  -e.target.value
-        props.setTechInfos(electricSkill)
+        props.setPutmanServicesTechInfos(electricSkill)
     }
   }
 
@@ -100,13 +99,13 @@ function Form1(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    techInfos2: store.getState().techInfos2,
+    // techInfos2: store.getState().techInfos2,
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
+    setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
   }
 }
 

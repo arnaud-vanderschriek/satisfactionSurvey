@@ -8,7 +8,6 @@ import Link from '@mui/material/Link';
 import Title from './Title';
 import { Card, CardContent, Typography } from '@mui/material';
 import store from '../../redux/store/store';
-import { setTechInfos } from '../../redux/actions/user.action';
 import { connect } from 'react-redux';
 // import { StringifyOptions } from 'querystring';
 // import Title from './Title';
@@ -88,7 +87,6 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
   }
 }
 

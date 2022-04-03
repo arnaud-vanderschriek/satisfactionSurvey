@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
-import store from '../../../redux/store/store';
 import PmContainer from './pm/PmContainer';
 import WorkerContainer from './worker/WorkerContainer';
 
-function PutmanServicesContainer(props: any) {
+function PutmanServicesContainer(props: any, index?: any) {
   useEffect(() => {
     // faire un fetch 
   })
@@ -21,7 +20,7 @@ function PutmanServicesContainer(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    user: store.getState().user,
+    user: state.user,
   }
 }
 

@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import './styles/style.css'
 import { Button, Card, CardContent } from '@mui/material';
-import { setTechInfos } from '../../redux/actions/user.action';
 import { connect } from 'react-redux';
 
 function TabPanel(props: any) {
@@ -42,9 +41,13 @@ function a11yProps(index: number) {
   };
 }
 
-function sendIndexWorkerToCharts(index: any)  {
+function sendIndexWorkerToCharts(indexValue: any, props: any)  {
   // enregistrer l'index dans redux pour l'afficher dans chart.
-  console.log(index, 'index in button')
+  console.log(indexValue, 'index in button')
+  
+  console.log(props.users.filter((elem: any) => elem === indexValue))
+  // console.log(users.users.map((elem: any, index: number) => index === indexValue ))
+  
 }
 
 function BasicTabs(props: any) {
@@ -83,7 +86,7 @@ function BasicTabs(props: any) {
               </Card> 
             </div>
             <div>
-              <Button id='tabs-button' onClick={() => sendIndexWorkerToCharts(index)} variant="contained" size="small">{elem.firstname}</Button>
+              <Button id='tabs-button' onClick={() => sendIndexWorkerToCharts(index, props)} variant="contained" size="small"> Donner son opinion sur {elem.firstname}</Button>
             </div>
           </TabPanel>
         ))}
@@ -101,7 +104,6 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
   }
 }
 

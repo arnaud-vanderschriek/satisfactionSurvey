@@ -25,6 +25,6 @@ const ElectricSkillSchema = new mongoose.Schema({
   },
 });
 
-const EletricSkillsModel = mongoose.model("skill", ElectricSkillSchema);
+const EletricSkillsModel = mongoose.model("putmanServicesSkills", ElectricSkillSchema);
 
 module.exports = EletricSkillsModel;

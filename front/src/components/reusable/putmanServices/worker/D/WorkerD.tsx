@@ -16,9 +16,8 @@ import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
 import Form3 from './Form3';
-import { setTechInfos, setUpdateUser } from '../../../../../redux/actions/user.action';
+import { setPutmanServicesTechInfos, setUpdateUser } from '../../../../../redux/actions/user.action';
 import axios from 'axios';
-import store from '../../../../../redux/store/store';
 import PutmanServicesContainer from '../../PutmanServicesContainer';
 import Infratec2Container from '../../../infratec2/Infratec2Container';
 import { UserStoreModel } from '../../../userForm';
@@ -68,14 +67,14 @@ function WorkerD(props: any) {
   const handleSend = () => {
     // reset les données dans props.techInfos 2
    
-    console.log(props.techInfos2, 'props techInfos2')
+    console.log(props.putmanServicesStatsUser, 'props putmanServicesStatsUser')
     console.log(props.user, 'props user')
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_API_URL}/api/user/dataTechForm/${props.user.id}`,
+      url: `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServices/${props.user.id}`,
       withCredentials: true,
       data: {
-        data: props.techInfos2
+        data: props.putmanServicesStatsUser
          // passer la valeur de techForm dans node à True
       }
     }).then((res) => {
@@ -183,14 +182,14 @@ function WorkerD(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    user: store.getState().user,
-    techInfos2: store.getState().techInfos2
+    user: state.user,
+    putmanServicesStatsUser: state.putmanServicesStatsUser
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
+    setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
     setUpdateUser: (data: UserStoreModel) => { dispatch(setUpdateUser(data)) }
   }
 }

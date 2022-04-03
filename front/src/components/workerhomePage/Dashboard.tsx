@@ -12,10 +12,13 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
+import LogoutIcon from '@mui/icons-material/Logout';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Chart from './Chart';
 import Opinions from './Opinions';
 import PersonnalDetails from './PersonnalDetails';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props: any) {
   return (
@@ -87,6 +90,25 @@ function DashboardContent() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  let navigate = useNavigate()
+  const logout = () => {
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_API_URL}/api/user/logout`,
+      withCredentials: true,
+    }).then((res) => {
+      if(res.data.errors) {
+        console.log("errors")
+      } else {
+        console.log(res, 'response')
+        // 
+      }
+    }).catch((err) => {
+      console.log(err, 'catch Errors');
+    })
+    navigate("/")
+
+  }
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -123,6 +145,11 @@ function DashboardContent() {
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
+            </IconButton>
+            <IconButton color="inherit">
+              {/* <Badge badgeContent={4} color="secondary"> */}
+                <LogoutIcon onClick={logout}/>
+              {/* </Badge> */}
             </IconButton>
           </Toolbar>
         </AppBar>

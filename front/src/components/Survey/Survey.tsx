@@ -12,13 +12,16 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
+import LogoutIcon from '@mui/icons-material/Logout';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import Chart from './Chart';
+import HomeIcon from '@mui/icons-material/Home';
 import Tabs from './Tabs';
 import store from '../../redux/store/store';
 import { connect } from 'react-redux';
-import { fetchAllWorker, setTechInfos } from '../../redux/actions/user.action';
+import { fetchAllWorker } from '../../redux/actions/user.action';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Copyright(props: any) {
   return (
@@ -93,6 +96,36 @@ function DashboardContent(props: any) {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  let navigate = useNavigate()
+
+  const logout = () => {
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_API_URL}/api/user/logout`,
+      withCredentials: true,
+    }).then((res) => {
+      if(res.data.errors) {
+        console.log("errors")
+      } else {
+        console.log(res, 'response')
+        // 
+      }
+    }).catch((err) => {
+      console.log(err, 'catch Errors');
+    })
+    navigate("/")
+
+  }
+
+  const transfer = () => {
+      if(props.user.division === "Putman Services") {
+      navigate("/putmanServices")
+    }
+    if(props.user.division === "Infratec2") {
+      navigate("/infratec2")
+    } 
+  }
+
   console.log({ "propsUser" : props.users, "type propsUsers" : typeof(props.users)})
   console.log(props.users[0].firstname)
   console.log(props.users.map((elem: any) => elem.firstname))
@@ -126,12 +159,22 @@ function DashboardContent(props: any) {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-              Putmann
+              Putman
             </Typography>
+            <IconButton color="inherit">
+              {/* <Badge badgeContent={4} color="secondary"> */}
+                <HomeIcon onClick={transfer} />
+              {/* </Badge> */}
+            </IconButton>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
+            </IconButton>
+            <IconButton color="inherit">
+              {/* <Badge badgeContent={4} color="secondary"> */}
+                <LogoutIcon onClick={logout} />
+              {/* </Badge> */}
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -164,7 +207,7 @@ function DashboardContent(props: any) {
                   <Tabs />
                 </Paper>
               </Grid>
-              <Grid item xs={12} md={12} lg={12}>
+              {/* <Grid item xs={12} md={12} lg={12}>
                 <Paper
                   sx={{
                     p: 2,
@@ -176,7 +219,7 @@ function DashboardContent(props: any) {
                 >
                   <Chart />
                 </Paper>
-              </Grid>
+              </Grid> */}
             </Grid>
             <Copyright sx={{ pt: 4 }} />
           </Container>
@@ -189,15 +232,14 @@ function DashboardContent(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    user: store.getState().user,
+    user: state.user,
     users: state.users,
-    techInfos2: store.getState().techInfos2,
+    putmanServicesStatsUser: state.putmanServicesStatsUser,
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
     fetchAllWorker: () => dispatch(fetchAllWorker())
   }
 }

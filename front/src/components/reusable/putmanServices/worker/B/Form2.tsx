@@ -3,8 +3,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import store from '../../../../../redux/store/store';
-import { setTechInfos } from '../../../../../redux/actions/user.action';
+import { setPutmanServicesTechInfos } from '../../../../../redux/actions/user.action';
 import { connect } from 'react-redux';
 
 
@@ -13,11 +12,11 @@ function Form2(props: any) {
       if(e.target.checked) {
         const electricSkill = {...props.techInfos2}
         electricSkill[e.target.name] +=  +e.target.value
-        props.setTechInfos(electricSkill)
+        props.setPutmanServicesTechInfos(electricSkill)
     } else {
         const electricSkill = {...props.techInfos2}
         electricSkill[e.target.name] +=  -e.target.value
-        props.setTechInfos(electricSkill)
+        props.setPutmanServicesTechInfos(electricSkill)
     }
   }
 
@@ -56,13 +55,13 @@ function Form2(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    techInfos2: store.getState().techInfos2,
+    putmanServicesStatsUser: state.putmanServicesStatsUser,
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
+    setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
   }
 }
 

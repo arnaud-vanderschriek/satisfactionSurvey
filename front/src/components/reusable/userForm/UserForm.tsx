@@ -16,7 +16,7 @@ import AddressForm from './ContactForm';
 import Review from './Review';
 import store from '../../../redux/store/store';
 import { connect } from 'react-redux';
-import { setTechInfos, setUpdateUser } from '../../../redux/actions/user.action';
+import { setUpdateUser } from '../../../redux/actions/user.action';
 import axios from 'axios';
 import { UserStoreModel } from '.';
 import PutmanServicesContainer from '../putmanServices/PutmanServicesContainer';
@@ -173,7 +173,6 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setTechInfos: (data: any) => dispatch(setTechInfos(data)),
     setUpdateUser: (data: UserStoreModel) => { dispatch(setUpdateUser(data)) }
   }
 }

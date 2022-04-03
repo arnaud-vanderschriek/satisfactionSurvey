@@ -1,19 +1,19 @@
 import { FETCH_USERS, SET_ADDINFOSUSER, SET_UPDATEUSER, SET_USER } from "../actions/user.action";
-import { SET_INFOS } from "../actions/user.action";
-import { UserElectricSkillsModel, UserModelArray, UserStoreModel } from "../../components/reusable/userForm";
+import { SET_PUTMANSERVICESINFOS, SET_INFRATEC2INFOS} from "../actions/user.action";
+import { UserElectricSkillsModel, UserStoreModel } from "../../components/reusable/userForm";
 
 const initialState = {
   user: [] as UserStoreModel[],
   users: [{}],
-  techInfos: [
-    {name:"Manoeuvre", value: 0},
-    {name: "Plan éléctrique", value: 0},
-    {name: "Pose de tableau", value: 0},
-    {name: "Tirage de cable", value: 0},  
-    {name: "Prises", value: 0},
-    {name: "Plan", value: 0}
-  ],  
-  techInfos2: {
+  infratec2StatsUser: {
+    checksonnel: 0,
+    skillsExplorer: 0,
+    cartoSkills: 0,
+    mapSkills: 0,
+    skillsnetwork: 0,
+    skillBook: 0,
+  },  
+  putmanServicesStatsUser: {
     manoeuvre: 0,
     electricPlan: 0,
     electricBox: 0,
@@ -39,10 +39,15 @@ export default function userReducer(state= initialState, action: any) {
         ...state, 
         user: action.payload
       }
-    case SET_INFOS:
+    case SET_PUTMANSERVICESINFOS:
       return {
         ...state,
-        techInfos2: action.payload
+        putmanServicesStatsUser: action.payload
+      }
+    case SET_INFRATEC2INFOS:
+      return {
+        ...state,
+        infratec2StatsUser: action.payload
       }
     case SET_ADDINFOSUSER:
       return {
