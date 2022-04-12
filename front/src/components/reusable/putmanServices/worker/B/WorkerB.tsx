@@ -15,9 +15,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
-import { setPutmanServicesTechInfos } from '../../../../../redux/actions/user.action';
+import { setPutmanServicesTechInfos, setUpdateUser } from '../../../../../redux/actions/user.action';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import PutmanServicesContainer from '../../PutmanServicesContainer';
+import Infratec2Container from '../../../infratec2/Infratec2Container';
 
 function Copyright() {
   return (
@@ -63,36 +65,33 @@ function WorkerB(props: any) {
   // };
 
   const handleSend = () => {
-    // reset les données dans props.techInfos 2
-   
-    console.log(props.putmanServicesStatsUser, 'props techInfos2')
-    console.log(props.user, 'props user')
     axios({
       method: "post",
       url: `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServices/${props.user.id}`,
       withCredentials: true,
       data: {
         data: props.putmanServicesStatsUser
-         // passer la valeur de techForm dans node à True
-
       }
     }).then((res) => {
       if(res.data.errors) {
         console.log("errors")
       } else {
+        props.setUpdateUser({...props.user, techForm: true})
+
         console.log(res, 'response')
-        // 
+        if(props.user.division === 'Putman Services') {
+          return <PutmanServicesContainer />
+        }
+        if(props.user.division === 'Infratec2') {
+          return < Infratec2Container/>
+        }
       }
     }).catch((err) => {
       console.log(err, 'catch Errors');
     })
-
     
-      navigate("/home")
-    
+    navigate("/home")
   }
-
-
 
   return (
   <>
@@ -111,12 +110,12 @@ function WorkerB(props: any) {
       >
         <img src='../../../assets/img/logoPutman.png' alt=''></img>
         <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Putmann
+          <Typography variant="h6" sx={{mr: 2}} color="inherit" noWrap>
+            Putman
           </Typography>
           <br />
           <Typography variant="h6" color="inherit" noWrap>
-            Welcome {props.user.firstname} !
+            Welcome { props.user.firstname} !
           </Typography>
         </Toolbar>
       </AppBar>
@@ -188,6 +187,7 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
+    setUpdateUser: (data: any) => { dispatch(setUpdateUser(data)) }
   }
 }
 

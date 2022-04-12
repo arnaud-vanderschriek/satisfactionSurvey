@@ -19,7 +19,7 @@ function Form3(props: any) {
         props.setInfratec2TechInfos(electricSkill)
     }
   }
-
+  
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -28,28 +28,28 @@ function Form3(props: any) {
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="manoeuvre" value={100} />}
+            control={<Checkbox color="secondary" name="checksonnel" value={100} />}
             label="Doit pouvoir travailler en équipe ainsi que de façon autonome."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="electricPlan" value={100} />}
+            control={<Checkbox color="secondary" name="mapSkills" value={100} />}
             label="Peut discuter de problèmes techniques avec des tiers."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="electricBox" value={100} />}
+            control={<Checkbox color="secondary" name="skillBook" value={100} />}
             label="Doit répondre aux exigences des catégories précédentes."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="manoeuvre" value={100} />}
+            control={<Checkbox color="secondary" name="checksonnel" value={100} />}
             label="Doit appliquer les règles en matière de sécurité."
             onChange={handleButtonRadio}
           />

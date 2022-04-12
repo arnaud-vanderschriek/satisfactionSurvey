@@ -7,9 +7,6 @@ import Title from './Title';
 
 
 function Chart(props: any) {
-  // const theme = useTheme();
-  // axios fetch des data
-  // const [ data, setData] = useState(putmanServicesArray)
   const [manoeuvre, setManoeuvre] = useState()
   const [electricPlan, setElectricPlan] = useState()
   const [electricBox, setElectricBox] = useState()
@@ -24,7 +21,6 @@ function Chart(props: any) {
   const [skillsnetwork, setSkillsnetwork] = useState()
   const [skillBook, setSkillBook] = useState()
 
-
   useEffect(() => {
     if(props.user.division === "Putman Services") {
       console.log("dans Putman Services")
@@ -36,7 +32,6 @@ function Chart(props: any) {
         if(res.data.errors) {
           console.log("errors")
         } else {
-         
             setManoeuvre(res.data[0].manoeuvre)
             setElectricPlan(res.data[0].electricPlan)
             setElectricBox(res.data[0].electricBox)
@@ -72,7 +67,6 @@ function Chart(props: any) {
     }
   })
  
-
   const dataPutmanServices = [
     {
       "name": "manoeuvre",
@@ -122,13 +116,13 @@ function Chart(props: any) {
       "value": skillBook,
     }, 
   ]
+
   return (
-    
     <React.Fragment>
       <Title>Personnal stats</Title>
-      <ResponsiveContainer width={900} height="300%" >
+      <ResponsiveContainer width='100%' height="300%" >
         {props.user.division === "Putman Services" ? 
-         <RadarChart outerRadius={80} width={730} height={250} data={dataPutmanServices}>
+         <RadarChart outerRadius={80} width={730} height={350} data={dataPutmanServices}>
           <PolarGrid />
           <PolarAngleAxis dataKey="name" />
           <PolarRadiusAxis angle={30} domain={[0, 1000]}  />
@@ -148,7 +142,6 @@ function Chart(props: any) {
     </React.Fragment>
   );
 }
-
 
 const mapStateToProps = (state: any) => {
   return {

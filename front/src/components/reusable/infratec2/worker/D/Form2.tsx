@@ -28,28 +28,28 @@ function Form2(props: any) {
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="manoeuvre" value={100} />}
+            control={<Checkbox color="secondary" name="checksonnel" value={100} />}
             label="Comprendre des schémas, pouvoir les interpréter et y relever des erreurs éventuelles."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="plug" value={100} />}
+            control={<Checkbox color="secondary" name="skillsExplorer" value={100} />}
             label="Doit pouvoir donner des instructions."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="electricPlan" value={100} />}
+            control={<Checkbox color="secondary" name="cartoSkills" value={100} />}
             label="Doit pouvoir faire un rapport écrit."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="electricPlan" value={100} />}
+            control={<Checkbox color="secondary" name="mapSkills" value={100} />}
             label="Est en mesure de travailler sans surveillance à une tâche déterminée."
             onChange={handleButtonRadio}
           />

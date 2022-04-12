@@ -113,12 +113,12 @@ function WorkerD(props: any) {
       >
         <img src='../../../assets/img/logoPutman.png' alt=''></img>
         <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography variant="h6" sx={{mr: 2}} color="inherit" noWrap>
             Putman
           </Typography>
           <br />
           <Typography variant="h6" color="inherit" noWrap sx={{marginLeft: 2,}}>
-            Welcome {props.user.firstname} !
+            Welcome { props.user.firstname} !
           </Typography>
         </Toolbar>
       </AppBar>

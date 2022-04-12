@@ -18,12 +18,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import LogoutIcon from '@mui/icons-material/Logout';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import mainListItems from './MainListItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ListItem } from '@mui/material';
+import MainListItems from './MainListItems';
+import DashboardPages from './DashboardPages';
 
 function Copyright(props: any) {
   return (
@@ -112,7 +115,6 @@ function DashboardContent() {
       console.log(err, 'catch Errors');
     })
     navigate("/")
-
   }
 
   return (
@@ -147,7 +149,7 @@ function DashboardContent() {
               Project Manager Dashboard
             </Typography>
             <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={0} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
@@ -173,9 +175,9 @@ function DashboardContent() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {mainListItems}
+            <MainListItems />
             <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
+            {/* {secondaryListItems} */}
           </List>
         </Drawer>
         <Box
@@ -193,8 +195,8 @@ function DashboardContent() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
+              <DashboardPages />
+              {/* <Grid item xs={12} md={8} lg={9}>
                 <Paper
                   sx={{
                     p: 2,
@@ -206,7 +208,6 @@ function DashboardContent() {
                   <Chart />
                 </Paper>
               </Grid>
-              {/* Recent Deposits */}
               <Grid item xs={12} md={4} lg={3}>
                 <Paper
                   sx={{
@@ -220,12 +221,12 @@ function DashboardContent() {
                 </Paper>
               </Grid>
               {/* Recent Orders */}
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   <Orders />
                 </Paper>
-              </Grid>
-            </Grid>
+              </Grid> */}
+            </Grid> 
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>

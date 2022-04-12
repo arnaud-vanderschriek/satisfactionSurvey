@@ -6,6 +6,7 @@ export const SET_USER = "GET_USER";
 export const SET_PUTMANSERVICESINFOS = "SET_PUTMANSERVICESINFOS";
 export const SET_INFRATEC2INFOS = "SET_INFRATEC2INFOS";
 export const SEND_INFOS = "SEND_INFOS";
+export const SET_LINKLIST = "SET_LINKLIST";
 export const SET_ADDINFOSUSER = "ADDINFOSUSER"
 export const SET_UPDATEUSER = "UPDATEUSER"
 export const FETCH_USERS = "FETCHUSERS"
@@ -25,6 +26,12 @@ export const setPutmanServicesTechInfos = (data: ValuesTechForm[]) => {
 export const setInfratec2TechInfos = (data: ValuesTechForm[]) => {
   return (dispatch: any) => {
     dispatch({ type: SET_INFRATEC2INFOS, payload: data})
+  }
+}
+
+export const setLinkList = (data: any) => {
+  return (dispatch: any) => {
+    dispatch({type: SET_LINKLIST, payload: data})
   }
 }
 

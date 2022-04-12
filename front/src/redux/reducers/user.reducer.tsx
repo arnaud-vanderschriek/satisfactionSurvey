@@ -1,10 +1,11 @@
-import { FETCH_USERS, SET_ADDINFOSUSER, SET_UPDATEUSER, SET_USER } from "../actions/user.action";
+import { FETCH_USERS, SET_ADDINFOSUSER, SET_LINKLIST, SET_UPDATEUSER, SET_USER } from "../actions/user.action";
 import { SET_PUTMANSERVICESINFOS, SET_INFRATEC2INFOS} from "../actions/user.action";
 import { UserElectricSkillsModel, UserStoreModel } from "../../components/reusable/userForm";
 
 const initialState = {
   user: [] as UserStoreModel[],
   users: [{}],
+  link: 'dashboard',
   infratec2StatsUser: {
     checksonnel: 0,
     skillsExplorer: 0,
@@ -29,7 +30,7 @@ const initialState = {
     country: '',
     postalCode: '',
     phoneNumber: '',
-  }
+  }, 
 };
 
 export default function userReducer(state= initialState, action: any) {
@@ -48,6 +49,12 @@ export default function userReducer(state= initialState, action: any) {
       return {
         ...state,
         infratec2StatsUser: action.payload
+      }
+
+    case SET_LINKLIST:
+      return {
+        ...state,
+        link: action.payload
       }
     case SET_ADDINFOSUSER:
       return {

@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
 import Form3 from './Form3';
-import { setInfratec2TechInfos } from '../../../../../redux/actions/user.action';
+import { setInfratec2TechInfos, setUpdateUser } from '../../../../../redux/actions/user.action';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import PutmanServicesContainer from '../../../putmanServices/PutmanServicesContainer';
@@ -66,9 +66,7 @@ function WorkerE(props: any) {
   //   setActiveStep(activeStep - 1);
   // };
 
-  const handleSend = () => {
-    // reset les données dans props.techInfos 2
-   
+  const handleSend = () => { 
     console.log(props.infratec2StatsUser, 'props infratec2StatsUser')
     console.log(props.user, 'props user')
     axios({
@@ -77,8 +75,6 @@ function WorkerE(props: any) {
       withCredentials: true,
       data: {
         data: props.infratec2StatsUser
-         // passer la valeur de techForm dans node à True
-
       }
     }).then((res) => {
       if(res.data.errors) {
@@ -97,13 +93,9 @@ function WorkerE(props: any) {
     }).catch((err) => {
       console.log(err, 'catch Errors');
     })
-
     
-      navigate("/home")
-    
+    navigate("/home")
   }
-
-
 
   return (
   <>
@@ -122,12 +114,12 @@ function WorkerE(props: any) {
       >
         <img src='../../../assets/img/logoPutman.png' alt=''></img>
         <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Putmann
+          <Typography variant="h6" sx={{mr: 2}} color="inherit" noWrap>
+            Putman
           </Typography>
           <br />
           <Typography variant="h6" color="inherit" noWrap>
-            Welcome {props.user.firstname} !
+            Welcome { props.user.firstname} !
           </Typography>
         </Toolbar>
       </AppBar>
@@ -199,6 +191,7 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     setInfratec2TechInfos: (data: any) => dispatch(setInfratec2TechInfos(data)),
+    setUpdateUser: (data: any) => dispatch(setUpdateUser(data))
   }
 }
 

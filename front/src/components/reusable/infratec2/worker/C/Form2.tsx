@@ -28,7 +28,7 @@ function Form2(props: any) {
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="manoeuvre" value={100} />}
+            control={<Checkbox color="secondary" name="checksonnel" value={100} />}
             label="Respecter les règles en bon père de famille."
             onChange={handleButtonRadio}
           />
@@ -36,21 +36,21 @@ function Form2(props: any) {
         <Grid item xs={12}>
           <p>Aptitudes spécifiques / Exigences: </p>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="plug" value={100} />}
+            control={<Checkbox color="secondary" name="skillBook" value={100} />}
             label="Doit pouvoir travailler aussi bien en équipe que de façon autonome."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="electricPlan" value={100} />}
+            control={<Checkbox color="secondary" name="cartoSkills" value={100} />}
             label="Doit répondre aux exigences des catégories précédentes."
             onChange={handleButtonRadio}
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="electricPlan" value={100} />}
+            control={<Checkbox color="secondary" name="cartoSkills" value={100} />}
             label="Doit appliquer les règles en matière de sécurité."
             onChange={handleButtonRadio}
           />

@@ -9,41 +9,48 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import Survey from '../Survey/Survey';
+import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setLinkList } from '../../redux/actions/user.action';
 
-export const mainListItems = (
-  <React.Fragment>
-    <ListItemButton>
+
+function MainListItems(props: any) {
+  return (
+    <React.Fragment>
+    <ListItemButton onClick={() => {props.setLinkList('dashboard')}}>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
-    <ListItemButton>
+    {/* <ListItemButton>
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
       <ListItemText primary="Chantier en cours" />
-    </ListItemButton>
-    <ListItemButton>
+    </ListItemButton> */}
+    {/* <ListItemButton>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Clients" />
-    </ListItemButton>
-    <ListItemButton>
+    </ListItemButton> */}
+    <ListItemButton onClick={() => {props.setLinkList('compétences')}}>
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Compétences" />
     </ListItemButton>
-    <ListItemButton>
+    {/* <ListItemButton>
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
       <ListItemText primary="Intégrations" />
-    </ListItemButton>
+    </ListItemButton> */}
   </React.Fragment>
-);
+  )
+};
 
 export const secondaryListItems = (
   <React.Fragment>
@@ -70,3 +77,20 @@ export const secondaryListItems = (
     </ListItemButton>
   </React.Fragment>
 );
+
+const mapStateToProps = (state: any) => {
+  return {
+    user: state.user,
+    putmanServicesStatsUser: state.putmanServicesStatsUser,
+    infratec2StatsUser: state.infratec2StatsUser,
+    link: state.link,
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    setLinkList:  (data: String) => dispatch(setLinkList(data))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainListItems);
