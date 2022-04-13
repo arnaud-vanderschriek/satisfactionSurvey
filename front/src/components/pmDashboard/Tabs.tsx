@@ -7,6 +7,9 @@ import Box from '@mui/material/Box';
 import './styles/style.css'
 import { Button, Card, CardContent } from '@mui/material';
 import { connect } from 'react-redux';
+import { WorkersFilter } from './helpers/WorkersFilter';
+import TabsFiltred from './TabsFiltred';
+import { setIndexOfUsers } from '../../redux/actions/user.action';
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -41,15 +44,6 @@ function a11yProps(index: number) {
   };
 }
 
-function sendIndexWorkerToCharts(indexValue: any, props: any)  {
-  // enregistrer l'index dans redux pour l'afficher dans chart.
-  console.log(indexValue, 'index in button')
-  
-  console.log(props.users.filter((elem: any) => elem === indexValue))
-  // console.log(users.users.map((elem: any, index: number) => index === indexValue ))
-  
-}
-
 function BasicTabs(props: any) {
   const [value, setValue] = React.useState(0);
   const handleChange = (event: any, newValue: number) => {
@@ -60,33 +54,38 @@ function BasicTabs(props: any) {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }} >
         <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example">
-        {props.users.map((elem: any, index: number) => (
-          <Tab label={elem.firstname} {...a11yProps(index)} />
-        ))} 
-          </Tabs>
+          {props.user.division === "Putman Services" ? 
+            props.users.filter((elem: any) => elem.division === "Putman Services").map((elem: any, index: number) => {
+              return <Tab label={elem.firstname} {...a11yProps(index)} />
+            }) : 
+            props.users.filter((elem: any) => elem.division === "Infractec2").map((elem: any, index: number) => {
+              return <Tab label={elem.firstname} {...a11yProps(index)} />
+            })
+          }
+        </Tabs>
         {props.users.map((elem: any, index: number) => (
           <TabPanel value={value} index={index}>
             <div id='beubeubeu'>
-              <Card   sx={{marginRight: '5px', width: '100%', height: 'auto'}}>  
+              <Card sx={{ marginRight: '5px', width: '100%', height: 'auto' }}>  
                 <CardContent>
                   <Typography sx={{ fontSize: '0.9rem' }} color="text.secondary" gutterBottom>
                     <div className="dataInfosinTabs">
-                      <p>Lastname: {elem.lastname}</p>
-                      <p>Firstname: {elem.firstname}</p>
-                      <p>Division: {elem.division}</p>
-                      <p>Poste: {elem.poste}</p>
-                      <p>Classification: {elem.classification}</p>
-                      <p>Division: {elem.division}</p>
-                      <p>Adresse 1: {elem.address1}</p>
-                      <p>Adresse 2: {elem.address2}</p>
-                      <p>City: {elem.city}</p>
+                      <p>Lastname: { elem.lastname }</p>
+                      <p>Firstname: { elem.firstname }</p>
+                      <p>Division: { elem.division }</p>
+                      <p>Poste: { elem.poste }</p>
+                      <p>Classification: { elem.classification }</p>
+                      <p>Division: { elem.division }</p>
+                      <p>Adresse 1: { elem.address1 }</p>
+                      <p>Adresse 2: { elem.address2 }</p>
+                      <p>City: { elem.city }</p>
                     </div>
                   </Typography>
                 </CardContent>
               </Card> 
             </div>
             <div>
-              <Button id='tabs-button' onClick={() => sendIndexWorkerToCharts(index, props)} variant="contained" size="small"> Donner son opinion sur {elem.firstname}</Button>
+              <Button id='tabs-button' onClick={() => props.setIndexOfUsers(index)} variant="contained" size="small"> Donner son opinion sur {elem.firstname}</Button>
             </div>
           </TabPanel>
         ))}
@@ -97,6 +96,7 @@ function BasicTabs(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
+    user: state.user,
     users: state.users,
     techInfos2: state.techInfos2
   }
@@ -104,6 +104,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
+    setIndexOfUsers: (data: any) => dispatch(setIndexOfUsers(data))
   }
 }
 

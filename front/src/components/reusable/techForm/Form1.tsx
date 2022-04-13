@@ -8,16 +8,6 @@ import { setPutmanServicesTechInfos } from '../../../redux/actions/user.action';
 
 function Form1(props: any) {
   function handleButtonRadio(e: any) {
-  //   if(e.target.checked) {
-  //     const newValue = props.techInfos.filter((item: Values) => item.name === e.target.name)
-  //     newValue[0].value +=  + 100
-  //   } else {
-  //     const newValue = props.techInfos.filter((item: Values) => item.name === e.target.name)
-  //     newValue[0].value += -100
-  //   } 
-
-  //  props.setTechInfos(props.techInfos)
-
     if(e.target.checked) {
         const electricSkill = {...props.techInfos2}
         electricSkill[e.target.name] +=  +e.target.value
