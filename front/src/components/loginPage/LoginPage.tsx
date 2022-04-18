@@ -22,6 +22,7 @@ import { SetUser } from '../../redux/actions/user.action';
 import store from '../../redux/store/store';
 import { connect } from 'react-redux';
 import { UserStoreModel } from '../reusable/userForm';
+import RedirectionContainer from '../redirectionContainer/RedirectionContainer';
 
 function Copyright(props: any) {
   return (
@@ -76,15 +77,7 @@ function LoginPage(props: any) {
         }
       } else {
         props.SetUser(res.data)
-        console.log(res, "res dans loginpAge")
-        // pe placer le redux-persist içi ?
-      
-        if (res.data.division === 'Infratec2') {
-          navigate('/infratec2')
-        }  
-        if (res.data.division === 'Putman Services' ) {
-          navigate('/putmanServices')
-        } 
+        navigate('/redirect')
       }
     }).catch((err) => {
       console.log(err);

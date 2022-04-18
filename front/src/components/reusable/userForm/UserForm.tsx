@@ -19,8 +19,8 @@ import { connect } from 'react-redux';
 import { setUpdateUser } from '../../../redux/actions/user.action';
 import axios from 'axios';
 import { UserStoreModel } from '.';
-import PutmanServicesContainer from '../putmanServices/PutmanServicesContainer';
-import Infratec2Container from '../infratec2/Infratec2Container';
+import WorkerContainer from '../techForm/worker/WorkerContainer';
+
 
 function Copyright() {
   return (
@@ -82,13 +82,13 @@ function Checkout(props: any) {
       } else {
         console.log(res, 'response')
         props.setUpdateUser({...props.user, userForm: true})
-
-        if(res.data.divison === 'Putman Services') {
-          return <PutmanServicesContainer />
-        }
-        if(res.data.divison === 'Infratec2') {
-          return < Infratec2Container/>
-        }
+        return <WorkerContainer />
+        // if(res.data.divison === 'Putman Services') {
+        //   return <PutmanServicesContainer />
+        // }
+        // if(res.data.divison === 'Infratec2') {
+        //   return < Infratec2Container/>
+        // }
       }
     }).catch((err) => {
       console.log(err, 'catch Errors');

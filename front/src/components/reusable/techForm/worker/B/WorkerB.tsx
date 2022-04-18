@@ -15,12 +15,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
-import Form3 from './Form3';
-import { setInfratec2TechInfos, setUpdateUser } from '../../../../../redux/actions/user.action';
+import { setPutmanServicesTechInfos, setUpdateUser } from '../../../../../redux/actions/user.action';
 import axios from 'axios';
-import PutmanServicesContainer from '../../../putmanServices/PutmanServicesContainer';
-import Infratec2Container from '../../../infratec2/Infratec2Container';
-import { UserStoreModel } from '../../../userForm';
+import { useNavigate } from 'react-router-dom';
+
 
 function Copyright() {
   return (
@@ -35,7 +33,7 @@ function Copyright() {
   );
 }
 
-const steps = ['Form 1', 'Form 2', 'Form3'];
+const steps = ['Form 1', 'Form 2'];
 
 function getStepContent(step: number) {
   switch (step) {
@@ -43,8 +41,8 @@ function getStepContent(step: number) {
       return <Form1 />;
     case 1:
       return <Form2 />;
-    case 2:
-      return <Form3 />;
+    // case 2:
+    //   return <Form3 />;
     default:
       throw new Error('Unknown step');
   }
@@ -53,7 +51,8 @@ function getStepContent(step: number) {
 const theme = createTheme();
 
 
-function WorkerD(props: any) {
+function WorkerB(props: any) {
+  let navigate = useNavigate()
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -65,17 +64,12 @@ function WorkerD(props: any) {
   // };
 
   const handleSend = () => {
-    // reset les données dans props.techInfos 2
-   
-    console.log(props.infratec2StatsUser, 'props infratec2StatsUser')
-    console.log(props.user, 'props user')
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_API_URL}/api/user/dataTechFormInfratec2/${props.user.id}`,
+      url: `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServices/${props.user.id}`,
       withCredentials: true,
       data: {
-        data: props.infratec2StatsUser
-         // passer la valeur de techForm dans node à True
+        data: props.putmanServicesStatsUser
       }
     }).then((res) => {
       if(res.data.errors) {
@@ -84,16 +78,18 @@ function WorkerD(props: any) {
         props.setUpdateUser({...props.user, techForm: true})
 
         console.log(res, 'response')
-        if(props.user.division === 'Putman Services') {
-          return <PutmanServicesContainer />
-        }
-        if(props.user.division === 'Infratec2') {
-          return < Infratec2Container/>
-        }
+        // if(props.user.division === 'Putman Services') {
+        //   return <PutmanServicesContainer />
+        // }
+        // if(props.user.division === 'Infratec2') {
+        //   return < Infratec2Container/>
+        // }
       }
     }).catch((err) => {
       console.log(err, 'catch Errors');
     })
+    
+    navigate("/home")
   }
 
   return (
@@ -117,7 +113,7 @@ function WorkerD(props: any) {
             Putman
           </Typography>
           <br />
-          <Typography variant="h6" color="inherit" noWrap sx={{marginLeft: 2,}}>
+          <Typography variant="h6" color="inherit" noWrap>
             Welcome { props.user.firstname} !
           </Typography>
         </Toolbar>
@@ -183,15 +179,15 @@ function WorkerD(props: any) {
 const mapStateToProps = (state: any) => {
   return {
     user: state.user,
-    infratec2StatsUser: state.infratec2StatsUser
+    putmanServicesStatsUser: state.putmanServicesStatsUser
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setInfratec2TechInfos: (data: any) => dispatch(setInfratec2TechInfos(data)),
-    setUpdateUser: (data: UserStoreModel) => { dispatch(setUpdateUser(data)) }
+    setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
+    setUpdateUser: (data: any) => { dispatch(setUpdateUser(data)) }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WorkerD)
+export default connect(mapStateToProps, mapDispatchToProps)(WorkerB)

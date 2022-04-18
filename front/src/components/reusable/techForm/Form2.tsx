@@ -10,23 +10,28 @@ import { connect } from 'react-redux';
 
 function Form2(props: any) {
   function handleButtonRadio(e: any) {
-  //   if(e.target.checked) {
-  //     const newValue = props.techInfos.filter((item: Values) => item.name === e.target.name)
-  //     newValue[0].value +=  + 100
-  //   } else {
-  //     const newValue = props.techInfos.filter((item: Values) => item.name === e.target.name)
-  //     newValue[0].value += -100
-  //   } 
-
-  //  props.setTechInfos(props.techInfos)
-      if(e.target.checked) {
-        const electricSkill = {...props.putmanServicesStatsUser}
+    if(e.target.checked) {
+      if(props.user.division === "Putman Services") {
+        const electricSkill = {...props.techInfos2}
         electricSkill[e.target.name] +=  +e.target.value
         props.setPutmanServicesTechInfos(electricSkill)
+      } 
+      if(props.user.divisoon === "Infratec2") {
+        const railwaySkills = {...props.infratec2StatsUser}
+        railwaySkills[e.target.name] +=  +e.target.value
+        props.setInfratec2TechInfos(railwaySkills)
+      }   
     } else {
-        const electricSkill = {...props.putmanServicesStatsUser}
+      if(props.user.division === "Putman Services") {
+        const electricSkill = {...props.techInfos2}
         electricSkill[e.target.name] +=  -e.target.value
         props.setPutmanServicesTechInfos(electricSkill)
+      }
+      if(props.user.division === "Infratec2") {
+        const railwaySkills = {...props.infratec2StatsUser}
+        railwaySkills[e.target.name] +=  -e.target.value
+        props.setInfratec2TechInfos(railwaySkills)
+      }
     }
   }
 

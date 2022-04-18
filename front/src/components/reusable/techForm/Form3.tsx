@@ -9,24 +9,28 @@ import { connect } from 'react-redux';
 
 function Form3(props: any) {
   function handleButtonRadio(e: any) {
-  //   if(e.target.checked) {
-  //     const filteredObject = props.techInfos.filter((item: Values) => item.name === e.target.name)
-  //     filteredObject[0].value +=  + 100
-  //   } else {
-  //     const filteredObject = props.techInfos.filter((item: Values) => item.name === e.target.name)
-  //     filteredObject[0].value += -100
-  //   } 
-
-  //  props.setTechInfos(props.techInfos)
-
-     if(e.target.checked) {
-        const electricSkill = {...props.infratec2StatsUser}
+    if(e.target.checked) {
+      if(props.user.division === "Putman Services") {
+        const electricSkill = {...props.techInfos2}
         electricSkill[e.target.name] +=  +e.target.value
         props.setPutmanServicesTechInfos(electricSkill)
+      } 
+      if(props.user.divisoon === "Infratec2") {
+        const railwaySkills = {...props.infratec2StatsUser}
+        railwaySkills[e.target.name] +=  +e.target.value
+        props.setInfratec2TechInfos(railwaySkills)
+      }   
     } else {
-        const electricSkill = {...props.infratec2StatsUser}
+      if(props.user.division === "Putman Services") {
+        const electricSkill = {...props.techInfos2}
         electricSkill[e.target.name] +=  -e.target.value
         props.setPutmanServicesTechInfos(electricSkill)
+      }
+      if(props.user.division === "Infratec2") {
+        const railwaySkills = {...props.infratec2StatsUser}
+        railwaySkills[e.target.name] +=  -e.target.value
+        props.setInfratec2TechInfos(railwaySkills)
+      }
     }
   }
 
@@ -78,13 +82,15 @@ function Form3(props: any) {
             en la prévoyant et en cherchant à appliquer la solution adéquate afin d’éviter des retards dans les travaux."
             onChange={handleButtonRadio}
           />
-        </Grid>   <Grid item xs={12}>
+        </Grid>
+        <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="Manoeuvre" value={100} />}
             label="est responsable de la conduite du chantier tant sur le plan technique que sur le plan organisationnel;"
             onChange={handleButtonRadio}
           />
-        </Grid>   <Grid item xs={12}>
+        </Grid>
+        <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="plug" value={100} />}
             label="fait des rapports écrits à ses supérieurs, discute avec eux des possibilités de réalisation, fait appel à leur aide si nécessaire;"

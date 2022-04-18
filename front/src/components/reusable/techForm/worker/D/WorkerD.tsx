@@ -1,4 +1,3 @@
-// import React from 'react'
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -16,11 +15,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
+import Form3 from './Form3';
 import { setPutmanServicesTechInfos, setUpdateUser } from '../../../../../redux/actions/user.action';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import PutmanServicesContainer from '../../PutmanServicesContainer';
-import Infratec2Container from '../../../infratec2/Infratec2Container';
 import { UserStoreModel } from '../../../userForm';
 
 function Copyright() {
@@ -36,7 +33,7 @@ function Copyright() {
   );
 }
 
-const steps = ['Form 1', 'Form 2'];
+const steps = ['Form 1', 'Form 2', 'Form3'];
 
 function getStepContent(step: number) {
   switch (step) {
@@ -44,8 +41,8 @@ function getStepContent(step: number) {
       return <Form1 />;
     case 1:
       return <Form2 />;
-    // case 2:
-    //   return <Form3 />;
+    case 2:
+      return <Form3 />;
     default:
       throw new Error('Unknown step');
   }
@@ -54,8 +51,7 @@ function getStepContent(step: number) {
 const theme = createTheme();
 
 
-function WorkerA(props: any) {
-  let navigate = useNavigate()
+function WorkerD(props: any) {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -78,7 +74,6 @@ function WorkerA(props: any) {
       data: {
         data: props.putmanServicesStatsUser
          // passer la valeur de techForm dans node à True
-
       }
     }).then((res) => {
       if(res.data.errors) {
@@ -87,23 +82,17 @@ function WorkerA(props: any) {
         props.setUpdateUser({...props.user, techForm: true})
 
         console.log(res, 'response')
-        if(props.user.division === 'Putman Services') {
-          return <PutmanServicesContainer />
-        }
-        if(props.user.division === 'Infratec2') {
-          return < Infratec2Container/>
-        }
+        // if(props.user.division === 'Putman Services') {
+        //   return <PutmanServicesContainer />
+        // }
+        // if(props.user.division === 'Infratec2') {
+        //   return < Infratec2Container/>
+        // }
       }
     }).catch((err) => {
       console.log(err, 'catch Errors');
     })
-
-    
-      navigate("/home")
-    
   }
-
-
 
   return (
   <>
@@ -126,7 +115,7 @@ function WorkerA(props: any) {
             Putman
           </Typography>
           <br />
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography variant="h6" color="inherit" noWrap sx={{marginLeft: 2,}}>
             Welcome { props.user.firstname} !
           </Typography>
         </Toolbar>
@@ -203,4 +192,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WorkerA)
+export default connect(mapStateToProps, mapDispatchToProps)(WorkerD)

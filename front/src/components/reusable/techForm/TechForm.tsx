@@ -69,12 +69,23 @@ function TechForm(props: any) {
     // l'id du user auquel elles sont attribuées
     console.log(props.putmanServicesStatsUser, 'props putmanServicesStatsUser')
     console.log(props.user, 'props user')
+    let url = ''
+    let body
+    if(props.user.division === 'Putman Services') {
+      url = `${process.env.REACT_APP_API_URL}/api/user/getDataTechForm/${props.user.id}`
+      body = props.putmanServicesStatsUser
+    }
+    if(props.user.division === 'Infratec2') {
+      url = `${process.env.REACT_APP_API_URL}/api/user/getDataTechFormInfratec2/${props.user.id}`
+      body = props.infratec2StatsUser
+    }
+
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_API_URL}/api/user/dataTechForm/${props.user.id}`,
+      url: url,
       withCredentials: true,
       data: {
-        data: props.putmanServicesStatsUser
+        data: body,
       }
     }).then((res) => {
       if(res.data.errors) {
@@ -86,12 +97,8 @@ function TechForm(props: any) {
       console.log(err, 'catch Errors');
     })
 
-    
-      navigate("/home")
-    
+    navigate("/home")
   }
-
-
 
   return (
   <>

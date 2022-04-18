@@ -75,7 +75,6 @@ function BasicTabs(props: any) {
                       <p>Division: { elem.division }</p>
                       <p>Poste: { elem.poste }</p>
                       <p>Classification: { elem.classification }</p>
-                      <p>Division: { elem.division }</p>
                       <p>Adresse 1: { elem.address1 }</p>
                       <p>Adresse 2: { elem.address2 }</p>
                       <p>City: { elem.city }</p>

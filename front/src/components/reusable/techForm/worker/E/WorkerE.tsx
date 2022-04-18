@@ -16,11 +16,9 @@ import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
 import Form3 from './Form3';
-import { setInfratec2TechInfos, setUpdateUser } from '../../../../../redux/actions/user.action';
+import { setPutmanServicesTechInfos, setUpdateUser } from '../../../../../redux/actions/user.action';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import PutmanServicesContainer from '../../../putmanServices/PutmanServicesContainer';
-import Infratec2Container from '../../../infratec2/Infratec2Container';
 
 
 function Copyright() {
@@ -66,15 +64,13 @@ function WorkerE(props: any) {
   //   setActiveStep(activeStep - 1);
   // };
 
-  const handleSend = () => { 
-    console.log(props.infratec2StatsUser, 'props infratec2StatsUser')
-    console.log(props.user, 'props user')
+  const handleSend = () => {
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_API_URL}/api/user/dataTechFormInfratec2/${props.user.id}`,
+      url: `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServices/${props.user.id}`,
       withCredentials: true,
       data: {
-        data: props.infratec2StatsUser
+        data: props.putmanServicesStatsUser,
       }
     }).then((res) => {
       if(res.data.errors) {
@@ -83,12 +79,12 @@ function WorkerE(props: any) {
         props.setUpdateUser({...props.user, techForm: true})
 
         console.log(res, 'response')
-        if(props.user.division === 'Putman Services') {
-          return <PutmanServicesContainer />
-        }
-        if(props.user.division === 'Infratec2') {
-          return < Infratec2Container/>
-        }
+        // if(props.user.division === 'Putman Services') {
+        //   return <PutmanServicesContainer />
+        // }
+        // if(props.user.division === 'Infratec2') {
+        //   return < Infratec2Container/>
+        // } 
       }
     }).catch((err) => {
       console.log(err, 'catch Errors');
@@ -96,6 +92,8 @@ function WorkerE(props: any) {
     
     navigate("/home")
   }
+
+
 
   return (
   <>
@@ -184,14 +182,14 @@ function WorkerE(props: any) {
 const mapStateToProps = (state: any) => {
   return {
     user: state.user,
-    infratec2StatsUser: state.infratec2StatsUser
+    putmanServicesStatsUser: state.putmanServicesStatsUser
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setInfratec2TechInfos: (data: any) => dispatch(setInfratec2TechInfos(data)),
-    setUpdateUser: (data: any) => dispatch(setUpdateUser(data))
+    setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
+    setUpdateUser: (data: any) => { dispatch(setUpdateUser(data)) }
   }
 }
 
