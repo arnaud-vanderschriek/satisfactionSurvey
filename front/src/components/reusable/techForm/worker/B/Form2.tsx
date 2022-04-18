@@ -9,14 +9,28 @@ import { connect } from 'react-redux';
 
 function Form2(props: any) {
   function handleButtonRadio(e: any) {
-      if(e.target.checked) {
-        const electricSkill = {...props.techInfos2}
+    if(e.target.checked) {
+      if(props.user.division === "Putman Services") {
+        const electricSkill = {...props.putmanServicesStatsUser}
         electricSkill[e.target.name] +=  +e.target.value
         props.setPutmanServicesTechInfos(electricSkill)
+      } 
+      if(props.user.division === "Infratec2") {
+        const railwaySkills = {...props.infratec2StatsUser}
+        railwaySkills[e.target.name] +=  +e.target.value
+        props.setInfratec2TechInfos(railwaySkills)
+      }   
     } else {
-        const electricSkill = {...props.techInfos2}
+      if(props.user.division === "Putman Services") {
+        const electricSkill = {...props.putmanServicesStatsUser}
         electricSkill[e.target.name] +=  -e.target.value
         props.setPutmanServicesTechInfos(electricSkill)
+      }
+      if(props.user.division === "Infratec2") {
+        const railwaySkills = {...props.infratec2StatsUser}
+        railwaySkills[e.target.name] +=  -e.target.value
+        props.setInfratec2TechInfos(railwaySkills)
+      }
     }
   }
 
