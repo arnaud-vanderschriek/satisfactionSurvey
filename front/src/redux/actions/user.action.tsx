@@ -3,6 +3,7 @@ import { ValuesTechForm } from "../../components/reusable/techForm";
 import { UserStoreModel } from "../../components/reusable/userForm";
 
 export const SET_USER = "GET_USER";
+export const SET_USEREVAL = "SET_USEREVAL";
 export const SET_PUTMANSERVICESINFOS = "SET_PUTMANSERVICESINFOS";
 export const SET_INFRATEC2INFOS = "SET_INFRATEC2INFOS";
 export const SEND_INFOS = "SEND_INFOS";
@@ -17,7 +18,11 @@ export const SetUser = (data: UserStoreModel) => {
     dispatch({type: SET_USER, payload: data})
   }
 }
-
+export const SetUserEval = (data: UserStoreModel) => {
+  return (dispatch: any) => {
+    dispatch({type: SET_USEREVAL, payload: data})
+  }
+}
 export const setPutmanServicesTechInfos = (data: ValuesTechForm[]) => {
   return (dispatch: any) => {
     dispatch({ type: SET_PUTMANSERVICESINFOS, payload: data})

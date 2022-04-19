@@ -16,10 +16,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
-import { setPutmanServicesTechInfos, setUpdateUser } from '../../../../../redux/actions/user.action';
+import { setUpdateUser } from '../../../../../redux/actions/user.action';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { UserStoreModel } from '../../../userForm';
+
 
 function Copyright() {
   return (
@@ -65,43 +66,35 @@ function WorkerA(props: any) {
   // };
 
   const handleSend = () => {
-    // reset les données dans props.techInfos 2
-   
-    console.log(props.putmanServicesStatsUser, 'props putmanServicesStatsUser')
-    console.log(props.user, 'props user')
+    let url = ''
+    let body
+    if(props.user.division === 'Putman Services') {
+      url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServices/${props.user.id}`
+      body = props.putmanServicesStatsUser
+    }
+    if(props.user.division === 'Infratec2') {
+      url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormInfratec2/${props.user.id}`
+      body = props.infratec2StatsUser
+    }
+
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServices/${props.user.id}`,
+      url: url,
       withCredentials: true,
       data: {
-        data: props.putmanServicesStatsUser
-         // passer la valeur de techForm dans node à True
-
+        data: body,
       }
     }).then((res) => {
       if(res.data.errors) {
         console.log("errors")
       } else {
-        props.setUpdateUser({...props.user, techForm: true})
-
-        console.log(res, 'response')
-        // if(props.user.division === 'Putman Services') {
-        //   return <PutmanServicesContainer />
-        // }
-        // if(props.user.division === 'Infratec2') {
-        //   return < Infratec2Container/>
-        // }
+        props.setUpdateUser({ ...props.user, techForm: true })
+        navigate('/techForm')
       }
     }).catch((err) => {
       console.log(err, 'catch Errors');
     })
-
-    
-      navigate("/home")
-    
   }
-
-
 
   return (
   <>
@@ -190,13 +183,13 @@ function WorkerA(props: any) {
 const mapStateToProps = (state: any) => {
   return {
     user: state.user,
-    putmanServicesStatsUser: state.putmanServicesStatsUser
+    putmanServicesStatsUser: state.putmanServicesStatsUser,
+    infratec2StatsUser: state.infratec2StatsUser
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
     setUpdateUser: (data: UserStoreModel) => { dispatch(setUpdateUser(data)) }
   }
 }

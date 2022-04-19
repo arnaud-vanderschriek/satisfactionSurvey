@@ -12,19 +12,13 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import LogoutIcon from '@mui/icons-material/Logout';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import mainListItems from './MainListItems';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ListItem } from '@mui/material';
 import MainListItems from './MainListItems';
 import DashboardPages from './DashboardPages';
 
@@ -109,7 +103,6 @@ function DashboardContent() {
         console.log("errors")
       } else {
         console.log(res, 'response')
-        // 
       }
     }).catch((err) => {
       console.log(err, 'catch Errors');
@@ -154,9 +147,7 @@ function DashboardContent() {
               </Badge>
             </IconButton>
             <IconButton color="inherit">
-              {/* <Badge badgeContent={4} color="secondary"> */}
                 <LogoutIcon onClick={logout}/>
-              {/* </Badge> */}
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -177,7 +168,6 @@ function DashboardContent() {
           <List component="nav">
             <MainListItems />
             <Divider sx={{ my: 1 }} />
-            {/* {secondaryListItems} */}
           </List>
         </Drawer>
         <Box
@@ -196,36 +186,6 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               <DashboardPages />
-              {/* <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Chart />
-                </Paper>
-              </Grid>
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Deposits />
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
-              {/* <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
-                </Paper>
-              </Grid> */}
             </Grid> 
             <Copyright sx={{ pt: 4 }} />
           </Container>

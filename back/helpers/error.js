@@ -3,7 +3,7 @@ module.exports.signUpErrors = (err) => {
     lastname: "",
     password: "",
   };
-  console.log(err, 'err in helpers.error.js')
+  console.log(err, "err in helpers.error.js");
   if (err.message.includes("lastname")) {
     errors.lastname = "Nom de Famille incorrect ou déjà utilisé";
   }

@@ -1,19 +1,20 @@
-import { FETCH_USERS, SET_ADDINFOSUSER, SET_INDEXOFUSERS, SET_LINKLIST, SET_UPDATEUSER, SET_USER } from "../actions/user.action";
+import { FETCH_USERS, SET_ADDINFOSUSER, SET_INDEXOFUSERS, SET_LINKLIST, SET_UPDATEUSER, SET_USER, SET_USEREVAL } from "../actions/user.action";
 import { SET_PUTMANSERVICESINFOS, SET_INFRATEC2INFOS} from "../actions/user.action";
 import { UserElectricSkillsModel, UserStoreModel } from "../../components/reusable/userForm";
 
 const initialState = {
   user: [] as UserStoreModel[],
   users: [{}],
+  userEval: {} as UserStoreModel,
   userToFindInUsers: -1,
   link: 'dashboard',
   infratec2StatsUser: {
-    checksonnel: 0,
+    checkSonnel: 0,
     skillsExplorer: 0,
     cartoSkills: 0,
     mapSkills: 0,
-    skillsnetwork: 0,
-    skillBook: 0,
+    skillsNetwork: 0,
+    skillsBook: 0,
   },  
   putmanServicesStatsUser: {
     manoeuvre: 0,
@@ -40,6 +41,11 @@ export default function userReducer(state= initialState, action: any) {
       return {
         ...state, 
         user: action.payload
+      }
+    case SET_USEREVAL:
+      return {
+        ...state,
+        userEval: action.payload
       }
     case SET_PUTMANSERVICESINFOS:
       return {

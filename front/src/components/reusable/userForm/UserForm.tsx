@@ -14,12 +14,11 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './ContactForm';
 import Review from './Review';
-import store from '../../../redux/store/store';
 import { connect } from 'react-redux';
 import { setUpdateUser } from '../../../redux/actions/user.action';
 import axios from 'axios';
 import { UserStoreModel } from '.';
-import WorkerContainer from '../techForm/worker/WorkerContainer';
+import { useNavigate } from 'react-router-dom';
 
 
 function Copyright() {
@@ -41,8 +40,6 @@ function getStepContent(step: number) {
   switch (step) {
     case 0:
       return <AddressForm />;
-    // case 1:
-    //   return <StatusForm />;
     case 1:
       return <Review />;
     default:
@@ -53,6 +50,7 @@ function getStepContent(step: number) {
 const theme = createTheme();
 
 function Checkout(props: any) {
+  let navigate = useNavigate()
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -67,8 +65,6 @@ function Checkout(props: any) {
   };
 
   const sendData = (props: any) => {
-    console.log(props, 'props dans front before send')
-    // refaire la redirection via la classification du user le if ci-dessous ne redirige pas vers le bon techForm.
     axios({
       method: "post",
       url: `${process.env.REACT_APP_API_URL}/api/user/additionnalData/${props.user.id}`,
@@ -78,17 +74,9 @@ function Checkout(props: any) {
       }
     }).then((res) => {
       if(res.data.errors) {
-        console.log("errors")
       } else {
-        console.log(res, 'response')
         props.setUpdateUser({...props.user, userForm: true})
-        return <WorkerContainer />
-        // if(res.data.divison === 'Putman Services') {
-        //   return <PutmanServicesContainer />
-        // }
-        // if(res.data.divison === 'Infratec2') {
-        //   return < Infratec2Container/>
-        // }
+        navigate('/techForm')
       }
     }).catch((err) => {
       console.log(err, 'catch Errors');
@@ -166,8 +154,8 @@ function Checkout(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    additionalUserInfos: store.getState().additionalUserInfos,
-    user: store.getState().user,
+    additionalUserInfos: state.additionalUserInfos,
+    user: state.user
   }
 }
 

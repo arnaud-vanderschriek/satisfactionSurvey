@@ -20,6 +20,7 @@ import { setPutmanServicesTechInfos } from '../../../redux/actions/user.action';
 import axios from 'axios';
 import store from '../../../redux/store/store';
 import { useNavigate } from 'react-router-dom';
+import WorkerContainer from './worker/WorkerContainer';
 
 
 function Copyright() {
@@ -65,10 +66,6 @@ function TechForm(props: any) {
   // };
 
   const handleSend = () => {
-    // activé une fonction dans le store qui prends les valeurs des données pour les graphiques et 
-    // l'id du user auquel elles sont attribuées
-    console.log(props.putmanServicesStatsUser, 'props putmanServicesStatsUser')
-    console.log(props.user, 'props user')
     let url = ''
     let body
     if(props.user.division === 'Putman Services') {
@@ -91,13 +88,11 @@ function TechForm(props: any) {
       if(res.data.errors) {
         console.log("errors")
       } else {
-        console.log(res, 'response')
+        return <WorkerContainer />
       }
     }).catch((err) => {
       console.log(err, 'catch Errors');
     })
-
-    navigate("/home")
   }
 
   return (

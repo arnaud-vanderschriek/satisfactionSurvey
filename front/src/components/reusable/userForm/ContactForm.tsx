@@ -4,21 +4,12 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import store from '../../../redux/store/store';
 import { connect } from 'react-redux';
 import { setAddInfosUser } from '../../../redux/actions/user.action';
 
 
  function ContactForm(props: any) {
-  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault()
-  //   const data = new FormData(event.currentTarget);
-  //   console.log(data)
-  // }
-
   const handleDataUserForm = (event: any) => {
-    //creer une structure dans redux 
-    // voir avec Fouz qu'elle question sont pertinentes
     console.log(event.target.value)
     const contactForm = {...props.additionalUserInfos}
     contactForm[event.target.name] = event.target.value
@@ -66,15 +57,6 @@ import { setAddInfosUser } from '../../../redux/actions/user.action';
             onChange={handleDataUserForm}
           />
         </Grid>
-        {/* <Grid item xs={12} sm={6}>
-          <TextField
-            id="state"
-            name="state"
-            label="State/Province/Region"
-            fullWidth
-            variant="standard"
-          />
-        </Grid> */}
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -111,18 +93,6 @@ import { setAddInfosUser } from '../../../redux/actions/user.action';
             onChange={handleDataUserForm}
             />
           </Grid> 
-          {/* <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="work-number"
-            name="workNumber"
-            label="Work Number"
-            fullWidth
-            // autoComplete="shipping address-level2"
-            variant="standard"
-            onChange={handleDataUserForm}
-          />
-        </Grid> */}
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
@@ -137,7 +107,7 @@ import { setAddInfosUser } from '../../../redux/actions/user.action';
 
 const mapStateToProps = (state: any) => {
   return {
-    additionalUserInfos: store.getState().additionalUserInfos
+    additionalUserInfos: state.additionalUserInfos
   }
 }
 

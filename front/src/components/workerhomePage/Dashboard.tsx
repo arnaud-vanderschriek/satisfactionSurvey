@@ -6,16 +6,13 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import Chart from './Chart';
-import Opinions from './Opinions';
 import PersonnalDetails from './PersonnalDetails';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -57,31 +54,6 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-// const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-//   ({ theme, open }) => ({
-//     '& .MuiDrawer-paper': {
-//       position: 'relative',
-//       whiteSpace: 'nowrap',
-//       width: drawerWidth,
-//       transition: theme.transitions.create('width', {
-//         easing: theme.transitions.easing.sharp,
-//         duration: theme.transitions.duration.enteringScreen,
-//       }),
-//       boxSizing: 'border-box',
-//       ...(!open && {
-//         overflowX: 'hidden',
-//         transition: theme.transitions.create('width', {
-//           easing: theme.transitions.easing.sharp,
-//           duration: theme.transitions.duration.leavingScreen,
-//         }),
-//         width: theme.spacing(7),
-//         [theme.breakpoints.up('sm')]: {
-//           width: theme.spacing(9),
-//         },
-//       }),
-//     },
-//   }),
-// );
 
 const mdTheme = createTheme();
 
@@ -101,7 +73,6 @@ function DashboardContent() {
         console.log("errors")
       } else {
         console.log(res, 'response')
-        // 
       }
     }).catch((err) => {
       console.log(err, 'catch Errors');
@@ -141,15 +112,8 @@ function DashboardContent() {
           >
               Putman
             </Typography>
-            {/* <IconButton color="inherit">
-              <Badge badgeContent={0} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton> */}
             <IconButton color="inherit">
-              {/* <Badge badgeContent={4} color="secondary"> */}
                 <LogoutIcon onClick={logout}/>
-              {/* </Badge> */}
             </IconButton>
           </Toolbar>
         </AppBar>

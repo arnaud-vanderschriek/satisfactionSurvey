@@ -18,11 +18,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import "../../assets/styles/styles.css";
 import { useState } from 'react';
-import { SetUser } from '../../redux/actions/user.action';
-import store from '../../redux/store/store';
+import { SetUser, SetUserEval } from '../../redux/actions/user.action';
 import { connect } from 'react-redux';
 import { UserStoreModel } from '../reusable/userForm';
-import RedirectionContainer from '../redirectionContainer/RedirectionContainer';
+
 
 function Copyright(props: any) {
   return (
@@ -51,7 +50,6 @@ function LoginPage(props: any) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
  
-    // à mettre dans Redux !!!!!!!
     axios({ 
       method: "post",
       url: `${process.env.REACT_APP_API_URL}/api/user/login`,
@@ -77,6 +75,7 @@ function LoginPage(props: any) {
         }
       } else {
         props.SetUser(res.data)
+        props.SetUserEval(res.data)
         navigate('/redirect')
       }
     }).catch((err) => {
@@ -116,7 +115,6 @@ function LoginPage(props: any) {
         >  
             <div id='logoPutman2'></div>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            {/* <LockOutlinedIcon /> */}
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
@@ -180,13 +178,14 @@ function LoginPage(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    user: store.getState().user,
+    user: state.user,
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    SetUser: (data: UserStoreModel) => { dispatch(SetUser(data)) }
+    SetUser: (data: UserStoreModel) => { dispatch(SetUser(data)) },
+    SetUserEval: (data: UserStoreModel) => {dispatch(SetUserEval(data))}
   }
 }
 

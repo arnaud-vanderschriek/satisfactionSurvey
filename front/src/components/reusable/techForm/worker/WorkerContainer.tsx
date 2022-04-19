@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import store from '../../../../redux/store/store'
 import Dashboard from '../../../workerhomePage/Dashboard'
 import UserForm from '../../userForm/UserForm'
 import WorkerA from './A/WorkerA'
@@ -38,7 +37,7 @@ function WorkerContainer(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    user: store.getState().user,
+    user: state.user,
   }
 }
 

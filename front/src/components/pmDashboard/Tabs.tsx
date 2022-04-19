@@ -7,9 +7,7 @@ import Box from '@mui/material/Box';
 import './styles/style.css'
 import { Button, Card, CardContent } from '@mui/material';
 import { connect } from 'react-redux';
-import { WorkersFilter } from './helpers/WorkersFilter';
-import TabsFiltred from './TabsFiltred';
-import { setIndexOfUsers } from '../../redux/actions/user.action';
+import { setIndexOfUsers, SetUserEval } from '../../redux/actions/user.action';
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -50,6 +48,13 @@ function BasicTabs(props: any) {
     setValue(newValue);
   };
 
+
+  const handleOpinionsOnWorker = (indexInUsers: number) => {
+    props.setIndexOfUsers(indexInUsers)
+    const userFinded = props.users.find((elem: any, index: number) => index === indexInUsers)  
+    props.SetUserEval(userFinded)
+  }
+
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }} >
@@ -84,7 +89,7 @@ function BasicTabs(props: any) {
               </Card> 
             </div>
             <div>
-              <Button id='tabs-button' onClick={() => props.setIndexOfUsers(index)} variant="contained" size="small"> Donner son opinion sur {elem.firstname}</Button>
+              <Button id='tabs-button' onClick={() => handleOpinionsOnWorker(index)} variant="contained" size="small"> Donner son opinion sur {elem.firstname}</Button>
             </div>
           </TabPanel>
         ))}
@@ -97,13 +102,14 @@ const mapStateToProps = (state: any) => {
   return {
     user: state.user,
     users: state.users,
-    techInfos2: state.techInfos2
+    userToFindInUsers: state.userToFindInUsers,
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setIndexOfUsers: (data: any) => dispatch(setIndexOfUsers(data))
+    setIndexOfUsers: (data: any) => dispatch(setIndexOfUsers(data)),
+    SetUserEval: (data: any) => dispatch(SetUserEval(data))
   }
 }
 

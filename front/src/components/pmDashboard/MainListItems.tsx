@@ -4,13 +4,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
-import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import Survey from '../Survey/Survey';
-import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setLinkList } from '../../redux/actions/user.action';
 
@@ -24,30 +19,12 @@ function MainListItems(props: any) {
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
-    {/* <ListItemButton>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Chantier en cours" />
-    </ListItemButton> */}
-    {/* <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Clients" />
-    </ListItemButton> */}
     <ListItemButton onClick={() => {props.setLinkList('compétences')}}>
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Compétences" />
     </ListItemButton>
-    {/* <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Intégrations" />
-    </ListItemButton> */}
   </React.Fragment>
   )
 };

@@ -5,7 +5,7 @@ const RailwaySkillSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  checksonnel: {
+  checkSonnel: {
     type: String,
   },
   skillsExplorer: {
@@ -17,7 +17,7 @@ const RailwaySkillSchema = new mongoose.Schema({
   mapSkills: {
     type: String,
   },
-  skillsnetwork: {
+  skillsNetwork: {
     type: String,
   },
   skillBook: {

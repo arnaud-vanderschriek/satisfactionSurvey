@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import { setPutmanServicesTechInfos } from '../../../../../redux/actions/user.action';
+import { setInfratec2TechInfos, setPutmanServicesTechInfos } from '../../../../../redux/actions/user.action';
 import { connect } from 'react-redux';
 
 
@@ -39,6 +39,8 @@ function Form2(props: any) {
       <Typography variant="h6" gutterBottom>
       <p>Responsabilites/ TÂCHES principales: </p>
       </Typography>
+{props.user.division === "Putman Services" &&
+
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <FormControlLabel
@@ -69,19 +71,55 @@ function Form2(props: any) {
           />
         </Grid>
       </Grid>
+}
+{props.user.division === "Infratec2" &&
+  <Grid container spacing={6}>
+  <Grid item xs={12}>
+    <FormControlLabel
+      control={<Checkbox color="secondary" name="checkSonnel" value={100} />}
+      label="Comprendre des schémas, pouvoir les interpréter et y relever des erreurs éventuelles."
+      onChange={handleButtonRadio}
+    />
+  </Grid>
+  <Grid item xs={12}>
+    <FormControlLabel
+      control={<Checkbox color="secondary" name="skillsNetwork" value={100} />}
+      label="Doit pouvoir donner des instructions."
+      onChange={handleButtonRadio}
+    />
+  </Grid>
+  <Grid item xs={12}>
+    <FormControlLabel
+      control={<Checkbox color="secondary" name="skillsExplorer" value={100} />}
+      label="Doit pouvoir faire un rapport écrit."
+      onChange={handleButtonRadio}
+    />
+  </Grid>
+  <Grid item xs={12}>
+    <FormControlLabel
+      control={<Checkbox color="secondary" name="skillsExplorer" value={100} />}
+      label="Est en mesure de travailler sans surveillance à une tâche déterminée."
+      onChange={handleButtonRadio}
+    />
+  </Grid>
+</Grid>
+}
     </React.Fragment>
   );
 }
 
 const mapStateToProps = (state: any) => {
   return {
+    user: state.user,
     putmanServicesStatsUser: state.putmanServicesStatsUser,
+    infratec2StatsUser: state.infratec2StatsUser
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
     setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
+    setInfratec2TechInfos: (data: any) => dispatch(setInfratec2TechInfos(data))
   }
 }
 

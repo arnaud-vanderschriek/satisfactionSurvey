@@ -3,8 +3,7 @@ import LoginPage from './components/loginPage/LoginPage';
 import RegisterPage from './components/registerPage/RegisterPage';
 import Dashboard from './components/workerhomePage/Dashboard';
 import UserForm from './components/reusable/userForm/UserForm';
-import TechForm from './components/reusable/techForm/TechForm';
-import Survey from './components/Survey/Survey';
+import TechForm from './components/reusable/techForm/worker/WorkerContainer';
 import React from 'react';
 import RedirectionContainer from './components/redirectionContainer/RedirectionContainer';
 
@@ -18,7 +17,6 @@ export function App() {
         <Route path='/redirect' element={<RedirectionContainer/>} />
         <Route path='/userForm' element={<UserForm/>} />
         <Route path='/techForm' element={<TechForm/>} />
-        <Route path='/survey' element={<Survey/>} />
       </Routes> 
     </Router>
   );

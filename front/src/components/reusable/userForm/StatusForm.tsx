@@ -13,72 +13,76 @@ export default function PaymentForm() {
     const data = new FormData(event.currentTarget);
     console.log(data)
   }
+  
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Position in company
       </Typography>
       <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-      <Grid container spacing={3}>
-      <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="service"
-            name="service"
-            label="Service"
-            fullWidth
-            autoComplete="shipping country"
-            variant="standard"
-          />
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="service"
+              name="service"
+              label="Service"
+              fullWidth
+              autoComplete="shipping country"
+              variant="standard"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="poste"
+              name="Poste"
+              label="Poste"
+              fullWidth
+              autoComplete="shipping country"
+              variant="standard"
+            />
+          </Grid>      
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="country"
+              name="country"
+              label="Country"
+              fullWidth
+              autoComplete="shipping country"
+              variant="standard"
+            />
+          </Grid>      
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="supérieur"
+              name="superieur"
+              label="Supérieur"
+              fullWidth
+              autoComplete="shipping country"
+              variant="standard"
+            />
+          </Grid>      
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="division"
+              name="division"
+              label="division"
+              fullWidth
+              autoComplete="shipping country"
+              variant="standard"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <FormControlLabel
+              control={<Checkbox color="secondary" name="saveCard" value="yes" />}
+              label="Confirm"
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="poste"
-            name="Poste"
-            label="Poste"
-            fullWidth
-            autoComplete="shipping country"
-            variant="standard"
-          />
-        </Grid>      <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Country"
-            fullWidth
-            autoComplete="shipping country"
-            variant="standard"
-          />
-        </Grid>      <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="supérieur"
-            name="superieur"
-            label="Supérieur"
-            fullWidth
-            autoComplete="shipping country"
-            variant="standard"
-          />
-        </Grid>      <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="division"
-            name="division"
-            label="division"
-            fullWidth
-            autoComplete="shipping country"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Confirm"
-          />
-        </Grid>
-      </Grid>
       </Box>
     </React.Fragment>
   );
