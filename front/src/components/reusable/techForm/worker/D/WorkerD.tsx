@@ -70,14 +70,29 @@ function WorkerD(props: any) {
   const handleSend = () => {
     let url = ''
     let body
-    if(props.user.division === 'Putman Services') {
-      url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServices/${props.user.id}`
-      body = props.putmanServicesStatsUser
+    if(props.user.poste === 'ouvrier') {
+      if(props.user.division === 'Putman Services') {
+        url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServices/${props.user.id}`
+        body = props.putmanServicesStatsUser
+      }
+      if(props.user.division === 'Infratec2') {
+        url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormInfratec2/${props.user.id}`
+        body = props.infratec2StatsUser
+      }
     }
-    if(props.user.division === 'Infratec2') {
-      url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormInfratec2/${props.user.id}`
-      body = props.infratec2StatsUser
+
+    if(props.user.poste === 'pm') {
+      // fonction qui va update dans le userEval
+      if(props.user.division === 'Putman Services') {
+        url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServices/${props.user.id}`
+        body = props.putmanServicesStatsUser
+      }
+      if(props.user.division === 'Infratec2') {
+        url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormInfratec2/${props.user.id}`
+        body = props.infratec2StatsUser
+      }
     }
+    
 
     axios({
       method: "post",

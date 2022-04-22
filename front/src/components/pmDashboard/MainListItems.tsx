@@ -21,9 +21,15 @@ function MainListItems(props: any) {
     </ListItemButton>
     <ListItemButton onClick={() => {props.setLinkList('compétences')}}>
       <ListItemIcon>
-        <BarChartIcon />
+        <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Compétences" />
+    </ListItemButton>
+    <ListItemButton onClick={() => {props.setLinkList('workerCharts')}}>
+      <ListItemIcon>
+        <BarChartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Graphiques" />
     </ListItemButton>
   </React.Fragment>
   )

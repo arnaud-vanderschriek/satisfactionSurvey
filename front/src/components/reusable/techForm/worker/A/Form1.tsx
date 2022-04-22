@@ -4,32 +4,60 @@ import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { connect } from 'react-redux';
-import { setInfratec2TechInfos, setPutmanServicesTechInfos } from '../../../../../redux/actions/user.action';
+import { setInfractec2TechPm, setInfratec2TechInfos, setPutmanServicesTechInfos, setPutmanServicesTechPm } from '../../../../../redux/actions/user.action';
 
 
 function Form1(props: any) {
   function handleButtonRadio(e: any) {
     if(e.target.checked) {
-      if(props.user.division === "Putman Services") {
-        const electricSkill = {...props.putmanServicesStatsUser}
-        electricSkill[e.target.name] +=  +e.target.value
-        props.setPutmanServicesTechInfos(electricSkill)
-      } 
-      if(props.user.division === "Infratec2") {
-        const railwaySkills = {...props.infratec2StatsUser}
-        railwaySkills[e.target.name] +=  +e.target.value
-        props.setInfratec2TechInfos(railwaySkills)
-      }   
-    } else {
-      if(props.user.division === "Putman Services") {
-        const electricSkill = {...props.putmanServicesStatsUser}
-        electricSkill[e.target.name] +=  -e.target.value
-        props.setPutmanServicesTechInfos(electricSkill)
+      if(props.user.poste === 'ouvrier') {
+        if(props.user.division === "Putman Services") {
+          const electricSkill = {...props.putmanServicesStatsUser}
+          electricSkill[e.target.name] +=  +e.target.value
+          props.setPutmanServicesTechInfos(electricSkill)
+        } 
+        if(props.user.division === "Infratec2") {
+          const railwaySkills = {...props.infratec2StatsUser}
+          railwaySkills[e.target.name] +=  +e.target.value
+          props.setInfratec2TechInfos(railwaySkills)
+        }   
       }
-      if(props.user.division === "Infratec2") {
-        const railwaySkills = {...props.infratec2StatsUser}
-        railwaySkills[e.target.name] +=  -e.target.value
-        props.setInfratec2TechInfos(railwaySkills)
+      if(props.user.poste === 'pm') {
+        if(props.userEval.division === "Putman Services") {
+          const electricSkillPm = { ...props.putmanServicesStatsPm }
+          electricSkillPm[e.target.name] += +e.target.value
+          props.setPutmanServicesTechPm(electricSkillPm)
+        }
+        if(props.userEval.division === "Infratec2") {
+          const infratec2SkillPm = { ...props.infratec2StatsPm }
+          infratec2SkillPm[e.target.name] += +e.target.value
+          props.setInfractec2TechPm(infratec2SkillPm)
+        }
+      }
+    } else {
+      if(props.user.poste === 'ouvrier') {
+        if(props.user.division === "Putman Services") {
+          const electricSkill = {...props.putmanServicesStatsUser}
+          electricSkill[e.target.name] +=  -e.target.value
+          props.setPutmanServicesTechInfos(electricSkill)
+        }
+        if(props.user.division === "Infratec2") {
+          const railwaySkills = {...props.infratec2StatsUser}
+          railwaySkills[e.target.name] +=  -e.target.value
+          props.setInfratec2TechInfos(railwaySkills)
+        }
+      }
+      if(props.user.poste === 'pm') {
+        if(props.userEval.division === "Putman Services") {
+          const electricSkillPm = { ...props.putmanServicesStatsPm }
+          electricSkillPm[e.target.name] += -e.target.value
+          props.setPutmanServicesTechPm(electricSkillPm)
+        }
+        if(props.userEval.division === "Infratec2") {
+          const infratec2SkillPm = { ...props.infratec2StatsPm }
+          infratec2SkillPm[e.target.name] += -e.target.value
+          props.setInfractec2TechPm(infratec2SkillPm)
+        }
       }
     }
   }
@@ -178,15 +206,20 @@ function Form1(props: any) {
 const mapStateToProps = (state: any) => {
   return {
     user: state.user,
+    userEval: state.userEval,
     putmanServicesStatsUser: state.putmanServicesStatsUser,
-    infratec2StatsUser: state.infratec2StatsUser
+    infratec2StatsUser: state.infratec2StatsUser,
+    putmanServicesStatsPm: state.putmanServicesStatsPm,
+    infratec2StatsPm: state.infratec2StatsPm
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
     setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
-    setInfratec2TechInfos: (data: any) => dispatch(setInfratec2TechInfos(data))
+    setInfratec2TechInfos: (data: any) => dispatch(setInfratec2TechInfos(data)),
+    setPutmanServicesTechPm: (data: any) => dispatch(setPutmanServicesTechPm(data)),
+    setInfractec2TechPm: (data: any) => dispatch(setInfractec2TechPm(data))
   }
 }
 

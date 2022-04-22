@@ -19,6 +19,15 @@ router.post(
   "/dataTechFormInfratec2/:id",
   userController.setDataChartInfratec2User
 );
+//
+router.post(
+  "/dataTechFormPutmanServicesPm/:id",
+  userController.setDataChartPutmanServicesPm
+);
+router.post(
+  "/dataTechFormInfratec2Pm/:id",
+  userController.setDataChartInfratec2Pm
+);
 router.post("/additionnalData/:id", userController.addtionnalData);
 
 module.exports = router;

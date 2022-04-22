@@ -1,10 +1,11 @@
 const UserModel = require("../models/user.model");
 const EletricSkillsModel = require("../models/electricSkills.model");
 const RailWaySkillsModel = require("../models/railwaySkills.model");
+const OpinionPutmanServicesModel = require("../models/opinionPutmanServices");
+const OpinionInfratec2Model = require("../models/opinionInfratec2");
 const ObjectID = require("mongoose").Types.ObjectId;
 
 module.exports.getAllUsers = async (req, res) => {
-  console.log("tatatata dans back");
   try {
     const users = await UserModel.find().select("-password");
     res.status(200).json(users);
@@ -98,6 +99,72 @@ module.exports.setDataChartInfratec2User = async (req, res) => {
   }
 };
 
+module.exports.setDataChartPutmanServicesPm = async (req, res) => {
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send("ID unknown : " + req.params.id);
+  console.log(req.body.data.idUserEval, req.params.id);
+  const {
+    idUserEval,
+    manoeuvre,
+    electricPlan,
+    electricBox,
+    cable,
+    plug,
+    buildingPlan,
+  } = req.body.data;
+
+  try {
+    const user = await OpinionPutmanServicesModel.create({
+      idPm: req.params.id,
+      idUserEval,
+      manoeuvre,
+      electricPlan,
+      electricBox,
+      cable,
+      plug,
+      buildingPlan,
+    });
+
+    res.status(201).json({ user: user._id });
+  } catch (err) {
+    // const errors = signUpErrors(err);
+    res.status(200).send({ err });
+  }
+};
+
+module.exports.setDataChartInfratec2Pm = async (req, res) => {
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send("ID unknown : " + req.params.id);
+
+  const {
+    idUserEval,
+    checksonnel,
+    skillsExplorer,
+    cartoSkills,
+    mapSkills,
+    skillsnetwork,
+    skillBook,
+  } = req.body.data;
+
+  try {
+    const user = await OpinionInfratec2Model.create({
+      idPm: req.params.id,
+      idUserEval,
+      checksonnel,
+      skillsExplorer,
+      cartoSkills,
+      mapSkills,
+      skillsnetwork,
+      skillBook,
+    });
+
+    res.status(201).json({ user: user._id });
+  } catch (err) {
+    // const errors = signUpErrors(err);
+    res.status(200).send({ err });
+  }
+};
+
 module.exports.addtionnalData = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
@@ -132,18 +199,18 @@ module.exports.getDataTechFormPutmanServices = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 
-    EletricSkillsModel.find({ idUser: req.params.id }, (err, docs) => {
-      if (!err) res.status(201).json(docs);
-      else console.log("ID unknown : " + err);
-    });
+  EletricSkillsModel.find({ idUser: req.params.id }, (err, docs) => {
+    if (!err) res.status(201).json(docs);
+    else console.log("ID unknown : " + err);
+  });
 };
 
 module.exports.getDataTechFormInfratec2 = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 
-    RailWaySkillsModel.find({ idUser: req.params.id }, (err, docs) => {
-      if (!err) res.status(201).json(docs);
-      else console.log("ID unknown : " + err);
-    });
+  RailWaySkillsModel.find({ idUser: req.params.id }, (err, docs) => {
+    if (!err) res.status(201).json(docs);
+    else console.log("ID unknown : " + err);
+  });
 };

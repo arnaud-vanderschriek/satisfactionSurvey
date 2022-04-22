@@ -4,6 +4,7 @@ import Paper from '@mui/material/Paper';
 import Tabs from './Tabs';
 import { connect } from 'react-redux';
 import { fetchAllWorker } from '../../redux/actions/user.action';
+import WorkerChart from './WorkerChart';
 
 
 function Survey(props: any) {
@@ -23,6 +24,16 @@ function Survey(props: any) {
           }}
         >
           <Tabs />
+        </Paper>
+        <Paper
+          sx={{
+            p: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            height: 'auto',
+            width: '100%'
+          }}
+        >
         </Paper>
       </Grid>
     </Grid>

@@ -7,7 +7,9 @@ import Box from '@mui/material/Box';
 import './styles/style.css'
 import { Button, Card, CardContent } from '@mui/material';
 import { connect } from 'react-redux';
-import { setIndexOfUsers, SetUserEval } from '../../redux/actions/user.action';
+import { setIndexOfUsers, setIsFetched, SetUserEval } from '../../redux/actions/user.action';
+import OpinionOnWorker from '../reusable/techForm/worker/OpinionOnWorker';
+import { useNavigate } from 'react-router-dom';
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -43,6 +45,8 @@ function a11yProps(index: number) {
 }
 
 function BasicTabs(props: any) {
+  let navigate = useNavigate()
+  
   const [value, setValue] = React.useState(0);
   const handleChange = (event: any, newValue: number) => {
     setValue(newValue);
@@ -53,18 +57,28 @@ function BasicTabs(props: any) {
     props.setIndexOfUsers(indexInUsers)
     const userFinded = props.users.find((elem: any, index: number) => index === indexInUsers)  
     props.SetUserEval(userFinded)
+    navigate('/opinion')
   }
 
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }} >
-        <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example">
+        <Tabs value={value} 
+          onChange={handleChange} 
+          variant="scrollable" 
+          scrollButtons="auto" 
+          aria-label="scrollable auto tabs example"
+        >
           {props.user.division === "Putman Services" ? 
-            props.users.filter((elem: any) => elem.division === "Putman Services").map((elem: any, index: number) => {
-              return <Tab label={elem.firstname} {...a11yProps(index)} />
+            props.users
+              .filter((elem: any) => elem.division === "Putman Services")
+              .map((elem: any, index: number) => {
+                return <Tab label={elem.firstname} {...a11yProps(index)} />
             }) : 
-            props.users.filter((elem: any) => elem.division === "Infractec2").map((elem: any, index: number) => {
-              return <Tab label={elem.firstname} {...a11yProps(index)} />
+            props.users
+              .filter((elem: any) => elem.division === "Infractec2")
+              .map((elem: any, index: number) => {
+                return <Tab label={elem.firstname} {...a11yProps(index)} />
             })
           }
         </Tabs>
@@ -89,7 +103,13 @@ function BasicTabs(props: any) {
               </Card> 
             </div>
             <div>
-              <Button id='tabs-button' onClick={() => handleOpinionsOnWorker(index)} variant="contained" size="small"> Donner son opinion sur {elem.firstname}</Button>
+              <Button id='tabs-button' 
+                onClick={() => handleOpinionsOnWorker(index)} 
+                variant="contained" 
+                size="small"
+              > 
+                Donner son opinion sur {elem.firstname}
+              </Button>
             </div>
           </TabPanel>
         ))}
@@ -103,13 +123,15 @@ const mapStateToProps = (state: any) => {
     user: state.user,
     users: state.users,
     userToFindInUsers: state.userToFindInUsers,
+    isFetched: state.isFetched
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
     setIndexOfUsers: (data: any) => dispatch(setIndexOfUsers(data)),
-    SetUserEval: (data: any) => dispatch(SetUserEval(data))
+    SetUserEval: (data: any) => dispatch(SetUserEval(data)),
+    setIsFetched: (data: any) => dispatch(setIsFetched(data))
   }
 }
 

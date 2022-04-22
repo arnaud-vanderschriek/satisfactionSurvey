@@ -6,9 +6,12 @@ export const SET_USER = "GET_USER";
 export const SET_USEREVAL = "SET_USEREVAL";
 export const SET_PUTMANSERVICESINFOS = "SET_PUTMANSERVICESINFOS";
 export const SET_INFRATEC2INFOS = "SET_INFRATEC2INFOS";
+export const SET_PUTMANSERVICESPM = "SET_PUTMANSERVICESPM";
+export const SET_INFRATEC2PM = "SET_INFRATEC2PM";
 export const SEND_INFOS = "SEND_INFOS";
 export const SET_INDEXOFUSERS = "SET_INDEXOFUSERS";
 export const SET_LINKLIST = "SET_LINKLIST";
+export const IS_FETCHED = "IS_FETCHED";
 export const SET_ADDINFOSUSER = "ADDINFOSUSER"
 export const SET_UPDATEUSER = "UPDATEUSER"
 export const FETCH_USERS = "FETCHUSERS"
@@ -28,10 +31,20 @@ export const setPutmanServicesTechInfos = (data: ValuesTechForm[]) => {
     dispatch({ type: SET_PUTMANSERVICESINFOS, payload: data})
   }
 }
+export const setPutmanServicesTechPm = (data: ValuesTechForm[]) => {
+  return (dispatch: any) => {
+    dispatch({ type: SET_PUTMANSERVICESPM, payload: data})
+  }
+}
 
 export const setInfratec2TechInfos = (data: ValuesTechForm[]) => {
   return (dispatch: any) => {
     dispatch({ type: SET_INFRATEC2INFOS, payload: data})
+  }
+}
+export const setInfractec2TechPm = (data: ValuesTechForm[]) => {
+  return (dispatch: any) => {
+    dispatch({ type: SET_INFRATEC2PM, payload: data})
   }
 }
 export const setIndexOfUsers = (data: any) => {
@@ -42,6 +55,12 @@ export const setIndexOfUsers = (data: any) => {
 export const setLinkList = (data: any) => {
   return (dispatch: any) => {
     dispatch({type: SET_LINKLIST, payload: data})
+  }
+}
+
+export const setIsFetched = (data: any) => {
+  return (dispatch: any) => {
+    dispatch({type: IS_FETCHED, payload: data })
   }
 }
 

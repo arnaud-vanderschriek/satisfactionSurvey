@@ -10,23 +10,23 @@ import { connect } from 'react-redux';
 function Form3(props: any) {
   function handleButtonRadio(e: any) {
     if(e.target.checked) {
-      if(props.user.division === "Putman Services") {
+      if(props.userEval.division === "Putman Services") {
         const electricSkill = {...props.putmanServicesStatsUser}
         electricSkill[e.target.name] +=  +e.target.value
         props.setPutmanServicesTechInfos(electricSkill)
       } 
-      if(props.user.division === "Infratec2") {
+      if(props.userEval.division === "Infratec2") {
         const railwaySkills = {...props.infratec2StatsUser}
         railwaySkills[e.target.name] +=  +e.target.value
         props.setInfratec2TechInfos(railwaySkills)
       }   
     } else {
-      if(props.user.division === "Putman Services") {
+      if(props.userEval.division === "Putman Services") {
         const electricSkill = {...props.putmanServicesStatsUser}
         electricSkill[e.target.name] +=  -e.target.value
         props.setPutmanServicesTechInfos(electricSkill)
       }
-      if(props.user.division === "Infratec2") {
+      if(props.userEval.division === "Infratec2") {
         const railwaySkills = {...props.infratec2StatsUser}
         railwaySkills[e.target.name] +=  -e.target.value
         props.setInfratec2TechInfos(railwaySkills)
@@ -39,7 +39,7 @@ function Form3(props: any) {
       <Typography variant="h6" gutterBottom>
         Following
       </Typography>
-{props.user.division === "Putman Services" &&
+{props.userEval.division === "Putman Services" &&
 
       <Grid container spacing={6}>
         <Grid item xs={12}>
@@ -99,7 +99,7 @@ function Form3(props: any) {
         </Grid>
       </Grid>
   }
-{props.user.division === "Infratec2" &&
+{props.userEval.division === "Infratec2" &&
   <Grid container spacing={6}>
   <Grid item xs={12}>
     <FormControlLabel
@@ -164,7 +164,7 @@ function Form3(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    user: state.user,
+    userEval: state.userEval,
     putmanServicesStatsUser: state.putmanServicesStatsUser,
     infratec2StatsUser: state.infratec2StatsUser
   }
