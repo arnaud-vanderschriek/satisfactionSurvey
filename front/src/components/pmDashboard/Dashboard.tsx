@@ -21,6 +21,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import MainListItems from './MainListItems';
 import DashboardPages from './DashboardPages';
+import { connect } from 'react-redux';
+import { logOut } from '../../redux/actions/user.action';
 
 function Copyright(props: any) {
   return (
@@ -87,7 +89,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
+function Dashboard(props: any) {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -107,6 +109,7 @@ function DashboardContent() {
     }).catch((err) => {
       console.log(err, 'catch Errors');
     })
+    props.logOut()
     navigate("/")
   }
 
@@ -183,18 +186,32 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="lg" sx={{ mt: 8, mb: 8 }}>
             <Grid container spacing={3}>
               <DashboardPages />
             </Grid> 
-            <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
       </Box>
+      {/* <Copyright sx={{ pt: 4 }} /> */}
     </ThemeProvider>
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
-}
+// export default function Dashboard() {
+//   return <DashboardContent />;
+// }
+
+ const mapStateToProps = (state: any) => {
+  return {
+    
+  }
+ }
+
+ const mapDispatchToProps = (dispatch: any) => {
+   return {
+    logOut: () => dispatch(logOut())
+   }
+ }
+ 
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

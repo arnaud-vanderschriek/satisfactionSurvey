@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { connect } from 'react-redux';
-import { setInfratec2TechInfos, setPutmanServicesTechInfos } from '../../../redux/actions/user.action';
+import { setPutmanServicesStats, setInfractec2Stats} from '../../../redux/actions/user.action';
 
 function Form1(props: any) {
   function handleButtonRadio(e: any) {
@@ -176,8 +176,8 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
-    setInfratec2TechInfos: (data: any) => dispatch(setInfratec2TechInfos(data)),
+    setPutmanServicesStats: (data: any) => dispatch(setPutmanServicesStats(data)),
+    setInfractec2Stats: (data: any) => dispatch(setInfractec2Stats(data)),
   }
 }
 

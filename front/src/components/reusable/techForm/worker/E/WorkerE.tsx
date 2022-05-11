@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
 import Form3 from './Form3';
-import { setUpdateUser } from '../../../../../redux/actions/user.action';
+import { resetState, setInfractec2Stats,setPutmanServicesStats, setUpdateUser } from '../../../../../redux/actions/user.action';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -67,15 +67,27 @@ function WorkerE(props: any) {
   const handleSend = () => {
     let url = ''
     let body
-    if(props.user.division === 'Putman Services') {
-      url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServices/${props.user.id}`
-      body = props.putmanServicesStatsUser
+    if(props.user.poste === 'ouvrier') {
+      if(props.user.division === 'Putman Services') {
+        url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServices/${props.user.id}`
+        body = props.putmanServicesStats
+      }
+      if(props.user.division === 'Infratec2') {
+        url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormInfratec2/${props.user.id}`
+        body = props.infratec2Stats
+      }
     }
-    if(props.user.division === 'Infratec2') {
-      url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormInfratec2/${props.user.id}`
-      body = props.infratec2StatsUser
+    if(props.user.poste === 'pm') {
+      if(props.user.division === 'Putman Services') {
+        url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServicesPm/${props.userEval._id}`
+        body = props.putmanServicesStats
+      }
+      if(props.user.division === 'Infratec2') {
+        url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormInfratec2Pm/${props.userEval._id}`
+        body = props.infratec2Stats
+      }
     }
-
+    
     axios({
       method: "post",
       url: url,
@@ -87,8 +99,14 @@ function WorkerE(props: any) {
       if(res.data.errors) {
         console.log("errors")
       } else {
-        props.setUpdateUser({ ...props.user, techForm: true})
-        navigate('/techForm')
+        if(props.user.poste === 'ouvrier') {
+          props.setUpdateUser({ ...props.user, techForm: true })
+          navigate('/techForm')
+        }
+        if(props.user.poste === 'pm') {
+          props.resetState()
+          navigate('/pmHome')        
+        }
       }
     }).catch((err) => {
       console.log(err, 'catch Errors');
@@ -180,19 +198,23 @@ function WorkerE(props: any) {
   );
 }
 
-
 const mapStateToProps = (state: any) => {
   return {
     user: state.user,
-    putmanServicesStatsUser: state.putmanServicesStatsUser,
-    infratec2StatsUser: state.infratec2StatsUser
+    userEval: state.userEval,
+    putmanServicesStats: state.putmanServicesStats,
+    infratec2Stats: state.infratec2Stats,
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setUpdateUser: (data: any) => { dispatch(setUpdateUser(data)) }
+    setUpdateUser: (data: any) => dispatch(setUpdateUser(data)),
+    setPutmanServicesStats: (data: any) => dispatch(setPutmanServicesStats(data)),
+    setInfractec2Stats: (data: any) => dispatch(setInfractec2Stats(data)),
+    resetState: () => dispatch(resetState())
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkerE)

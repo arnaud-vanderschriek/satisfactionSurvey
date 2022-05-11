@@ -6,11 +6,22 @@ router.post("/register", authController.signUp);
 router.post("/login", authController.signIn);
 router.get("/logout", authController.logout);
 
-router.get("/", userController.getAllUsers);
-router.get("/:id", userController.userInfo);
+// router.get("/", userController.getAllUsers);
+// router.get("/:id", userController.userInfo);
 router.get("/getAllUsers", userController.getAllUsers);
-router.get("/getDataTechForm/:id", userController.getDataTechFormPutmanServices);
-router.get("/getDataTechFormInfratec2/:id",userController.getDataTechFormInfratec2);
+router.get("/getDatasWorkers", userController.getAllDatasFromWorkers);
+router.get(
+  "/getDataTechFormPutmanServicesPm/:id",
+  userController.getAllDatasFromPmPutmanServices
+);
+router.get(
+  "/getDataTechForm/:id",
+  userController.getDataTechFormPutmanServices
+);
+router.get(
+  "/getDataTechFormInfratec2/:id",
+  userController.getDataTechFormInfratec2
+);
 router.post(
   "/dataTechFormPutmanServices/:id",
   userController.setDataChartPutmanServicesUser
@@ -28,6 +39,7 @@ router.post(
   "/dataTechFormInfratec2Pm/:id",
   userController.setDataChartInfratec2Pm
 );
+
 router.post("/additionnalData/:id", userController.addtionnalData);
 
 module.exports = router;

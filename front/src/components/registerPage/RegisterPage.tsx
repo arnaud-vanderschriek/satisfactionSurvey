@@ -8,7 +8,6 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -108,7 +107,6 @@ export default function SignUp() {
         >
             <div id='logoPutman2'></div>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            {/* <LockOutlinedIcon /> */}
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
@@ -136,16 +134,6 @@ export default function SignUp() {
                   autoComplete="family-name"
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid> */}
               <Grid item xs={12}>
                 <TextField
                   required
@@ -219,7 +207,6 @@ export default function SignUp() {
                 </Link>
               </Grid>
             </Grid>
-    
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />

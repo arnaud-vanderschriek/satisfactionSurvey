@@ -16,6 +16,8 @@ import Chart from './Chart';
 import PersonnalDetails from './PersonnalDetails';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logOut } from '../../redux/actions/user.action';
 
 function Copyright(props: any) {
   return (
@@ -57,7 +59,7 @@ const AppBar = styled(MuiAppBar, {
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
+function DashboardContent(props: any) {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -77,6 +79,7 @@ function DashboardContent() {
     }).catch((err) => {
       console.log(err, 'catch Errors');
     })
+    props.logOut()
     navigate("/")
 
   }
@@ -159,6 +162,14 @@ function DashboardContent() {
   );
 }
 
-export default function Dashboard(props: any) {
-  return <DashboardContent />;
+const mapStateToProps = (state: any) => {
+  
 }
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+   logOut: () => dispatch(logOut())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardContent)

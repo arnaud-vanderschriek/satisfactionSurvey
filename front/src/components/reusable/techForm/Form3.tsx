@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import { setPutmanServicesTechInfos } from '../../../redux/actions/user.action';
+import { setPutmanServicesStats } from '../../../redux/actions/user.action';
 import { connect } from 'react-redux';
 
 
@@ -15,7 +15,7 @@ function Form3(props: any) {
         electricSkill[e.target.name] +=  +e.target.value
         props.setPutmanServicesTechInfos(electricSkill)
       } 
-      if(props.user.divisoon === "Infratec2") {
+      if(props.user.division === "Infratec2") {
         const railwaySkills = {...props.infratec2StatsUser}
         railwaySkills[e.target.name] +=  +e.target.value
         props.setInfratec2TechInfos(railwaySkills)
@@ -110,7 +110,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
+    setPutmanServicesStats: (data: any) => dispatch(setPutmanServicesStats(data)),
   }
 }
 

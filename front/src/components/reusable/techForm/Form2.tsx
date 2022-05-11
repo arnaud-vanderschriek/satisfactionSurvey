@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import store from '../../../redux/store/store';
-import { setPutmanServicesTechInfos } from '../../../redux/actions/user.action';
+import { setPutmanServicesStats } from '../../../redux/actions/user.action';
 import { connect } from 'react-redux';
 
 
@@ -103,13 +103,13 @@ function Form2(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    putmanServicesStatsUser: store.getState().putmanServicesStatsUser,
+    putmanServicesStats: state.putmanServicesStats,
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
+    setPutmanServicesStats: (data: any) => dispatch(setPutmanServicesStats(data)),
   }
 }
 

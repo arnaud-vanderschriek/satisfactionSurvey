@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
 import Form3 from './Form3';
-import { setPutmanServicesTechInfos } from '../../../redux/actions/user.action';
+import { setPutmanServicesStats } from '../../../redux/actions/user.action';
 import axios from 'axios';
 import store from '../../../redux/store/store';
 import { useNavigate } from 'react-router-dom';
@@ -182,13 +182,13 @@ function TechForm(props: any) {
 const mapStateToProps = (state: any) => {
   return {
     user: store.getState().user,
-    putmanServicesStatsUser: store.getState().putmanServicesStatsUser
+    putmanServicesStats: state.putmanServicesStats
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
+    setPutmanServicesStats: (data: any) => dispatch(setPutmanServicesStats(data)),
   }
 }
 

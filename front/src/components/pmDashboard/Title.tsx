@@ -7,8 +7,10 @@ interface TitleProps {
 
 export default function Title(props: TitleProps) {
   return (
-    <Typography component="h2" variant="h6" color="primary" gutterBottom>
-      {props.children}
-    </Typography>
+    <React.Fragment>
+      <Typography variant="h6" component={'span'} color="primary" gutterBottom>
+        {props.children}
+      </Typography>
+    </React.Fragment>
   );
 }

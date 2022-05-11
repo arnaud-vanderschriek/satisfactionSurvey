@@ -32,7 +32,7 @@ function WorkerContainer(props: any) {
     return <WorkerF />
   }
   
-  return <Dashboard  user={props.user} />
+  return <Dashboard />
 }
 
 const mapStateToProps = (state: any) => {

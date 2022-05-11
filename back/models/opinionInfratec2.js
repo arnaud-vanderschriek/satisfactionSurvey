@@ -9,24 +9,7 @@ const OpinionInfratec2Schema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  checkSonnel: {
-    type: String
-  },
-  skillsExplorer: {
-    type: String,
-  },
-  cartoSkills: {
-    type: String,
-  },
-  mapSkills: {
-    type: String,
-  },
-  skillsNetwork: {
-    type: String,
-  },
-  skillsBook: {
-    type: String,
-  },
+  skills: [{ name: { type: String }, value: { type: String } }],
 });
 
 const OpinionInfratec2Model = mongoose.model("opinionInfratec2", OpinionInfratec2Schema);

@@ -1,5 +1,16 @@
-import { IS_FETCHED,FETCH_USERS, SET_ADDINFOSUSER, SET_INDEXOFUSERS, SET_INFRATEC2PM, SET_LINKLIST, SET_PUTMANSERVICESPM, SET_UPDATEUSER, SET_USER, SET_USEREVAL } from "../actions/user.action";
-import { SET_PUTMANSERVICESINFOS, SET_INFRATEC2INFOS} from "../actions/user.action";
+import { 
+  FETCH_USERS, 
+  SET_ADDINFOSUSER, 
+  SET_INDEXOFUSERS, 
+  SET_INFRATEC2STATS, 
+  SET_LINKLIST, 
+  SET_PUTMANSERVICESSTATS, 
+  SET_UPDATEUSER, 
+  SET_USER, 
+  SET_USEREVAL, 
+  RESET_STATE, 
+  RESET_SPEFIC_STATE 
+} from "../actions/user.action";
 import { UserElectricSkillsModel, UserStoreModel } from "../../components/reusable/userForm";
 
 const initialState = {
@@ -8,9 +19,7 @@ const initialState = {
   userEval: {} as UserStoreModel,
   userToFindInUsers: -1,
   link: 'dashboard',
-  isFetched: false,
-
-  infratec2StatsUser: {
+  infratec2Stats: {
     checkSonnel: 0,
     skillsExplorer: 0,
     cartoSkills: 0,
@@ -18,26 +27,7 @@ const initialState = {
     skillsNetwork: 0,
     skillsBook: 0,
   },  
-  infratec2StatsPm: {
-    idUserEval: '',
-    checkSonnel: 0,
-    skillsExplorer: 0,
-    cartoSkills: 0,
-    mapSkills: 0,
-    skillsNetwork: 0,
-    skillsBook: 0,
-  },  
-  putmanServicesStatsUser: {
-    manoeuvre: 0,
-    electricPlan: 0,
-    electricBox: 0,
-    cable: 0,
-    plug: 0,
-    buildingPlan: 0,
-  } as UserElectricSkillsModel,
-
-  putmanServicesStatsPm: {
-    idUserEval: '',
+  putmanServicesStats: {
     manoeuvre: 0,
     electricPlan: 0,
     electricBox: 0,
@@ -68,25 +58,15 @@ export default function userReducer(state= initialState, action: any) {
         ...state,
         userEval: action.payload
       }
-    case SET_PUTMANSERVICESINFOS:
+    case SET_PUTMANSERVICESSTATS:
       return {
         ...state,
-        putmanServicesStatsUser: action.payload
+        putmanServicesStats: action.payload
       }
-    case SET_INFRATEC2INFOS:
+      case SET_INFRATEC2STATS:
       return {
         ...state,
-        infratec2StatsUser: action.payload
-      }
-    case SET_PUTMANSERVICESPM:
-      return {
-        ...state,
-        putmanServicesStatsPm: action.payload
-      }
-      case SET_INFRATEC2PM:
-      return {
-        ...state,
-        infratec2StatsPm: action.payload
+        infratec2Stats: action.payload
       }
     case SET_INDEXOFUSERS:
       return {
@@ -97,11 +77,6 @@ export default function userReducer(state= initialState, action: any) {
       return {
         ...state,
         link: action.payload
-      }
-    case IS_FETCHED:
-      return {
-        ...state,
-        isFetched: action.payload
       }
     case SET_ADDINFOSUSER:
       return {
@@ -117,6 +92,30 @@ export default function userReducer(state= initialState, action: any) {
       return {
         ...state,
         users: action.payload
+      }
+    case RESET_STATE:
+      return initialState
+    
+    case RESET_SPEFIC_STATE:
+      return {
+        ...state,
+        userEval: {} as UserStoreModel,
+        infratec2Stats: {
+          checkSonnel: 0,
+          skillsExplorer: 0,
+          cartoSkills: 0,
+          mapSkills: 0,
+          skillsNetwork: 0,
+          skillsBook: 0,
+        },
+        putmanServicesStats: {
+          manoeuvre: 0,
+          electricPlan: 0,
+          electricBox: 0,
+          cable: 0,
+          plug: 0,
+          buildingPlan: 0,
+        } as UserElectricSkillsModel,
       }
     default: 
       return state;

@@ -4,15 +4,18 @@ import Paper from '@mui/material/Paper';
 import Tabs from './Tabs';
 import { connect } from 'react-redux';
 import { fetchAllWorker } from '../../redux/actions/user.action';
-import WorkerChart from './WorkerChart';
+import "./styles/style.css";
 
 
 function Survey(props: any) {
   useEffect(() => {
     props.fetchAllWorker()
   }, [])
-  return (
-    <Grid container spacing={6}>
+  
+  if(props.users !== []) {
+   return (
+    <React.Fragment>
+      <Grid container spacing={6}>
       <Grid item xs={12} md={12} lg={12}>
         <Paper
           sx={{
@@ -37,8 +40,25 @@ function Survey(props: any) {
         </Paper>
       </Grid>
     </Grid>
+    </React.Fragment>
   )
-}
+
+  } else {
+    return (
+      <div className="lds-ellipsis">
+        <div>
+        </div>
+        <div>
+        </div>
+        <div>
+        </div>
+        <div>
+        </div>
+      </div>
+    )
+  }
+  
+ }
 
 const mapStateToProps = (state: any) => {
   return {

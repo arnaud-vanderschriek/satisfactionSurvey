@@ -9,24 +9,7 @@ const OpinionPutmanServicesSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  manoeuvre: {
-    type: String
-  },
-  electricPlan: {
-    type: String,
-  },
-  electricBox: {
-    type: String,
-  },
-  cable: {
-    type: String,
-  },
-  plug: {
-    type: String,
-  },
-  buildingPlan: {
-    type: String,
-  },
+  skills: [{ name: { type: String }, value: { type: String } }],
 });
 
 const OpinionPutmanServicesModel = mongoose.model("opinionPutman", OpinionPutmanServicesSchema);

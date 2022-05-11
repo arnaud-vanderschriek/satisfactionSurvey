@@ -8,26 +8,29 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { connect } from 'react-redux';
 import { setLinkList } from '../../redux/actions/user.action';
+import Button from '@mui/material/Button';
 
 
 function MainListItems(props: any) {
+  
+
   return (
     <React.Fragment>
     <ListItemButton onClick={() => {props.setLinkList('dashboard')}}>
-      <ListItemIcon>
-        <DashboardIcon />
+      <ListItemIcon >
+          <DashboardIcon  />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
     <ListItemButton onClick={() => {props.setLinkList('compétences')}}>
-      <ListItemIcon>
+      <ListItemIcon >
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Compétences" />
-    </ListItemButton>
-    <ListItemButton onClick={() => {props.setLinkList('workerCharts')}}>
-      <ListItemIcon>
-        <BarChartIcon />
+    </ListItemButton >
+    <ListItemButton onClick={() => {props.setLinkList('workerCharts')}} >
+      <ListItemIcon  >
+        <BarChartIcon  />
       </ListItemIcon>
       <ListItemText primary="Graphiques" />
     </ListItemButton>

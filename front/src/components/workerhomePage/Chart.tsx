@@ -7,23 +7,8 @@ import Title from './Title';
 
 
 function Chart(props: any) {
-  const [manoeuvre, setManoeuvre] = useState()
-  const [electricPlan, setElectricPlan] = useState()
-  const [electricBox, setElectricBox] = useState()
-  const [cable, setCable] = useState()
-  const [plug, setPlug] = useState()
-  const [buildingPlan, setBuildingPlan] = useState()
-
-  const [checksonnel, setChecksonnel] = useState()
-  const [skillsExplorer, setSkillsExplorer] = useState()
-  const [cartoSkills, setCartoSkills] = useState()
-  const [mapSkills, setMapSkills] = useState()
-  const [skillsnetwork, setSkillsnetwork] = useState()
-  const [skillBook, setSkillBook] = useState()
-
   useEffect(() => {
     if(props.user.division === "Putman Services") {
-      console.log("dans Putman Services")
       axios({
         method: "get",
         url: `${process.env.REACT_APP_API_URL}/api/user/getDataTechForm/${props.user.id}`,
@@ -32,12 +17,13 @@ function Chart(props: any) {
         if(res.data.errors) {
           console.log("errors")
         } else {
-            setManoeuvre(res.data[0].manoeuvre)
-            setElectricPlan(res.data[0].electricPlan)
-            setElectricBox(res.data[0].electricBox)
-            setCable(res.data[0].cable)
-            setPlug(res.data[0].plug)
-            setBuildingPlan(res.data[0].buildingPlan)
+          console.log(res)
+            setManoeuvre(res.data[0].skills[0].value)
+            setElectricPlan(res.data[0].skills[1].value)
+            setElectricBox(res.data[0].skills[2].value)
+            setCable(res.data[0].skills[3].value)
+            setPlug(res.data[0].skills[4].value)
+            setBuildingPlan(res.data[0].skills[5].value)
         }
       }).catch((err) => {
         console.log(err, 'catch Errors');
@@ -66,6 +52,21 @@ function Chart(props: any) {
       })
     }
   })
+  const [manoeuvre, setManoeuvre] = useState()
+  const [electricPlan, setElectricPlan] = useState()
+  const [electricBox, setElectricBox] = useState()
+  const [cable, setCable] = useState()
+  const [plug, setPlug] = useState()
+  const [buildingPlan, setBuildingPlan] = useState()
+
+  const [checksonnel, setChecksonnel] = useState()
+  const [skillsExplorer, setSkillsExplorer] = useState()
+  const [cartoSkills, setCartoSkills] = useState()
+  const [mapSkills, setMapSkills] = useState()
+  const [skillsnetwork, setSkillsnetwork] = useState()
+  const [skillBook, setSkillBook] = useState()
+
+  
  
   const dataPutmanServices = [
     {
@@ -83,10 +84,12 @@ function Chart(props: any) {
     {
       "name": "Tirage de cable",
       "value": cable,
-    },  {
+    }, 
+    {
       "name": "Prises",
       "value": plug,
-    },  {
+    },  
+    {
       "name": "Plan",
       "value": buildingPlan,
     }, 

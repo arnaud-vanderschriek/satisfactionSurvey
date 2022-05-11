@@ -16,7 +16,7 @@ module.exports.getAllUsers = async (req, res) => {
 
 module.exports.userInfo = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
+    return res.status(400).send("ID unknown tagada: " + req.params.id);
 
   UserModel.findById(req.params.id, (err, docs) => {
     if (!err) res.send(docs);
@@ -33,29 +33,45 @@ module.exports.setDataChartPutmanServicesUser = async (req, res) => {
     req.body.data;
 
   try {
-    const user = await EletricSkillsModel.create({
-      idUser: req.params.id,
-      manoeuvre,
-      electricPlan,
-      electricBox,
-      cable,
-      plug,
-      buildingPlan,
-    });
-
     await UserModel.findOneAndUpdate(
       { _id: req.params.id },
       {
         $set: {
           techForm: true,
+          skills: [
+            {
+              name: "manoeuvre",
+              value: manoeuvre,
+            },
+            {
+              name: "electricPlan",
+              value: electricPlan,
+            },
+            {
+              name: "electricBox",
+              value: electricBox,
+            },
+            {
+              name: "cable",
+              value: cable,
+            },
+            {
+              name: "plug",
+              value: plug,
+            },
+            {
+              name: "buildingPlan",
+              value: buildingPlan,
+            },
+          ],
         },
       },
       { new: true, upsert: true, setDefaultsOnInsert: true }
     ),
       res.status(201).json({ user: user._id });
   } catch (err) {
-    const errors = signUpErrors(err);
-    res.status(200).send({ errors });
+    // const errors = signUpErrors(err);
+    res.status(200).send({ err });
   }
 };
 
@@ -73,21 +89,37 @@ module.exports.setDataChartInfratec2User = async (req, res) => {
   } = req.body.data;
 
   try {
-    const user = await RailWaySkillsModel.create({
-      idUser: req.params.id,
-      checksonnel,
-      skillsExplorer,
-      cartoSkills,
-      mapSkills,
-      skillsnetwork,
-      skillBook,
-    });
-
     await UserModel.findOneAndUpdate(
       { _id: req.params.id },
       {
         $set: {
           techForm: true,
+          skills: [
+            {
+              name: "checksonnel",
+              value: checksonnel,
+            },
+            {
+              name: "skillsExplorer",
+              value: skillsExplorer,
+            },
+            {
+              name: "cartoSkills",
+              value: cartoSkills,
+            },
+            {
+              name: "mapSkills",
+              value: mapSkills,
+            },
+            {
+              name: "skillsnetwork",
+              value: skillsnetwork,
+            },
+            {
+              name: "skillBook",
+              value: skillBook,
+            },
+          ],
         },
       },
       { new: true, upsert: true, setDefaultsOnInsert: true }
@@ -100,32 +132,50 @@ module.exports.setDataChartInfratec2User = async (req, res) => {
 };
 
 module.exports.setDataChartPutmanServicesPm = async (req, res) => {
+  console.log("dans PutmanPm");
+
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
-  console.log(req.body.data.idUserEval, req.params.id);
-  const {
-    idUserEval,
-    manoeuvre,
-    electricPlan,
-    electricBox,
-    cable,
-    plug,
-    buildingPlan,
-  } = req.body.data;
+  console.log(req.body);
+  const { manoeuvre, electricPlan, electricBox, cable, plug, buildingPlan } =
+    req.body.data;
 
   try {
-    const user = await OpinionPutmanServicesModel.create({
-      idPm: req.params.id,
-      idUserEval,
-      manoeuvre,
-      electricPlan,
-      electricBox,
-      cable,
-      plug,
-      buildingPlan,
-    });
-
-    res.status(201).json({ user: user._id });
+    await UserModel.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $set: {
+          pmSkills: [
+            {
+              name: "manoeuvre",
+              value: manoeuvre,
+            },
+            {
+              name: "electricPlan",
+              value: electricPlan,
+            },
+            {
+              name: "electricBox",
+              value: electricBox,
+            },
+            {
+              name: "cable",
+              value: cable,
+            },
+            {
+              name: "plug",
+              value: plug,
+            },
+            {
+              name: "buildingPlan",
+              value: buildingPlan,
+            },
+          ],
+        },
+      },
+      { new: true, upsert: true, setDefaultsOnInsert: true }
+    ),
+      res.status(201).json({ user: user._id });
   } catch (err) {
     // const errors = signUpErrors(err);
     res.status(200).send({ err });
@@ -147,18 +197,41 @@ module.exports.setDataChartInfratec2Pm = async (req, res) => {
   } = req.body.data;
 
   try {
-    const user = await OpinionInfratec2Model.create({
-      idPm: req.params.id,
-      idUserEval,
-      checksonnel,
-      skillsExplorer,
-      cartoSkills,
-      mapSkills,
-      skillsnetwork,
-      skillBook,
-    });
-
-    res.status(201).json({ user: user._id });
+    await UserModel.findOneAndUpdate(
+      { _id: idUserEval },
+      {
+        $set: {
+          pmSkills: [
+            {
+              name: "checksonnel",
+              value: checksonnel,
+            },
+            {
+              name: "skillsExplorer",
+              value: skillsExplorer,
+            },
+            {
+              name: "cartoSkills",
+              value: cartoSkills,
+            },
+            {
+              name: "mapSkills",
+              value: mapSkills,
+            },
+            {
+              name: "skillsnetwork",
+              value: skillsnetwork,
+            },
+            {
+              name: "skillBook",
+              value: skillBook,
+            },
+          ],
+        },
+      },
+      { new: true, upsert: true, setDefaultsOnInsert: true }
+    ),
+      res.status(201).json({ user: user._id });
   } catch (err) {
     // const errors = signUpErrors(err);
     res.status(200).send({ err });
@@ -166,6 +239,8 @@ module.exports.setDataChartInfratec2Pm = async (req, res) => {
 };
 
 module.exports.addtionnalData = async (req, res) => {
+  console.log("g");
+
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 
@@ -199,7 +274,7 @@ module.exports.getDataTechFormPutmanServices = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
 
-  EletricSkillsModel.find({ idUser: req.params.id }, (err, docs) => {
+  UserModel.find({ _id: req.params.id }, (err, docs) => {
     if (!err) res.status(201).json(docs);
     else console.log("ID unknown : " + err);
   });
@@ -210,6 +285,25 @@ module.exports.getDataTechFormInfratec2 = async (req, res) => {
     return res.status(400).send("ID unknown : " + req.params.id);
 
   RailWaySkillsModel.find({ idUser: req.params.id }, (err, docs) => {
+    if (!err) res.status(201).json(docs);
+    else console.log("ID unknown : " + err);
+  });
+};
+
+module.exports.getAllDatasFromWorkers = async (req, res) => {
+  try {
+    const datasOnWorkers = await EletricSkillsModel.find({});
+    res.status(200).json(datasOnWorkers);
+  } catch (err) {
+    console.log({ message: err });
+  }
+};
+
+module.exports.getAllDatasFromPmPutmanServices = async (req, res) => {
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send("ID unknown : " + req.params.id);
+
+  OpinionPutmanServicesModel.find({ idPm: req.params.id }, (err, docs) => {
     if (!err) res.status(201).json(docs);
     else console.log("ID unknown : " + err);
   });

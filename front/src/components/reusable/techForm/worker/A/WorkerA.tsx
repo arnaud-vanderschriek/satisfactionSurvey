@@ -16,11 +16,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import Form1 from './Form1';
 import Form2 from './Form2';
-import { setUpdateUser } from '../../../../../redux/actions/user.action';
-import { setInfractec2TechPm, setInfratec2TechInfos, setPutmanServicesTechInfos, setPutmanServicesTechPm } from '../../../../../redux/actions/user.action';
+import { resetState, setUpdateUser } from '../../../../../redux/actions/user.action';
+import { setInfractec2Stats, setPutmanServicesStats } from '../../../../../redux/actions/user.action';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { UserStoreModel } from '../../../userForm';
 
 
 function Copyright() {
@@ -67,32 +66,30 @@ function WorkerA(props: any) {
   // };
 
   const handleSend = () => {
+    console.log('entrée de test dans handleSend')
     let url = ''
     let body
     if(props.user.poste === 'ouvrier') {
       if(props.user.division === 'Putman Services') {
         url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServices/${props.user.id}`
-        body = props.putmanServicesStatsUser
+        body = props.putmanServicesStats
       }
       if(props.user.division === 'Infratec2') {
         url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormInfratec2/${props.user.id}`
-        body = props.infratec2StatsUser
+        body = props.infratec2Stats
       }
     }
     if(props.user.poste === 'pm') {
       if(props.user.division === 'Putman Services') {
-        props.setPutmanServicesTechPm({ ...props.putmanServicesStatsPm, idUserEval: props.userEval._id })
-        url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServicesPm/${props.user.id}`
-        body = props.putmanServicesStatsPm
+        url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormPutmanServicesPm/${props.userEval._id}`
+        body = props.putmanServicesStats
       }
       if(props.user.division === 'Infratec2') {
-        props.setInfractec2TechPm({ ...props.infratec2StatsPm, idUserEval: props.userEval.id })
-        url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormInfratec2Pm/${props.user._id}`
-        body = props.infratec2StatsPm
+        url = `${process.env.REACT_APP_API_URL}/api/user/dataTechFormInfratec2Pm/${props.userEval._id}`
+        body = props.infratec2Stats
       }
     }
-    
-
+    console.log({'url': url, 'body' : body})
     axios({
       method: "post",
       url: url,
@@ -104,11 +101,14 @@ function WorkerA(props: any) {
       if(res.data.errors) {
         console.log("errors")
       } else {
+        console.log('test dans le else')
         if(props.user.poste === 'ouvrier') {
+        console.log('test dans le else dans le if')
           props.setUpdateUser({ ...props.user, techForm: true })
           navigate('/techForm')
         }
         if(props.user.poste === 'pm') {
+          props.resetState()
           navigate('/pmHome')        
         }
       }
@@ -205,20 +205,17 @@ const mapStateToProps = (state: any) => {
   return {
     user: state.user,
     userEval: state.userEval,
-    putmanServicesStatsUser: state.putmanServicesStatsUser,
-    infratec2StatsUser: state.infratec2StatsUser,
-    putmanServicesStatsPm: state.putmanServicesStatsPm,
-    infratec2StatsPm: state.infratec2StatsPm
+    putmanServicesStats: state.putmanServicesStats,
+    infratec2Stats: state.infratec2Stats,
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
     setUpdateUser: (data: any) => dispatch(setUpdateUser(data)),
-    setPutmanServicesTechInfos: (data: any) => dispatch(setPutmanServicesTechInfos(data)),
-    setInfratec2TechInfos: (data: any) => dispatch(setInfratec2TechInfos(data)),
-    setPutmanServicesTechPm: (data: any) => dispatch(setPutmanServicesTechPm(data)),
-    setInfractec2TechPm: (data: any) => dispatch(setInfractec2TechPm(data))
+    setPutmanServicesStats: (data: any) => dispatch(setPutmanServicesStats(data)),
+    setInfractec2Stats: (data: any) => dispatch(setInfractec2Stats(data)),
+    resetState: () => dispatch(resetState())
   }
 }
 

@@ -48,9 +48,19 @@ const userSchema = new mongoose.Schema(
       minlength: 1,
       maxlength: 20,
     },
-    colleagues: {
-      type: [String],
-    },
+    skills: [
+      {
+        name: { type: String },
+        value: { type: String },       
+      },
+    ],
+    pmSkills: [
+      {
+        name: { type: String },
+        value: { type: String },
+      },
+    ],
+
     address1: {
       type: String,
       required: false,

@@ -10,18 +10,18 @@ function a11yProps(index: number) {
 }
 
 function TabsFiltred(props: any) {
-  return (
-    <div>
-      {props.user.division === "Putman Services" ? 
-        props.users.filter((elem: any) => elem.division === "Putman Services").map((elem: any, index: number) => {
-         return <Tab label={elem.firstname} {...a11yProps(index)} />
-        }) : 
-        props.users.filter((elem: any) => elem.division === "Infratec2").map((elem: any, index: number) => {
-          return <Tab label={elem.firstname} {...a11yProps(index)} />
-        })
-      }
-    </div>
-  )
+  if(props.user.division === "Putman Services") {
+    props.users.filter((elem: any) => elem.division === "Putman Services").map((elem: any, index: number) => {
+      return <Tab label={elem.firstname} {...a11yProps(index)} />
+  })
+}
+  if(props.user.division === "Infratec2") {
+    props.users.filter((elem: any) => elem.division === "Infratec2").map((elem: any, index: number) => {
+      return <Tab label={elem.firstname} {...a11yProps(index)} />
+    })
+        
+  }
+  return <div>Coucou</div>
 }
 
 const mapStateToProps = (state: any) => {

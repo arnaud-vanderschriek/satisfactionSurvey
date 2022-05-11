@@ -46,7 +46,7 @@ module.exports.signIn = async (req, res) => {
       id: user._id,
       lastName: user.lastname,
       firstname: user.firstname,
-      colleagues: user.colleagues,
+      skills: user.skills,
       division: user.division,
       classification: user.classification,
       poste: user.poste,
