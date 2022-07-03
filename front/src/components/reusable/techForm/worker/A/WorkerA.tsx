@@ -66,7 +66,6 @@ function WorkerA(props: any) {
   // };
 
   const handleSend = () => {
-    console.log('entrée de test dans handleSend')
     let url = ''
     let body
     if(props.user.poste === 'ouvrier') {
@@ -158,6 +157,8 @@ function WorkerA(props: any) {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
+                <label>Besoin en formation?</label>
+                <input type='textarea'></input>
                 <Typography variant="h5" gutterBottom>
                   Thank you for your time.
                   <Button

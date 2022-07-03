@@ -48,7 +48,7 @@ function Opinions(props: any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    user: store.getState().user,
+    user: state.user,
   }
 }
 

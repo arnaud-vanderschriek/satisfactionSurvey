@@ -11,7 +11,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';                                                                
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -40,11 +39,11 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 function LoginPage(props: any) {
-  let navigate = useNavigate()
   const [ lastnameField, setLastnameField ] = useState(false)
   const [ lastnameText, setLastnameText ] = useState("")
   const [ passwordField, setPasswordField ] = useState(false)
   const [ passwordText, setPasswordText ] = useState("")
+  let navigate = useNavigate()
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -67,7 +66,7 @@ function LoginPage(props: any) {
           setPasswordField(false)
           setPasswordText("")
         }
-        if (res.data.errors.password) {
+        if(res.data.errors.password) {
           setPasswordField(true)
           setPasswordText(res.data.errors.password)
           setLastnameField(false) 
@@ -85,7 +84,7 @@ function LoginPage(props: any) {
 
   return (
     <ThemeProvider theme={theme}>
-        <AppBar
+      <AppBar
         position="absolute"
         color="default"
         elevation={0}
@@ -94,7 +93,7 @@ function LoginPage(props: any) {
           borderBottom: (t) => `1px solid ${t.palette.divider}`,
           backgroundColor: '#1f76d2',
           color: 'white',
-        }}
+        }} 
       >
         <Toolbar>
           <div id='logoPutman'></div>
@@ -113,7 +112,7 @@ function LoginPage(props: any) {
             alignItems: 'center',
           }}
         >  
-            <div id='logoPutman2'></div>
+          <div id='logoPutman2'></div>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           </Avatar>
           <Typography component="h1" variant="h5">

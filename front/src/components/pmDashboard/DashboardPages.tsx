@@ -1,24 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setLinkList } from '../../redux/actions/user.action'
-import Survey from './Survey'
-import DashboardContent from './DashboardContent'
+import Survey from './surveyFolder/Survey'
+import OverviewContent from './overviewContentFolder/OverviewContent'
 import WorkerChart from './WorkerChart'
 
 
 function DashboardPages(props: any) {
   switch(props.link) {
-    case 'dashboard':
-      return <DashboardContent />
-      break;
+    case 'overview':
+      return <OverviewContent />
     case 'compétences':
       return <Survey />
-      break; 
     case 'workerCharts':
       return <WorkerChart />
-      break;
     default:
-      return <DashboardContent />
+      return <OverviewContent />
   }
 }
 
@@ -28,4 +24,4 @@ const mapStateToProps = (state: any) => {
   }
 }
 
-export default connect(mapStateToProps, ({}))(DashboardPages);
+export default connect(mapStateToProps)(DashboardPages);

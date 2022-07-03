@@ -9,6 +9,7 @@ export interface UserStoreModel {
   poste: string,
   userForm: boolean,
   techForm: boolean,
+  date: Date,
 }
 
 export interface UserElectricSkillsModel {

@@ -5,6 +5,7 @@ import { UserStoreModel } from "../../components/reusable/userForm";
 export const SET_USER = "GET_USER";
 export const SET_USEREVAL = "SET_USEREVAL";
 export const SET_PUTMANSERVICESINFOS = "SET_PUTMANSERVICESINFOS";
+export const SET_ISFETCHING = "SET_ISFETCHING";
 export const SET_INFRATEC2INFOS = "SET_INFRATEC2INFOS";
 export const SET_PUTMANSERVICESSTATS = "SET_PUTMANSERVICESSTATS ";
 export const SET_INFRATEC2STATS = "SET_INFRATEC2STATS";
@@ -24,12 +25,12 @@ export const SetUser = (data: UserStoreModel) => {
     dispatch({type: SET_USER, payload: data})
   }
 }
+
 export const SetUserEval = (data: UserStoreModel) => {
   return (dispatch: any) => {
     dispatch({type: SET_USEREVAL, payload: data})
   }
 }
-
 
 export const setPutmanServicesStats = (data: ValuesTechForm[]) => {
   return (dispatch: any) => {
@@ -42,17 +43,24 @@ export const setInfractec2Stats = (data: ValuesTechForm[]) => {
     dispatch({ type: SET_INFRATEC2STATS, payload: data})
   }
 }
+
 export const setIndexOfUsers = (data: any) => {
   return (dispatch: any) => {
     dispatch({ type: SET_INDEXOFUSERS, payload: data})
   }
 }
+
 export const setLinkList = (data: any) => {
   return (dispatch: any) => {
     dispatch({type: SET_LINKLIST, payload: data})
   }
 }
 
+export const setIsFetching = (data: any) => {
+  return (dispatch: any) => {
+    dispatch({type: SET_ISFETCHING, payload: data})
+  }
+}
 
 export const setAddInfosUser = (data: any) => {
   return (dispatch: any) => {
@@ -68,14 +76,17 @@ export const setUpdateUser = (data: any) => {
 
 export const fetchAllWorker = () => {
   return (dispatch: any) => {
+    setIsFetching(true)
     axios.get(`${process.env.REACT_APP_API_URL}/api/user/getAllUsers`)
     .then(res => {
       dispatch({type: FETCH_USERS, payload: res.data})
+      setIsFetching(true)
     })
     .catch(errors => {
       const errorsMsg = errors.message
       console.log(errorsMsg)
-    })    
+    }) 
+    setIsFetching(true)   
   }
 }
 

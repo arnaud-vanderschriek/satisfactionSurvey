@@ -17,7 +17,6 @@ function Chart(props: any) {
         if(res.data.errors) {
           console.log("errors")
         } else {
-          console.log(res)
             setManoeuvre(res.data[0].skills[0].value)
             setElectricPlan(res.data[0].skills[1].value)
             setElectricBox(res.data[0].skills[2].value)
@@ -31,7 +30,6 @@ function Chart(props: any) {
     }
 
     if(props.user.division === "Infratec2") {
-      console.log("dans Infratec2")
       axios({
         method: "get",
         url: `${process.env.REACT_APP_API_URL}/api/user/getDataTechFormInfratec2/${props.user.id}`,
@@ -67,7 +65,6 @@ function Chart(props: any) {
   const [skillBook, setSkillBook] = useState()
 
   
- 
   const dataPutmanServices = [
     {
       "name": "manoeuvre",
@@ -125,13 +122,13 @@ function Chart(props: any) {
       <Title>Personnal stats</Title>
       <ResponsiveContainer width='100%' height="300%" >
         {props.user.division === "Putman Services" ? 
-         <RadarChart outerRadius={80} width={730} height={350} data={dataPutmanServices}>
-          <PolarGrid />
-          <PolarAngleAxis dataKey="name" />
-          <PolarRadiusAxis angle={30} domain={[0, 1000]}  />
-          <Radar name={props.user.firstname} dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-          <Legend />
-        </RadarChart> 
+          <RadarChart outerRadius={80} width={730} height={350} data={dataPutmanServices}>
+            <PolarGrid />
+            <PolarAngleAxis dataKey="name" />
+            <PolarRadiusAxis angle={30} domain={[0, 1000]}  />
+            <Radar name={props.user.firstname} dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+            <Legend />
+          </RadarChart> 
           : 
           <RadarChart outerRadius={80} width={730} height={250} data={dataInfratec2}>
             <PolarGrid />
@@ -139,8 +136,8 @@ function Chart(props: any) {
             <PolarRadiusAxis angle={30} domain={[0, 1000]}  />
             <Radar name={props.user.firstname} dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
             <Legend />
-        </RadarChart>
-     }
+          </RadarChart>
+        }
       </ResponsiveContainer>
     </React.Fragment>
   );
@@ -154,9 +151,4 @@ const mapStateToProps = (state: any) => {
   }
 }
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Chart)
+export default connect(mapStateToProps)(Chart)

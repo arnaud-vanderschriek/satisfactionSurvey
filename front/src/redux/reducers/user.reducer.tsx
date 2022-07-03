@@ -2,6 +2,7 @@ import {
   FETCH_USERS, 
   SET_ADDINFOSUSER, 
   SET_INDEXOFUSERS, 
+  SET_ISFETCHING,
   SET_INFRATEC2STATS, 
   SET_LINKLIST, 
   SET_PUTMANSERVICESSTATS, 
@@ -14,10 +15,11 @@ import {
 import { UserElectricSkillsModel, UserStoreModel } from "../../components/reusable/userForm";
 
 const initialState = {
-  user: [] as UserStoreModel[],
+  user: {} as UserStoreModel,
   users: [{}],
   userEval: {} as UserStoreModel,
   userToFindInUsers: -1,
+  isFetching: false,
   link: 'dashboard',
   infratec2Stats: {
     checkSonnel: 0,
@@ -72,6 +74,11 @@ export default function userReducer(state= initialState, action: any) {
       return {
         ...state,
         userToFindInUsers: action.payload
+      }
+    case SET_ISFETCHING:
+      return {
+        ...state,
+        isFetching: action.payload
       }
     case SET_LINKLIST:
       return {

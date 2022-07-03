@@ -51,7 +51,7 @@ const userSchema = new mongoose.Schema(
     skills: [
       {
         name: { type: String },
-        value: { type: String },       
+        value: { type: String },
       },
     ],
     pmSkills: [
@@ -60,7 +60,7 @@ const userSchema = new mongoose.Schema(
         value: { type: String },
       },
     ],
-
+    date: Date,
     address1: {
       type: String,
       required: false,

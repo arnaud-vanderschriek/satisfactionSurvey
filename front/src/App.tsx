@@ -9,6 +9,7 @@ import Opinion from './components/reusable/techForm/worker/OpinionOnWorker'
 import React from 'react';
 import RedirectionContainer from './components/redirectionContainer/RedirectionContainer';
 
+
 export function App() {
   return (
     <Router>

@@ -52,6 +52,7 @@ module.exports.signIn = async (req, res) => {
       poste: user.poste,
       userForm: user.userForm,
       techForm: user.techForm,
+      date: user.updatedAt,
     });
   } catch (err) {
     const errors = signInErrors(err);
@@ -60,7 +61,6 @@ module.exports.signIn = async (req, res) => {
 };
 
 module.exports.logout = async (req, res) => {
-  console.log(req);
   res.cookie("jwt", "", { maxAge: 1 });
   res.redirect("/");
 };

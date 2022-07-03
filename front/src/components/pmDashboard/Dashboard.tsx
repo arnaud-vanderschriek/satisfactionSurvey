@@ -12,6 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -23,6 +24,7 @@ import MainListItems from './MainListItems';
 import DashboardPages from './DashboardPages';
 import { connect } from 'react-redux';
 import { logOut } from '../../redux/actions/user.action';
+
 
 function Copyright(props: any) {
   return (
@@ -90,11 +92,14 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mdTheme = createTheme();
 
 function Dashboard(props: any) {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+  
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  
   let navigate = useNavigate()
+
   const logout = () => {
     axios({
       method: "get",
@@ -120,9 +125,8 @@ function Dashboard(props: any) {
         <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
-              pr: '24px', // keep right padding when drawer closed
-            }}
-          >
+              pr: '24px', 
+            }}>
             <IconButton
               edge="start"
               color="inherit"
@@ -131,8 +135,7 @@ function Dashboard(props: any) {
               sx={{
                 marginRight: '36px',
                 ...(open && { display: 'none' }),
-              }}
-            >
+              }}>
               <MenuIcon />
             </IconButton>
             <Typography
@@ -140,8 +143,7 @@ function Dashboard(props: any) {
               variant="h6"
               color="inherit"
               noWrap
-              sx={{ flexGrow: 1 }}
-            >
+              sx={{ flexGrow: 1 }} >
               Project Manager Dashboard
             </Typography>
             <IconButton color="inherit">
@@ -183,26 +185,29 @@ function Dashboard(props: any) {
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',
-          }}
-        >
+          }} >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 8, mb: 8 }}>
-            <Grid container spacing={3}>
-              <DashboardPages />
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+            <Grid item xs={12}>
+              <Paper
+                sx={{
+                  p: 2,
+                  height: 'auto',
+                  width: 'auto',
+                }} >
+                <DashboardPages />
+              </Paper>
             </Grid> 
           </Container>
         </Box>
       </Box>
-      {/* <Copyright sx={{ pt: 4 }} /> */}
+      <Copyright sx={{ pt: 4 }} />
     </ThemeProvider>
   );
 }
 
-// export default function Dashboard() {
-//   return <DashboardContent />;
-// }
 
- const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: any) => {
   return {
     
   }
@@ -213,5 +218,5 @@ function Dashboard(props: any) {
     logOut: () => dispatch(logOut())
    }
  }
- 
+
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

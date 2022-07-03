@@ -5,7 +5,7 @@ import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 
-export default function DashboardContent() {
+export default function OverviewContent() {
   return (
     <React.Fragment>
     <Grid container spacing={3}>
@@ -33,7 +33,6 @@ export default function DashboardContent() {
       <Deposits />
     </Paper>
   </Grid>
-  {/* Recent Orders */}
   <Grid item xs={12}>
     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
       <Orders />

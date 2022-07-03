@@ -8,7 +8,9 @@ const ObjectID = require("mongoose").Types.ObjectId;
 module.exports.getAllUsers = async (req, res) => {
   try {
     const users = await UserModel.find().select("-password");
-    res.status(200).json(users);
+    setTimeout(() => {
+      res.status(200).json(users);
+    }, 20000);
   } catch (err) {
     console.log({ message: err });
   }
@@ -132,11 +134,8 @@ module.exports.setDataChartInfratec2User = async (req, res) => {
 };
 
 module.exports.setDataChartPutmanServicesPm = async (req, res) => {
-  console.log("dans PutmanPm");
-
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);
-  console.log(req.body);
   const { manoeuvre, electricPlan, electricBox, cable, plug, buildingPlan } =
     req.body.data;
 

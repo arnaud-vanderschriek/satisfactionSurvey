@@ -1,20 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { SetUser } from '../../redux/actions/user.action'
 import Dashboard from '../pmDashboard/Dashboard'
 import WorkerContainer from '../reusable/techForm/worker/WorkerContainer'
+import { UserStoreModel } from '../reusable/userForm'
 
 
 function RedirectionContainer(props: any) {
   switch (props.user.poste){
-   case 'ouvrier' :
+    case 'ouvrier' :
       return <WorkerContainer />
-      break;
-   case 'pm' :
+    case 'pm' :
       return <Dashboard />
-      break;
-   default :
-     return <RedirectionContainer />
-     break;
+    default :
+      return <RedirectionContainer />
   }
 }
 
@@ -24,4 +23,10 @@ const mapStateToProps = (state: any) => {
   }
 }
 
-export default connect(mapStateToProps, ({}))(RedirectionContainer)
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    SetUser: (data: UserStoreModel) => { dispatch(SetUser(data)) },
+  }
+} 
+
+export default connect(mapStateToProps, mapDispatchToProps)(RedirectionContainer)
